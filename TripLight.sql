@@ -8,6 +8,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema TripLight
 -- -----------------------------------------------------
 
+CREATE database triplight;
+USE triplight;
 -- -----------------------------------------------------
 -- Table `user`
 -- -----------------------------------------------------
@@ -120,7 +122,7 @@ INSERT INTO `country` (`countryCode`, `name`) VALUES ('AS', 'American Samoa');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('AT', 'Austria');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('AU', 'Australia');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('AW', 'Aruba');
-INSERT INTO `country` (`countryCode`, `name`) VALUES ('AX', 'Åland Islands');
+INSERT INTO `country` (`countryCode`, `name`) VALUES ('AX', 'ï¿½land Islands');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('AZ', 'Azerbaijan');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BA', 'Bosnia and Herzegovina');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BB', 'Barbados');
@@ -131,7 +133,7 @@ INSERT INTO `country` (`countryCode`, `name`) VALUES ('BG', 'Bulgaria');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BH', 'Bahrain');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BI', 'Burundi');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BJ', 'Benin');
-INSERT INTO `country` (`countryCode`, `name`) VALUES ('BL', 'Saint Barthélemy');
+INSERT INTO `country` (`countryCode`, `name`) VALUES ('BL', 'Saint Barthï¿½lemy');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BM', 'Bermuda');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BN', 'Brunei Darussalam');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BO', 'Bolivia');
@@ -149,7 +151,7 @@ INSERT INTO `country` (`countryCode`, `name`) VALUES ('CD', 'Congo, Democratic R
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CF', 'Central African Republic');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CG', 'Congo');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CH', 'Switzerland');
-INSERT INTO `country` (`countryCode`, `name`) VALUES ('CI', 'Côte d\'Ivoire');
+INSERT INTO `country` (`countryCode`, `name`) VALUES ('CI', 'Cï¿½te d\'Ivoire');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CK', 'Cook Islands');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CL', 'Chile');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CM', 'Cameroon');
@@ -158,7 +160,7 @@ INSERT INTO `country` (`countryCode`, `name`) VALUES ('CO', 'Colombia');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CR', 'Costa Rica');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CU', 'Cuba');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CV', 'Cape Verde');
-INSERT INTO `country` (`countryCode`, `name`) VALUES ('CW', 'Curaçao');
+INSERT INTO `country` (`countryCode`, `name`) VALUES ('CW', 'Curaï¿½ao');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CX', 'Christmas Island');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CY', 'Cyprus');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CZ', 'Czech Republic');
@@ -293,7 +295,7 @@ INSERT INTO `country` (`countryCode`, `name`) VALUES ('PT', 'Portugal');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('PW', 'Palau');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('PY', 'Paraguay');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('QA', 'Qatar');
-INSERT INTO `country` (`countryCode`, `name`) VALUES ('RE', 'Réunion');
+INSERT INTO `country` (`countryCode`, `name`) VALUES ('RE', 'Rï¿½union');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('RO', 'Romania');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('RS', 'Serbia');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('RU', 'Russian Federation');
@@ -446,4 +448,3 @@ INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (81, 'Pune', 'IN');
 INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (82, 'Copenhagen', 'Denmark');
 
 COMMIT;
-
