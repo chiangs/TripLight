@@ -3,49 +3,39 @@
 }
 
 html, body {
-    font-size: calc(112.5% + 0.5vw)
-    height: 100vh;
+    overflow: hidden;
+    height: 100%;
 }
 
-* h1 {
+@media (max-width:1000px) {
+    body>div {
+        height: 100%;
+        overflow: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+h1 {
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
-    font-size: calc((112.5% + 0.25vw) * 2);
+    font-size: calc((100% + 0.01vw) * 7);
 }
 
 * h2, h3, h4, p, a, blockquote {
     font-family: 'Quicksand', serif;
 }
 
-* p, a, {
-    font-size: calc((100% + 0.25vw))
-}
-
-body {
-    padding: 50px 0 0 0;
-    height: 100vh;
-}
-
-div#main-body {
-    height: 100vh;
-}
-
-
-/* NavBar */
-
-
-/* Profile container */
-
-.profile {
-    margin: 20px 0;
-}
-
-
 /* Profile sidebar */
 
-.profile-sidebar {
-    padding: 20px 0 10px 0;
-    background: #fff;
+@media (min-width:1000px) {
+    .profile-sidebar {
+        padding: 40px 0 0 0;
+        background: #fff;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+    }
 }
 
 .profile-userpic img {

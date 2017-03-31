@@ -1,0 +1,21 @@
+body {
+    background-image: url('create.jpg');
+    background-size: 100% 100%;
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.70);
+}
+
+.modal-content a:hover {
+    color: rgb(255, 130, 0);
+    text-decoration: none;
+}
+
+.btn-link {
+    color: white;
+}
+
+.modal-heading h2 {
+    color: #ffffff;
+}
