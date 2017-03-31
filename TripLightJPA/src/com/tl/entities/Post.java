@@ -12,4 +12,26 @@ public class Post {
 	private int id;
 	private int placeID;
 	private String review;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getPlaceID() {
+		return placeID;
+	}
+	public void setPlaceID(int placeID) {
+		this.placeID = placeID;
+	}
+	public String getReview() {
+		return review;
+	}
+	public void setReview(String review) {
+		this.review = review;
+	}
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", placeID=" + placeID + ", review=" + review + "]";
+	}
 }
