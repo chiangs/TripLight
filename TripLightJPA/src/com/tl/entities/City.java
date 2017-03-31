@@ -7,10 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class City {
-	@Override
-	public String toString() {
-		return "City [id=" + id + ", name=" + name + ", countryCode=" + countryCode + "]";
-	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 private int id;
@@ -34,5 +31,9 @@ public String getCountryCode() {
 }
 public void setCountryCode(String countryCode) {
 	this.countryCode = countryCode;
+}
+@Override
+public String toString() {
+	return "City [id=" + id + ", name=" + name + ", countryCode=" + countryCode + "]";
 }
 }
