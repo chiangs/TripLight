@@ -1,9 +1,14 @@
 package com.tl.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -13,12 +18,18 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String username;
-	private String currentLocation;
-	private int postId;
+	
+	@OneToMany(mappedBy="user")
+	private List<Post> posts;
+	
+    @OneToOne
+    @JoinColumn(name="countryCode")
+    private Country country;
+    
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", currentLocation=" + currentLocation + ", postId=" + postId + ", adminFlag=" + adminFlag
+				  + ", adminFlag=" + adminFlag
 				+ ", email=" + email + "]";
 	}
 	private String adminFlag;
@@ -47,18 +58,7 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getCurrentLocation() {
-		return currentLocation;
-	}
-	public void setCurrentLocation(String currentLocation) {
-		this.currentLocation = currentLocation;
-	}
-	public int getPostId() {
-		return postId;
-	}
-	public void setPostId(int postId) {
-		this.postId = postId;
-	}
+	
 	public String getAdminFlag() {
 		return adminFlag;
 	}

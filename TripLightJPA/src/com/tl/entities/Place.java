@@ -1,9 +1,14 @@
 package com.tl.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Place {
@@ -17,6 +22,16 @@ public class Place {
 	private int id;
 	private String name;
 	private int userID;
+	
+	@ManyToOne
+	@JoinColumn(name="cityID")
+	private City city;
+	@ManyToOne
+	@JoinColumn(name="CountryCode")
+	private Country country;
+
+	@OneToMany(mappedBy="place")
+	private List<Post> posts;
 	private String url;
 	private String CountryCode;
 	public int getId() {
