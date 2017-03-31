@@ -8,8 +8,11 @@
     </provider>
 
 		<!-- List Entities Here -->
-		<class>entities.Customer</class>
-
+		<class>entities.City</class>
+		<class>entities.Country</class>
+		<class>entities.Place</class>
+		<class>entities.Post</class>
+		<class>entities.User</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sdvid" />
 			<property name="javax.persistence.jdbc.user" value="student" />
