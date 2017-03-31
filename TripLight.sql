@@ -8,39 +8,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema TripLight
 -- -----------------------------------------------------
 
-CREATE database triplight;
-USE triplight;
--- -----------------------------------------------------
--- Table `user`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `user` ;
-
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(45) NOT NULL,
-  `lastName` VARCHAR(45) NOT NULL,
-  `username` VARCHAR(45) NOT NULL,
-  `currentLocation` VARCHAR(45) NULL,
-  `reviewId` VARCHAR(45) NULL,
-  `adminFlag` INT(1) NOT NULL DEFAULT 0,
-  `email` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `post`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `post` ;
-
-CREATE TABLE IF NOT EXISTS `post` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `placeId` INT NOT NULL,
-  `review` VARCHAR(140) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `country`
 -- -----------------------------------------------------
@@ -54,18 +21,27 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `place`
+-- Table `user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `place` ;
+DROP TABLE IF EXISTS `user` ;
 
-CREATE TABLE IF NOT EXISTS `place` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `userId` VARCHAR(45) NULL,
-  `countryCode` VARCHAR(45) NOT NULL,
-  `url` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
+  `firstName` VARCHAR(45) NOT NULL,
+  `lastName` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
+  `currentLocation` VARCHAR(45) NULL,
+  `adminFlag` INT(1) NOT NULL DEFAULT 0,
+  `email` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_currentLocation_country`
+    FOREIGN KEY (`currentLocation`)
+    REFERENCES `country` (`countryCode`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+CREATE INDEX `fk_currentLocation_idx` ON `user` (`currentLocation` ASC);
 
 
 -- -----------------------------------------------------
@@ -77,8 +53,73 @@ CREATE TABLE IF NOT EXISTS `city` (
   `id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `countryCode` VARCHAR(2) NOT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_countryCode_country`
+    FOREIGN KEY (`countryCode`)
+    REFERENCES `country` (`countryCode`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+CREATE INDEX `fk_countryCode_country_idx` ON `city` (`countryCode` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `place`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `place` ;
+
+CREATE TABLE IF NOT EXISTS `place` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `userId` INT NULL,
+  `cityId` INT NULL,
+  `countryCode` VARCHAR(2) NOT NULL,
+  `url` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_cityId_city`
+    FOREIGN KEY (`cityId`)
+    REFERENCES `city` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_countryCode_country`
+    FOREIGN KEY (`countryCode`)
+    REFERENCES `country` (`countryCode`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_cityId_city_idx` ON `place` (`cityId` ASC);
+
+CREATE INDEX `fk_countryCode_idx` ON `place` (`countryCode` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `post`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `post` ;
+
+CREATE TABLE IF NOT EXISTS `post` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `placeId` INT NOT NULL,
+  `review` VARCHAR(140) NOT NULL,
+  `userId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_placeId_place`
+    FOREIGN KEY (`placeId`)
+    REFERENCES `place` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_post_user1`
+    FOREIGN KEY (`userId`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_placeId_place_idx` ON `post` (`placeId` ASC);
+
+CREATE INDEX `fk_post_user1_idx` ON `post` (`userId` ASC);
 
 SET SQL_MODE = '';
 GRANT USAGE ON *.* TO admin;
@@ -93,16 +134,6 @@ GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'admin';
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
--- -----------------------------------------------------
--- Data for table `user`
--- -----------------------------------------------------
-START TRANSACTION;
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `currentLocation`, `reviewId`, `adminFlag`, `email`) VALUES (1, 'admin', 'user', 'admin1', NULL, NULL, 1, 'admin@triplight.com');
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `currentLocation`, `reviewId`, `adminFlag`, `email`) VALUES (2, 'Dennis', 'Carrasquillo', 'dcarras', 'US', '1', 0, 'dennisc@gmail.com');
-
-COMMIT;
-
 
 -- -----------------------------------------------------
 -- Data for table `country`
@@ -122,7 +153,7 @@ INSERT INTO `country` (`countryCode`, `name`) VALUES ('AS', 'American Samoa');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('AT', 'Austria');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('AU', 'Australia');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('AW', 'Aruba');
-INSERT INTO `country` (`countryCode`, `name`) VALUES ('AX', 'ï¿½land Islands');
+INSERT INTO `country` (`countryCode`, `name`) VALUES ('AX', 'Åland Islands');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('AZ', 'Azerbaijan');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BA', 'Bosnia and Herzegovina');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BB', 'Barbados');
@@ -133,7 +164,7 @@ INSERT INTO `country` (`countryCode`, `name`) VALUES ('BG', 'Bulgaria');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BH', 'Bahrain');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BI', 'Burundi');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BJ', 'Benin');
-INSERT INTO `country` (`countryCode`, `name`) VALUES ('BL', 'Saint Barthï¿½lemy');
+INSERT INTO `country` (`countryCode`, `name`) VALUES ('BL', 'Saint Barthélemy');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BM', 'Bermuda');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BN', 'Brunei Darussalam');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('BO', 'Bolivia');
@@ -151,7 +182,7 @@ INSERT INTO `country` (`countryCode`, `name`) VALUES ('CD', 'Congo, Democratic R
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CF', 'Central African Republic');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CG', 'Congo');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CH', 'Switzerland');
-INSERT INTO `country` (`countryCode`, `name`) VALUES ('CI', 'Cï¿½te d\'Ivoire');
+INSERT INTO `country` (`countryCode`, `name`) VALUES ('CI', 'Côte d\'Ivoire');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CK', 'Cook Islands');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CL', 'Chile');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CM', 'Cameroon');
@@ -160,7 +191,7 @@ INSERT INTO `country` (`countryCode`, `name`) VALUES ('CO', 'Colombia');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CR', 'Costa Rica');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CU', 'Cuba');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CV', 'Cape Verde');
-INSERT INTO `country` (`countryCode`, `name`) VALUES ('CW', 'Curaï¿½ao');
+INSERT INTO `country` (`countryCode`, `name`) VALUES ('CW', 'Curaçao');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CX', 'Christmas Island');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CY', 'Cyprus');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('CZ', 'Czech Republic');
@@ -295,7 +326,7 @@ INSERT INTO `country` (`countryCode`, `name`) VALUES ('PT', 'Portugal');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('PW', 'Palau');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('PY', 'Paraguay');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('QA', 'Qatar');
-INSERT INTO `country` (`countryCode`, `name`) VALUES ('RE', 'Rï¿½union');
+INSERT INTO `country` (`countryCode`, `name`) VALUES ('RE', 'Réunion');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('RO', 'Romania');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('RS', 'Serbia');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('RU', 'Russian Federation');
@@ -357,6 +388,17 @@ INSERT INTO `country` (`countryCode`, `name`) VALUES ('YT', 'Mayotte');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('ZA', 'South Africa');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('ZM', 'Zambia');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('ZW', 'Zimbabwe');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user`
+-- -----------------------------------------------------
+START TRANSACTION;
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `currentLocation`, `adminFlag`, `email`) VALUES (1, 'admin', 'user', 'admin1', NULL, 1, 'admin@triplight.com');
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `currentLocation`, `adminFlag`, `email`) VALUES (2, 'Dennis', 'Carrasquillo', 'dcarras', 'US', 0, 'dennisc@gmail.com');
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `currentLocation`, `adminFlag`, `email`) VALUES (3, 'Aaron', 'Aguil', 'aguila', 'UK', 0, 'aguila@yahoo.com');
 
 COMMIT;
 
@@ -448,3 +490,30 @@ INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (81, 'Pune', 'IN');
 INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (82, 'Copenhagen', 'Denmark');
 
 COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `place`
+-- -----------------------------------------------------
+START TRANSACTION;
+INSERT INTO `place` (`id`, `name`, `userId`, `cityId`, `countryCode`, `url`) VALUES (1, 'Huxinting Teahouse', 2, 1, 'CN', NULL);
+INSERT INTO `place` (`id`, `name`, `userId`, `cityId`, `countryCode`, `url`) VALUES (2, 'Rumeli Fortress', 2, 3, 'TR', NULL);
+INSERT INTO `place` (`id`, `name`, `userId`, `cityId`, `countryCode`, `url`) VALUES (3, 'Red Square', 2, 6, 'RU', NULL);
+INSERT INTO `place` (`id`, `name`, `userId`, `cityId`, `countryCode`, `url`) VALUES (4, 'Gyeongbokgung Palace', 3, 13, 'KR', NULL);
+INSERT INTO `place` (`id`, `name`, `userId`, `cityId`, `countryCode`, `url`) VALUES (5, 'Cascada La Chorrera', 1, 29, 'CO', NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `post`
+-- -----------------------------------------------------
+START TRANSACTION;
+INSERT INTO `post` (`id`, `placeId`, `review`, `userId`) VALUES (1, 1, 'Very nice place with the smell of Chinese history. Must visit place. It\'s a little bit overcrowded...', 2);
+INSERT INTO `post` (`id`, `placeId`, `review`, `userId`) VALUES (2, 2, 'Excellent monument on the Bosporus ,built 600 years ago ,fine restaurants nearby and usually favoured as an anchor point', 2);
+INSERT INTO `post` (`id`, `placeId`, `review`, `userId`) VALUES (3, 3, 'This is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\n\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\n\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.', 2);
+INSERT INTO `post` (`id`, `placeId`, `review`, `userId`) VALUES (4, 4, 'A massive place to walk around. Lots of history. Lots of photo shots. Wednesday was free entry! It\'s quite close to the hotels. This place should be number one on your sightseeing list!', 3);
+INSERT INTO `post` (`id`, `placeId`, `review`, `userId`) VALUES (5, 5, 'The waterfall is incredible! It is a tough hike to get to. It takes about an hour and a half up the mountain to get there. It is slippery and rocky, but well worth it.', 1);
+
+COMMIT;
+
