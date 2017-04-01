@@ -1,0 +1,39 @@
+body {
+    background-image: url('../images/landing.jpg');
+    background-size: cover;
+    height: 100vh;
+}
+
+.title {
+    background-color: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    width: 100vw;
+    text-align: left;
+}
+
+/* login pane */
+
+@media (min-width:1000px) {
+    .modal-dialog {
+        left: 20vw;
+        top: 20vh;
+        width: 30vw;
+    }
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.70);
+}
+
+.modal-content a:hover {
+    color: rgb(255, 130, 0);
+    text-decoration: none;
+}
+
+.btn-link {
+    color: white;
+}
+
+.modal-heading h2 {
+    color: #fff;
+}
