@@ -32,6 +32,6 @@ public class PlaceTest {
 	
 	@Test
 	public void test_mapping_user_have_names() {
-		assertEquals("", place.getName());
+		assertEquals("Huxinttung Teahouse", place.getName());
 	}
 }

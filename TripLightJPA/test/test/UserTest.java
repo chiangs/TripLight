@@ -32,6 +32,6 @@ public class UserTest {
 	
 	@Test
 	public void test_mapping_user_have_names() {
-		assertEquals("", user.getFirstName());
+		assertEquals("admin", user.getFirstName());
 	}
 }

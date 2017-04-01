@@ -19,13 +19,9 @@ public class CityTest {
 
 	@Before
 	public void setUp() throws Exception {
-		System.out.println("test");
 		emf = Persistence.createEntityManagerFactory("TripLight");
 		em = emf.createEntityManager();
-		
-		System.out.println("test2");
 		city = em.find(City.class, 1);
-		System.out.println("test3");
 	}
 	
 	@After

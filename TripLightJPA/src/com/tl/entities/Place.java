@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Place {
@@ -14,13 +16,15 @@ public class Place {
 	
 	private String name;
 	
-	private String countryCode;
+	@ManyToOne
+	@JoinColumn(name="country_countryCode")
+	private Country country;
 	
 	private String url;
 
 	@Override
 	public String toString() {
-		return "Place [id=" + id + ", name=" + name + ", countryCode=" + countryCode + ", url=" + url + "]";
+		return "Place [id=" + id + ", name=" + name + ", countryName=" + country.getName() + ", url=" + url + "]";
 	}
 
 	public String getName() {
@@ -31,12 +35,14 @@ public class Place {
 		this.name = name;
 	}
 
-	public String getCountryCode() {
-		return countryCode;
+	
+
+	public Country getCountry() {
+		return country;
 	}
 
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 	public String getUrl() {
