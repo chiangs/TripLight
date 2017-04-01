@@ -1,28 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <!-- Required meta tags always come first -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>TripLight</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:500,900|Quicksand" rel="stylesheet">
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="userMain.css">
-
-    <!-- jQuery -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
-
-</head>
-
-<body>
-
-    <div id="main-body">
+<div id="main-body">
         <div class="container">
             <div class="row profile">
                 <div class="col-md-2">
@@ -66,34 +42,3 @@
                     </div>
                 </div>
                 <div class="col-md-10">
-                    <div class="profile-content">
-
-                        <div class="well">
-                        Content goes here, repeats
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- /container -->
-    <!-- jQuery first, then Bootstrap JS. -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-</body>
-
-<!-- Footer -->
-<footer>
-    <div class="footer">
-        <div class="container-fluid ">
-            <p>Coded and designed by <a style="color: #1e88cb" href="mailto:stephen.e.chiang@gmail.com">Dennis Carrasquillo, </a>&ensp;<a style="color: #1e88cb" href="mailto:stephen.e.chiang@gmail.com">Stephen Chiang, </a>&ensp;<a style="color: #1e88cb"
-                    href="mailto:ewilliamson.com">Stephen Chiang, </a>&copy;&nbsp;2017</p>
-        </div>
-    </div>
-</footer>
-
-</html>

@@ -1,34 +1,12 @@
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
+
 <html>
 
 <head>
-    <!-- Required meta tags always come first -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>TripLight</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:500,900|Quicksand" rel="stylesheet">
+   <%@ include file="header.jsp"%>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="create.css">
-
-    <!-- For new browsers - multisize ico  -->
-    <link rel="icon" type="image/x-icon" sizes="16x16 32x32" href="favicon.ico">
-
-    <!-- For iPad with high-resolution Retina display running iOS ≥ 7: -->
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicon-152.png">
-
-    <!-- Chrome for Android -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" sizes="192x192" href="favicon-192.png">
-
-    <!-- jQuery -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
-
-
 </head>
 
 <body>
@@ -88,7 +66,7 @@
 
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-success btn-lg">Submit</button>
-                            <a href="index.html" class="btn btn-primary btn-lg" role="button">Back to Landing Page</a>
+                            <a href="index.jsp" class="btn btn-primary btn-lg" role="button">Back to Landing Page</a>
                         </div>
                     </form>
                 </div>
@@ -99,20 +77,7 @@
 
 
     <!-- /container -->
-    <!-- jQuery first, then Bootstrap JS. -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+ <%@ include file="endBody.jsp"%>
 </body>
-
-<!-- Footer -->
-<footer>
-    <div class="footer">
-        <div class="container-fluid ">
-            <p>Coded and designed by <a style="color: #1e88cb" href="mailto:stephen.e.chiang@gmail.com">Dennis Carrasquillo, </a>&ensp;<a style="color: #1e88cb" href="mailto:stephen.e.chiang@gmail.com">Stephen Chiang, </a>&ensp;<a style="color: #1e88cb"
-                    href="mailto:ewilliamson.com">Stephen Chiang, </a>&copy;&nbsp;2017</p>
-        </div>
-    </div>
-</footer>
-
+<%@ include file="footer.jsp"%>
 </html>

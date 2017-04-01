@@ -1,5 +1,5 @@
 body {
-    background-image: url('landing.jpg');
+    background-image: url('../images/landing.jpg');
     background-size: cover;
     height: 100vh;
 }
