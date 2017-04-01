@@ -128,14 +128,14 @@ CREATE INDEX `fk_post_user_idx` ON `post` (`user_id` ASC);
 CREATE INDEX `fk_post_place1_idx` ON `post` (`place_id` ASC);
 
 SET SQL_MODE = '';
-GRANT USAGE ON *.* TO admin;
- DROP USER admin;
+GRANT USAGE ON *.* TO admin@localhost;
+ DROP USER admin@localhost;
 SET SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-CREATE USER 'admin' IDENTIFIED BY 'solarkisses';
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'solarkisses';
 
-GRANT ALL ON * TO 'admin';
-GRANT SELECT, INSERT, TRIGGER ON TABLE * TO 'admin';
-GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'admin';
+GRANT ALL ON * TO 'admin'@'localhost';
+GRANT SELECT, INSERT, TRIGGER ON TABLE * TO 'admin'@'localhost';
+GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'admin'@'localhost';
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
