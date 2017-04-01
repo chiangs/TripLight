@@ -32,6 +32,6 @@ public class PostTest {
 	
 	@Test
 	public void test_mapping_user_have_names() {
-		assertEquals("", post.getReview());
+		assertEquals("US", post.getUser().getCountry().getCountryCode());
 	}
 }

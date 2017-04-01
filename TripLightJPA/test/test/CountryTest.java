@@ -21,7 +21,7 @@ public class CountryTest {
 	public void setUp() throws Exception {
 		emf = Persistence.createEntityManagerFactory("TripLight");
 		em = emf.createEntityManager();
-		country = em.find(Country.class, 1);
+		country = em.find(Country.class, "US");
 	}
 	
 	@After
@@ -32,6 +32,6 @@ public class CountryTest {
 	
 	@Test
 	public void test_mapping_user_have_names() {
-		assertEquals("", country.getName());
+		assertEquals("United States", country.getName());
 	}
 }

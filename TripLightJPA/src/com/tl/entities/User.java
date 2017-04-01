@@ -1,9 +1,14 @@
 package com.tl.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -18,9 +23,12 @@ public class User {
 	
 	private String username;
 	
-	private String currentLocation;
+	@OneToOne
+	@JoinColumn(name="country_countryCode")
+	private Country country;
 	
-	private int reviewId;
+	@OneToMany(mappedBy="user")
+	private List<Post> posts;
 	
 	private int adminFlag;
 	
@@ -50,20 +58,22 @@ public class User {
 		this.username = username;
 	}
 
-	public String getCurrentLocation() {
-		return currentLocation;
+	public Country getCountry() {
+		return country;
 	}
 
-	public void setCurrentLocation(String currentLocation) {
-		this.currentLocation = currentLocation;
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
-	public int getReviewId() {
-		return reviewId;
+	
+
+	public List<Post> getPosts() {
+		return posts;
 	}
 
-	public void setReviewId(int reviewId) {
-		this.reviewId = reviewId;
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 	public int getAdminFlag() {
@@ -89,7 +99,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", currentLocation=" + currentLocation + ", reviewId=" + reviewId + ", adminFlag=" + adminFlag
+				+ ", currentLocation=" + country.getName() + ", posts=" + posts + ", adminFlag=" + adminFlag
 				+ ", email=" + email + "]";
 	}
 
