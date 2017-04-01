@@ -11,6 +11,8 @@
 
 	<context:component-scan base-package="controllers"></context:component-scan>
 
+	<mvc:annotation-driven />
+	
 	<bean id="dao" class="data.TripLightDAOImpl" />
 
 	<bean id="myEntityManagerFactory"
