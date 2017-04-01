@@ -9,31 +9,52 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Post {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	private String review;
+	
 	@ManyToOne
-	@JoinColumn(name="postID")
+	@JoinColumn(name="place_id")
 	private Place place;
 	
-
-	public int getId() {
-		return id;
+	private String review;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", place=" + place + ", review=" + review + ", user=" + user + "]";
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public Place getPlace() {
+		return place;
+	}
+
+	public void setPlace(Place place) {
+		this.place = place;
 	}
 
 	public String getReview() {
 		return review;
 	}
+
 	public void setReview(String review) {
 		this.review = review;
 	}
-	@Override
-	public String toString() {
-		return "Post [id=" + id  + ", review=" + review + "]";
+
+	public User getUser() {
+		return user;
 	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public int getId() {
+		return id;
+	}
+
 }

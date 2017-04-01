@@ -7,6 +7,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema TripLight
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `TripLight` ;
+
+-- -----------------------------------------------------
+-- Schema TripLight
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `TripLight` DEFAULT CHARACTER SET utf8 ;
+USE `TripLight` ;
 
 -- -----------------------------------------------------
 -- Table `country`
@@ -30,18 +37,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `firstName` VARCHAR(45) NOT NULL,
   `lastName` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
-  `currentLocation` VARCHAR(45) NULL,
   `adminFlag` INT(1) NOT NULL DEFAULT 0,
   `email` VARCHAR(45) NOT NULL,
+  `country_countryCode` VARCHAR(2) NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_currentLocation_country`
-    FOREIGN KEY (`currentLocation`)
+  CONSTRAINT `fk_user_country1`
+    FOREIGN KEY (`country_countryCode`)
     REFERENCES `country` (`countryCode`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_currentLocation_idx` ON `user` (`currentLocation` ASC);
+CREATE INDEX `fk_user_country1_idx` ON `user` (`country_countryCode` ASC);
 
 
 -- -----------------------------------------------------
@@ -52,16 +59,16 @@ DROP TABLE IF EXISTS `city` ;
 CREATE TABLE IF NOT EXISTS `city` (
   `id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
-  `countryCode` VARCHAR(2) NOT NULL,
+  `country_countryCode` VARCHAR(2) NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_countryCode_country`
-    FOREIGN KEY (`countryCode`)
+  CONSTRAINT `fk_city_country1`
+    FOREIGN KEY (`country_countryCode`)
     REFERENCES `country` (`countryCode`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_countryCode_country_idx` ON `city` (`countryCode` ASC);
+CREATE INDEX `fk_city_country1_idx` ON `city` (`country_countryCode` ASC);
 
 
 -- -----------------------------------------------------
@@ -72,26 +79,25 @@ DROP TABLE IF EXISTS `place` ;
 CREATE TABLE IF NOT EXISTS `place` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `userId` INT NULL,
-  `cityId` INT NULL,
-  `countryCode` VARCHAR(2) NOT NULL,
   `url` VARCHAR(45) NULL,
+  `city_id` INT NOT NULL,
+  `country_countryCode` VARCHAR(2) NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_cityId_city`
-    FOREIGN KEY (`cityId`)
+  CONSTRAINT `fk_place_city1`
+    FOREIGN KEY (`city_id`)
     REFERENCES `city` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_countryCode_country`
-    FOREIGN KEY (`countryCode`)
+  CONSTRAINT `fk_place_country1`
+    FOREIGN KEY (`country_countryCode`)
     REFERENCES `country` (`countryCode`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_cityId_city_idx` ON `place` (`cityId` ASC);
+CREATE INDEX `fk_place_city1_idx` ON `place` (`city_id` ASC);
 
-CREATE INDEX `fk_countryCode_idx` ON `place` (`countryCode` ASC);
+CREATE INDEX `fk_place_country1_idx` ON `place` (`country_countryCode` ASC);
 
 
 -- -----------------------------------------------------
@@ -101,35 +107,35 @@ DROP TABLE IF EXISTS `post` ;
 
 CREATE TABLE IF NOT EXISTS `post` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `placeId` INT NOT NULL,
   `review` VARCHAR(140) NOT NULL,
-  `userId` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `place_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_placeId_place`
-    FOREIGN KEY (`placeId`)
-    REFERENCES `place` (`id`)
+  CONSTRAINT `fk_post_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_post_user1`
-    FOREIGN KEY (`userId`)
-    REFERENCES `user` (`id`)
+  CONSTRAINT `fk_post_place1`
+    FOREIGN KEY (`place_id`)
+    REFERENCES `place` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_placeId_place_idx` ON `post` (`placeId` ASC);
+CREATE INDEX `fk_post_user_idx` ON `post` (`user_id` ASC);
 
-CREATE INDEX `fk_post_user1_idx` ON `post` (`userId` ASC);
+CREATE INDEX `fk_post_place1_idx` ON `post` (`place_id` ASC);
 
 SET SQL_MODE = '';
-GRANT USAGE ON *.* TO admin;
- DROP USER admin;
+GRANT USAGE ON *.* TO admin@localhost;
+ DROP USER admin@localhost;
 SET SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-CREATE USER 'admin' IDENTIFIED BY 'solarkisses';
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'solarkisses';
 
-GRANT ALL ON * TO 'admin';
-GRANT SELECT, INSERT, TRIGGER ON TABLE * TO 'admin';
-GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'admin';
+GRANT ALL ON * TO 'admin'@'localhost';
+GRANT SELECT, INSERT, TRIGGER ON TABLE * TO 'admin'@'localhost';
+GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'admin'@'localhost';
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -139,6 +145,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- Data for table `country`
 -- -----------------------------------------------------
 START TRANSACTION;
+USE `TripLight`;
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('AD', 'Andorra');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('AE', 'United Arab Emirates');
 INSERT INTO `country` (`countryCode`, `name`) VALUES ('AF', 'Afghanistan');
@@ -396,9 +403,10 @@ COMMIT;
 -- Data for table `user`
 -- -----------------------------------------------------
 START TRANSACTION;
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `currentLocation`, `adminFlag`, `email`) VALUES (1, 'admin', 'user', 'admin1', NULL, 1, 'admin@triplight.com');
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `currentLocation`, `adminFlag`, `email`) VALUES (2, 'Dennis', 'Carrasquillo', 'dcarras', 'US', 0, 'dennisc@gmail.com');
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `currentLocation`, `adminFlag`, `email`) VALUES (3, 'Aaron', 'Aguil', 'aguila', 'UK', 0, 'aguila@yahoo.com');
+USE `TripLight`;
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `adminFlag`, `email`, `country_countryCode`) VALUES (1, 'admin', 'user', 'admin1', 1, 'admin@triplight.com', 'US');
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `adminFlag`, `email`, `country_countryCode`) VALUES (2, 'Dennis', 'Carrasquillo', 'dcarras', 0, 'dennisc@gmail.com', 'US');
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `adminFlag`, `email`, `country_countryCode`) VALUES (3, 'Aaron', 'Aguil', 'aguila', 0, 'aguila@yahoo.com', 'CN');
 
 COMMIT;
 
@@ -407,87 +415,88 @@ COMMIT;
 -- Data for table `city`
 -- -----------------------------------------------------
 START TRANSACTION;
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (1, 'Shanghai', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (2, 'Lagos', 'NG');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (3, 'Istanbul', 'TR');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (4, 'Karachi', 'AF');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (5, 'Mumbai', 'IN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (6, 'Moscow', 'RU');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (7, 'Sao Paolo', 'BR');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (8, 'Beijing', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (9, 'Guangzhou', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (10, 'Delhi', 'IN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (11, 'Lahore', 'IN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (12, 'Shenzhen', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (13, 'Seoul', 'KR');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (14, 'Jakarta', 'ID');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (15, 'Tianjin', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (16, 'Chennai', 'IN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (17, 'Tokyo', 'JP');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (18, 'Cairo', 'EG');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (19, 'Dhaka', 'BD');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (20, 'Mexico City', 'MX');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (21, 'Kinshasa', 'CD');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (22, 'Bangalore', 'IN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (23, 'New York', 'US');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (24, 'London', 'GB');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (25, 'Bangkok', 'TH');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (26, 'Tehran', 'IR');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (27, 'Dongguan', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (28, 'Ho Chi Minh City', 'VN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (29, 'Bogota', 'CO');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (30, 'Lima', 'PE');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (31, 'Hong Kong', 'HK');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (32, 'Hanoi', 'VN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (33, 'Hyderabad', 'IN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (34, 'Wuhan', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (35, 'Rio de Janeiro', 'BR');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (36, 'Foshan', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (37, 'Ahmedabad', 'IN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (38, 'Baghdad', 'IQ');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (39, 'Singapore', 'SG');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (40, 'Shantou', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (41, 'Riyadh', 'SA');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (42, 'Jeddah', 'SA');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (43, 'Santiago', 'CL');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (44, 'Saint Petersburg', 'RU');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (45, 'Qalyubia', 'EG');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (46, 'Chengdu', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (47, 'Alexandria', 'EG');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (48, 'Ankara', 'TR');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (49, 'Chongqing', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (50, 'Kolkata', 'IN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (51, 'Xi\'an', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (52, 'Surat', 'IN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (53, 'Johannesburg', 'ZA');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (54, 'Nanjing', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (55, 'Dar es Salaam', 'TZ');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (56, 'Yangon', 'MM');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (58, 'Harbin', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (59, 'Zhengzhou', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (60, 'Suzhou', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (61, 'Sydney', 'AU');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (62, 'New Taipei City', 'TW');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (63, 'Los Angeles', 'US');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (64, 'Melbourne', 'AU');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (65, 'Cape Town', 'ZA');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (66, 'Shenyang', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (67, 'Yokohama', 'JP');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (68, 'Busan', 'KR');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (69, 'Hangzhou', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (70, 'Quanzhou', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (71, 'Durban', 'KR');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (72, 'Casablanca', 'MA');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (73, 'Algiers', 'DZ');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (74, 'Berlin', 'DE');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (75, 'Nairobi', 'KE');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (76, 'Hefei', 'CN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (77, 'Kabul', 'AF');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (78, 'Pyongyang', 'KP');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (79, 'Madrid', 'ES');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (80, 'Ekurhuleni', 'ZA');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (81, 'Pune', 'IN');
-INSERT INTO `city` (`id`, `name`, `countryCode`) VALUES (82, 'Copenhagen', 'Denmark');
+USE `TripLight`;
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (1, 'Shanghai', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (2, 'Lagos', 'NG');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (3, 'Istanbul', 'TR');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (4, 'Karachi', 'AF');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (5, 'Mumbai', 'IN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (6, 'Moscow', 'RU');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (7, 'Sao Paolo', 'BR');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (8, 'Beijing', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (9, 'Guangzhou', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (10, 'Delhi', 'IN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (11, 'Lahore', 'IN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (12, 'Shenzhen', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (13, 'Seoul', 'KR');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (14, 'Jakarta', 'ID');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (15, 'Tianjin', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (16, 'Chennai', 'IN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (17, 'Tokyo', 'JP');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (18, 'Cairo', 'EG');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (19, 'Dhaka', 'BD');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (20, 'Mexico City', 'MX');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (21, 'Kinshasa', 'CD');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (22, 'Bangalore', 'IN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (23, 'New York', 'US');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (24, 'London', 'GB');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (25, 'Bangkok', 'TH');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (26, 'Tehran', 'IR');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (27, 'Dongguan', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (28, 'Ho Chi Minh City', 'VN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (29, 'Bogota', 'CO');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (30, 'Lima', 'PE');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (31, 'Hong Kong', 'HK');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (32, 'Hanoi', 'VN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (33, 'Hyderabad', 'IN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (34, 'Wuhan', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (35, 'Rio de Janeiro', 'BR');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (36, 'Foshan', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (37, 'Ahmedabad', 'IN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (38, 'Baghdad', 'IQ');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (39, 'Singapore', 'SG');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (40, 'Shantou', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (41, 'Riyadh', 'SA');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (42, 'Jeddah', 'SA');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (43, 'Santiago', 'CL');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (44, 'Saint Petersburg', 'RU');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (45, 'Qalyubia', 'EG');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (46, 'Chengdu', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (47, 'Alexandria', 'EG');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (48, 'Ankara', 'TR');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (49, 'Chongqing', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (50, 'Kolkata', 'IN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (51, 'Xi\'an', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (52, 'Surat', 'IN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (53, 'Johannesburg', 'ZA');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (54, 'Nanjing', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (55, 'Dar es Salaam', 'TZ');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (56, 'Yangon', 'MM');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (58, 'Harbin', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (59, 'Zhengzhou', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (60, 'Suzhou', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (61, 'Sydney', 'AU');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (62, 'New Taipei City', 'TW');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (63, 'Los Angeles', 'US');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (64, 'Melbourne', 'AU');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (65, 'Cape Town', 'ZA');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (66, 'Shenyang', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (67, 'Yokohama', 'JP');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (68, 'Busan', 'KR');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (69, 'Hangzhou', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (70, 'Quanzhou', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (71, 'Durban', 'KR');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (72, 'Casablanca', 'MA');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (73, 'Algiers', 'DZ');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (74, 'Berlin', 'DE');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (75, 'Nairobi', 'KE');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (76, 'Hefei', 'CN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (77, 'Kabul', 'AF');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (78, 'Pyongyang', 'KP');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (79, 'Madrid', 'ES');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (80, 'Ekurhuleni', 'ZA');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (81, 'Pune', 'IN');
+INSERT INTO `city` (`id`, `name`, `country_countryCode`) VALUES (82, 'Copenhagen', 'Denmark');
 
 COMMIT;
 
@@ -496,11 +505,12 @@ COMMIT;
 -- Data for table `place`
 -- -----------------------------------------------------
 START TRANSACTION;
-INSERT INTO `place` (`id`, `name`, `userId`, `cityId`, `countryCode`, `url`) VALUES (1, 'Huxinting Teahouse', 2, 1, 'CN', NULL);
-INSERT INTO `place` (`id`, `name`, `userId`, `cityId`, `countryCode`, `url`) VALUES (2, 'Rumeli Fortress', 2, 3, 'TR', NULL);
-INSERT INTO `place` (`id`, `name`, `userId`, `cityId`, `countryCode`, `url`) VALUES (3, 'Red Square', 2, 6, 'RU', NULL);
-INSERT INTO `place` (`id`, `name`, `userId`, `cityId`, `countryCode`, `url`) VALUES (4, 'Gyeongbokgung Palace', 3, 13, 'KR', NULL);
-INSERT INTO `place` (`id`, `name`, `userId`, `cityId`, `countryCode`, `url`) VALUES (5, 'Cascada La Chorrera', 1, 29, 'CO', NULL);
+USE `TripLight`;
+INSERT INTO `place` (`id`, `name`, `url`, `city_id`, `country_countryCode`) VALUES (1, 'Huxinting Teahouse', NULL, 1, 'CN');
+INSERT INTO `place` (`id`, `name`, `url`, `city_id`, `country_countryCode`) VALUES (2, 'Rumeli Fortress', NULL, 3, 'TR');
+INSERT INTO `place` (`id`, `name`, `url`, `city_id`, `country_countryCode`) VALUES (3, 'Red Square', NULL, 6, 'RU');
+INSERT INTO `place` (`id`, `name`, `url`, `city_id`, `country_countryCode`) VALUES (4, 'Gyeongbokgung Palace', NULL, 13, 'KR');
+INSERT INTO `place` (`id`, `name`, `url`, `city_id`, `country_countryCode`) VALUES (5, 'Cascada La Chorrera', NULL, 29, 'CO');
 
 COMMIT;
 
@@ -509,11 +519,12 @@ COMMIT;
 -- Data for table `post`
 -- -----------------------------------------------------
 START TRANSACTION;
-INSERT INTO `post` (`id`, `placeId`, `review`, `userId`) VALUES (1, 1, 'Very nice place with the smell of Chinese history. Must visit place. It\'s a little bit overcrowded...', 2);
-INSERT INTO `post` (`id`, `placeId`, `review`, `userId`) VALUES (2, 2, 'Excellent monument on the Bosporus ,built 600 years ago ,fine restaurants nearby and usually favoured as an anchor point', 2);
-INSERT INTO `post` (`id`, `placeId`, `review`, `userId`) VALUES (3, 3, 'This is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\n\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\n\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.', 2);
-INSERT INTO `post` (`id`, `placeId`, `review`, `userId`) VALUES (4, 4, 'A massive place to walk around. Lots of history. Lots of photo shots. Wednesday was free entry! It\'s quite close to the hotels. This place should be number one on your sightseeing list!', 3);
-INSERT INTO `post` (`id`, `placeId`, `review`, `userId`) VALUES (5, 5, 'The waterfall is incredible! It is a tough hike to get to. It takes about an hour and a half up the mountain to get there. It is slippery and rocky, but well worth it.', 1);
+USE `TripLight`;
+INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`) VALUES (1, 'Very nice place with the smell of Chinese history. Must visit place. It\'s a little bit overcrowded...', 2, 1);
+INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`) VALUES (2, 'Excellent monument on the Bosporus ,built 600 years ago ,fine restaurants nearby and usually favoured as an anchor point', 2, 2);
+INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`) VALUES (3, 'This is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\n\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\n\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.', 2, 3);
+INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`) VALUES (4, 'A massive place to walk around. Lots of history. Lots of photo shots. Wednesday was free entry! It\'s quite close to the hotels. This place should be number one on your sightseeing list!', 3, 4);
+INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`) VALUES (5, 'The waterfall is incredible! It is a tough hike to get to. It takes about an hour and a half up the mountain to get there. It is slippery and rocky, but well worth it.', 1, 5);
 
 COMMIT;
 
