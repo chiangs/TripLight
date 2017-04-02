@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `firstName` VARCHAR(45) NOT NULL,
   `lastName` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(20) NULL,
   `adminFlag` INT(1) NOT NULL DEFAULT 0,
   `email` VARCHAR(45) NOT NULL,
   `country_countryCode` VARCHAR(2) NOT NULL,
@@ -404,9 +405,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `TripLight`;
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `adminFlag`, `email`, `country_countryCode`) VALUES (1, 'admin', 'user', 'admin1', 1, 'admin@triplight.com', 'US');
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `adminFlag`, `email`, `country_countryCode`) VALUES (2, 'Dennis', 'Carrasquillo', 'dcarras', 0, 'dennisc@gmail.com', 'US');
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `adminFlag`, `email`, `country_countryCode`) VALUES (3, 'Aaron', 'Aguil', 'aguila', 0, 'aguila@yahoo.com', 'CN');
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`) VALUES (1, 'admin', 'user', 'admin1', NULL, 1, 'admin@triplight.com', 'US');
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`) VALUES (2, 'Dennis', 'Carrasquillo', 'dcarras', NULL, 0, 'dennisc@gmail.com', 'US');
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`) VALUES (3, 'Aaron', 'Aguil', 'aguila', NULL, 0, 'aguila@yahoo.com', 'CN');
 
 COMMIT;
 
