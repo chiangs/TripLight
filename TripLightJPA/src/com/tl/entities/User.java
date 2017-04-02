@@ -29,6 +29,9 @@ public class User {
 	@Pattern(regexp="^[a-zA-Z0-9]{4,10}$", message="No special characters please")
 	private String username;
 	
+	@Size(min=1, max=20, message="Password must be min 1 and up to 20 characters long")
+	private String password;
+	
 	@OneToOne
 	@JoinColumn(name="country_countryCode")
 	private Country country;
@@ -40,6 +43,14 @@ public class User {
 	
 	@Pattern(regexp="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message="Full email address please admin@triplight.com")
 	private String email;
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public String getFirstName() {
 		return firstName;

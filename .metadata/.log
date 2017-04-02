@@ -3684,3 +3684,9 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.springso
 !MESSAGE Could not create action delegate for id: org.springframework.ide.eclipse.beans.ui.editor.actions.refactorPropertyElementAction
 !SUBENTRY 1 org.eclipse.ui 4 0 2017-04-01 17:48:00.901
 !MESSAGE Action must implement IEditorActionDelegate
+
+!ENTRY org.eclipse.jface.text 2 0 2017-04-01 18:12:52.243
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-04-01 18:12:52.271
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
