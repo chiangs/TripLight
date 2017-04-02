@@ -1,5 +1,7 @@
 package com.tl.entities;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +27,9 @@ public class Post {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	@JoinColumn(name="post_date")
+	private Date postDate;
 	
 	@Override
 	public String toString() {
