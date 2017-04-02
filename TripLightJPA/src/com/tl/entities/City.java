@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 
 @Entity
 public class City {
@@ -14,8 +15,10 @@ public class City {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Size(min=2, max=45, message="Please enter a real city!")
 	private String name;
 	
+	@Size(min=2, max=2, message="Please use teh correct Country Code letters")
 	@ManyToOne
 	@JoinColumn(name="country_countryCode")
 	private Country country;

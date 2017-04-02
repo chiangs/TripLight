@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Place {
@@ -14,6 +15,7 @@ public class Place {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Size(min=10, max=45, message="Minium 10 characters and max of 45")
 	private String name;
 	
 	@ManyToOne
@@ -21,6 +23,9 @@ public class Place {
 	private Country country;
 	
 	private String url;
+	
+	@JoinColumn(name="city_id")
+	private int cityId;
 
 	@Override
 	public String toString() {

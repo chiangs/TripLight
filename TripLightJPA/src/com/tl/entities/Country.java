@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Country {
@@ -15,6 +16,7 @@ public class Country {
 	@OneToMany(mappedBy="country")
 	private List<Place> places;
 	
+	@Size(min=4, max=45, message="Please enter the correspinding Country Name!")
 	private String name;
 
 	public List<Place> getPlaces() {
