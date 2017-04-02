@@ -31,7 +31,7 @@ public class CityTest {
 	}
 	
 	@Test
-	public void test_mapping_user_have_names() {
+	public void test_mapping_city_have_names() {
 		assertEquals("Shanghai", city.getName());
 	}
 }
