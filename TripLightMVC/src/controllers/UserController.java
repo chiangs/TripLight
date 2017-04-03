@@ -22,7 +22,7 @@ public class UserController {
 		mv.addObject("sessionUser", user);
 		return mv;
 	}
-	@RequestMapping(value="userMain.do", method=RequestMethod.POST)
+	@RequestMapping(value="updateUser.do", method=RequestMethod.POST)
 	public ModelAndView createUser(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
