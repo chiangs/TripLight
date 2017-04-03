@@ -54,6 +54,7 @@ public class UserController {
 	public ModelAndView createUserWithInfoFromPage(@Valid User user, Errors errors, @RequestParam("countryCode") String countryCode) {
 		ModelAndView mv = new ModelAndView();
 		userdao.createUser(user);
+<<<<<<< HEAD
 
 		 if (errors.getErrorCount() != 0) {
 		      mv.setViewName("createUser");
@@ -65,3 +66,19 @@ public class UserController {
 		  }
 		}
 	
+=======
+		mv.setViewName("userMain");
+		mv.addObject("sessionUser", user);
+		return mv;
+	}
+	@RequestMapping(value="deleteUser.do", method=RequestMethod.POST)
+	public ModelAndView deleteUSer(@ModelAttribute("sessionUser") User user) {
+		ModelAndView mv = new ModelAndView();
+	
+		userdao.destroyUser(user.getId());
+		mv.setViewName("index");
+		mv.addObject("sessionUser", user);
+		return mv;
+	}
+}
+>>>>>>> 05652121b7b7064c7907637ae59271c9ea189b95

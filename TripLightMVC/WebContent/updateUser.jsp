@@ -46,13 +46,19 @@
 
 
 		</form>
+		
+		<form action='deleteUser.do' method="POST">
+					<div class="form-group">
+				<label for="usr">Delete Account:</label> <input type=submit
+					class="form-control" id="pwd"> <input
+					type="submit" value="Submit">
+			</div>
+			</form>
 		<div class="well"></div>
 
 	</div>
-	</div>
-	</div>
-	</div>
-	</div>
+	
+
 
 
 
