@@ -28,7 +28,7 @@
 				</div>
 				<hr />
 				<div class="modal-body">
-					<form id="loginForm" action="login.do" method="POST" modelattribute="user">
+					<form:form id="loginForm" action="login.do" method="POST" modelAttribute="user">
 						<div class="form-group">
 							<div class="input-group">
 								<span class="input-group-addon"> <span
@@ -53,7 +53,7 @@
 								conversation - Create an account</a>
 						</div>
 
-					</form >
+					</form:form>
 				</div>
 			</div>
 		</div>

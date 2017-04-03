@@ -31,6 +31,11 @@
                                     <a href="#">
                                         <i class="glyphicon glyphicon-user"></i>Account Settings </a>
                                 </li>
+                                
+                                <li class="active">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-flag"></i> Logout </a>
+                                </li>
 
                                 <li class="active">
                                     <a href="#">
