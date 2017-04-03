@@ -14,7 +14,6 @@
     <%@ include file="sidenav.jsp"%>
 
 
-                <div class="col-md-10 col-sm-12">
                     <div class="help-content">
                             <h1>We're here to help!</h1>
                             <br>
