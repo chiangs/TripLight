@@ -51,7 +51,7 @@
 
 						<div class="form-group text-center">
 							<button type="submit" class="btn btn-success btn-lg">Login</button>
-							<a href="createUser.html" class="btn btn-link">Join the
+							<a href="createUser.do" class="btn btn-link">Join the
 								conversation - Create an account</a>
 						</div>
 
