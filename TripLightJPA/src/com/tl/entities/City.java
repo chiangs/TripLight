@@ -23,8 +23,6 @@ public class City {
 	@JoinColumn(name="country_countryCode")
 	private Country country;
 	
-//	@OneToMany (mappedBy="") does this need a placeID in the city table?
-//	private List<Place> places;
 
 	public String getName() {
 		return name;
