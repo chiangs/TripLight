@@ -38,7 +38,7 @@
 									class="glyphicon glyphicon-flag"></i> Logout
 							</a></li>
 
-							<li class="active"><a href="help.jsp"> <i
+							<li class="active"><a href="help.do"> <i
 									class="glyphicon glyphicon-flag"></i> Help
 							</a></li>
 						</ul>
