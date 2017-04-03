@@ -7,74 +7,75 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.tl.entities.Post;
 
+@Transactional
 public class PostDAOImpl implements PostDAO {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
+	public void setEntityManager(EntityManager emInj) {
+		em = emInj;
+	}
+
 	@Override
 	public List<Post> displayPostByCountryCode(String countryCode) {
-		String query = "SELECT p FROM Post p JOIN FETCH p.place WHERE p.place.country = :country";
+		String query = "SELECT p FROM Post p JOIN FETCH p.place WHERE p.place.country.countryCode = :country";
 		List<Post> posts = null;
-		posts= em.createQuery(query, Post.class).setParameter("country", countryCode).getResultList();
-		
+		posts = em.createQuery(query, Post.class).setParameter("country", countryCode).getResultList();
 
-	return posts;
+		return posts;
 	}
 
 	@Override
 	public Post createPost(Post post) {
-		EntityManagerFactory emf = 
-		        Persistence.createEntityManagerFactory("TripLight");
-		    EntityManager em = emf.createEntityManager();
+		System.err.println(post);
 
-		    // start the transaction
-		    em.getTransaction().begin();
-		    // write the customer to the database
-		    em.persist(post);
-		    // update the "local" ("detached") 'customer' object
-		    em.flush();
-		    // commit the changes (actually perform the operation)
-		    em.getTransaction().commit();
+		System.out.println("&&&&&&&&&&&&&&&&&DATE**********************");
+		System.out.println(post.getDate());
 
-		    // return the full "managed" customer object
-		    return post;
+		em.persist(post);
+		// EntityManagerFactory emf =
+		// Persistence.createEntityManagerFactory("TripLight");
+		// EntityManager em = emf.createEntityManager();
+		//
+		// // start the transaction
+		// em.getTransaction().begin();
+		// // write the customer to the database
+		// em.persist(post);
+		// // update the "local" ("detached") 'customer' object
+		// em.flush();
+		// // commit the changes (actually perform the operation)
+		// em.getTransaction().commit();
+		//
+		// // return the full "managed" customer object
+		System.out.println("**********************GOT HERE*****************");
+		return post;
 	}
 
 	@Override
 	public Post updatePost(int id, Post post) {
+
+		Post managed = em.find(Post.class, id);
+		System.err.println(managed);
+		System.err.println(post.getReview());
+		managed.setReview(post.getReview());
+		em.merge(managed);
 		
-			EntityManagerFactory emf = 
-			        Persistence.createEntityManagerFactory("TripLight");
-			    EntityManager em = emf.createEntityManager();
 
-			    // start the transaction
-			    em.getTransaction().begin();
-			   Post managed = em.find(Post.class, id);
-			    em.getTransaction().commit();
-
-			
-			
-			return post;
-		}
-	
+		return post;
+	}
 
 	@Override
 	public boolean destroyPost(int id) {
-		EntityManagerFactory emf = 
-		        Persistence.createEntityManagerFactory("TripLight");
-		    EntityManager em = emf.createEntityManager();
+		System.err.println("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ");
 		Post p = em.find(Post.class, id);
-		em.getTransaction().begin();
-
+		System.err.println(p == null);
 		em.remove(p); // performs the delete on the managed entity
 
-		em.getTransaction().commit();
-
-		
-		
 		return false;
 	}
 

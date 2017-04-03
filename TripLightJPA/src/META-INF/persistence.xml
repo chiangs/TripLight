@@ -18,6 +18,10 @@
 			<property name="javax.persistence.jdbc.user" value="admin" />
 			<property name="javax.persistence.jdbc.password" value="solarkisses" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			
+			<!-- Fix java.SQLException: Value '0000-00-00' can not be represented in java.sql.Date -->
+			<property name="hibernate.connection.zeroDateTimeBehavior" value="convertToNull"/>
+			
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="false" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
