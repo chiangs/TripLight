@@ -17,10 +17,16 @@
 					<!-- END SIDEBAR USER TITLE -->
 					<!-- SIDEBAR BUTTONS -->
 					<div class="profile-userbuttons">
-						<button type="button" class="btn btn-success btn-sm">Post
-							Review</button>
-						<button type="button" class="btn btn-danger btn-sm">Review
-							History</button>
+						<form class="formWithButtons" action="newPost.do" method="GET"
+							modelAttribute="sessionUser">
+							<button type="button" class="btn btn-success btn-sm">Post
+								Review</button>
+						</form>
+						<form class="formWithButtons"action="updatePost.do" method="GET"
+							modelAttribute="sessionUser">
+							<button type="button" class="btn btn-danger btn-sm">Edit
+								Posts</button>
+						</form>
 					</div>
 					<!-- END SIDEBAR BUTTONS -->
 					<!-- SIDEBAR MENU -->

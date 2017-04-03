@@ -25,6 +25,8 @@ h1 {
 	font-family: 'Quicksand', serif;
 }
 
+.formWithButtons{display: inline;}
+
 /* Profile sidebar */
 
 @media ( min-width :1000px) {
