@@ -1,11 +1,15 @@
 package data;
 
+import java.util.List;
+
 import com.tl.entities.Post;
 
 public interface PostDAO {
-	public Post createPost();
+	public Post createPost(Post post);
 	
-	public Post updatePost();
+	public Post updatePost(int id, Post post);
 	
-	public Post destroyPost();
+	public boolean destroyPost(int id);
+		
+	public List<Post> displayPostByCountryCode(String countryCode);
 }
