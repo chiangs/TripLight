@@ -12,7 +12,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User createUser(User user) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Triplight");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
 		EntityManager em = emf.createEntityManager();
 
 		// start the transaction
@@ -29,7 +29,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User updateUser(int id, User user) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Triplight");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
 		EntityManager em = emf.createEntityManager();
 
 		// start the transaction
@@ -55,7 +55,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public boolean destroyUser(int id) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Triplight");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
 		EntityManager em = emf.createEntityManager();
 		User user = em.find(User.class, id);
 		em.getTransaction().begin();
@@ -70,7 +70,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	public List<User> index(){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Triplight");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
 		EntityManager em = emf.createEntityManager();
 		String queryString = "SELECT u FROM User u";
 		List<User> results = em.createQuery(queryString, User.class).getResultList();
