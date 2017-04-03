@@ -53,7 +53,7 @@ public class PostContoller {
 	}	
 	
 	@RequestMapping(value="displayPost.do", method=RequestMethod.POST)
-	public ModelAndView displayPostByUser(@ModelAttribute("sessionUser") String countryCode) {
+	public ModelAndView displayPostByCountry(@ModelAttribute("sessionUser") String countryCode) {
 		ModelAndView mv = new ModelAndView();
 		postDAO.displayPostByCountryCode(countryCode);
 		mv.setViewName("countryPost");
