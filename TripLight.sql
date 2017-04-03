@@ -37,10 +37,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   `firstName` VARCHAR(45) NOT NULL,
   `lastName` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(20) NULL,
+  `password` VARCHAR(20) NOT NULL,
   `adminFlag` INT(1) NOT NULL DEFAULT 0,
   `email` VARCHAR(45) NOT NULL,
   `country_countryCode` VARCHAR(2) NOT NULL,
+  `photo_url` VARCHAR(140) NOT NULL DEFAULT 'http://res.cloudinary.com/chiangs/image/upload/v1491241630/SD%20projects/travel.png',
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_user_country1`
     FOREIGN KEY (`country_countryCode`)
@@ -406,9 +407,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `TripLight`;
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`) VALUES (1, 'admin', 'user', 'admin', 'solarkisses', 1, 'admin@triplight.com', 'US');
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`) VALUES (2, 'Dennis', 'Carrasquillo', 'dcarras', 'westword4', 0, 'dennisc@gmail.com', 'US');
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`) VALUES (3, 'Aaron', 'Aguil', 'aguila', 'flyinghawaiian6', 0, 'aguila@yahoo.com', 'CN');
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`, `photo_url`) VALUES (1, 'admin', 'user', 'admin', 'solarkisses', 1, 'admin@triplight.com', 'US', DEFAULT);
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`, `photo_url`) VALUES (2, 'Dennis', 'Carrasquillo', 'dcarras', 'westword4', 0, 'dennisc@gmail.com', 'US', DEFAULT);
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`, `photo_url`) VALUES (3, 'Aaron', 'Aguil', 'aguila', 'flyinghawaiian6', 0, 'aguila@yahoo.com', 'CN', DEFAULT);
 
 COMMIT;
 

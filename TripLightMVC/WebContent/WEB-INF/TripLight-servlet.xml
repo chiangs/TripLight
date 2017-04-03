@@ -12,6 +12,7 @@
 
 
 	<bean id="dao" class="data.TripLightDAOImpl" />
+	<bean id="postDao" class="data.PostDAOImpl" />
 
 	<bean id="myEntityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

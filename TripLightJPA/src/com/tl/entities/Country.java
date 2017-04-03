@@ -19,6 +19,7 @@ public class Country {
 	@Size(min=4, max=45, message="Please enter the correspinding Country Name!")
 	private String name;
 
+
 	public List<Place> getPlaces() {
 		return places;
 	}
