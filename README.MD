@@ -45,8 +45,8 @@ If more time were available:
 ## Project Flow & Structure Overview
 
 <p align="center">
-<img src="chart1" height="350">
-<img src="chart2" height="350">
+<img src="chart1.png" height="350">
+<img src="chart2.png" height="350">
 </p>
 
 ## Code Examples
