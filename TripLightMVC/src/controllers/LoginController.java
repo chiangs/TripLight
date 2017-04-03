@@ -1,5 +1,6 @@
 package controllers;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +30,15 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="login.do", method=RequestMethod.GET)
-	public ModelAndView displayLogin(@Valid User user) {
-		ModelAndView mv = new ModelAndView("login");
-		User loginUser = new User();
-		mv.addObject("user", loginUser);
+	public ModelAndView displayLogin(@ModelAttribute("sessionUser") User user) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index");
+		mv.addObject("sessionUser", user);
 		return mv;
 	}
 	
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
-	public ModelAndView executeLogin(Model model, User user) {
+	public ModelAndView executeLogin(@Valid Error errors, Model model, User user) {
 		ModelAndView mv = new ModelAndView();
 		try {
 			User isValidUser = loginDelegate.isValidUser(user.getUsername(), user.getPassword());
@@ -59,10 +60,10 @@ public class LoginController {
 		return mv;
 	}
 	
-	
 	@RequestMapping(value="logout.do", method=RequestMethod.GET)
-	public ModelAndView executeLogout(SessionStatus status) {
+	public ModelAndView executeLogout(HttpSession session, SessionStatus status) {
 	ModelAndView mv = new ModelAndView();
+	session.setAttribute("sessionUser", new User());
 	status.setComplete();
 	mv.setViewName("index");
 	return mv;

@@ -12,7 +12,7 @@
 					<!-- END SIDEBAR USERPIC -->
 					<!-- SIDEBAR USER TITLE -->
 					<div class="profile-usertitle">
-						<div class="profile-usertitle-name">UserName</div>
+						<div class="profile-usertitle-name">${sessionUser.username}</div>
 
 					</div>
 					<!-- END SIDEBAR USER TITLE -->

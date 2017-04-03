@@ -27,23 +27,25 @@
 				<hr />
 				<div class="modal-body">
 					<form:form id="loginForm" action="login.do" method="POST"
-						modelAttribute="user">
+						modelAttribute="sessionUser">
 						<div class="form-group">
 							<div class="input-group">
 								<span class="input-group-addon"> <span
 									class="glyphicon glyphicon-user"></span>
-								</span> <input id="username" name="username" path="username"
-									class="form-control" placeholder="User Name">
+								</span> 
+								<form:input id="username" path="username" class="form-control" placeholder="User Name"/>
+							  	<form:errors path="username" />
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="input-group">
 								<span class="input-group-addon"> <span
 									class="glyphicon glyphicon-lock"></span>
-								</span> <input id="password" name="password" path="password"
-									type="password" class="form-control" placeholder="Password">
-
+								</span> 
+								<form:input id="password" path="password" type="password" class="form-control" placeholder="Password"/>
+							  	<form:errors path="password" />
 							</div>
+							
 
 						</div>
 
