@@ -1,11 +1,13 @@
 # Summary - Under Construction
 A web-app for users who travel and wish to share reviews and ratings of places all over the world. This a collaborative project developed with a MAMP stack consisting of Java JPA API, the Spring MVC framework, and MySQL database technologies with CRUD functionality. This web-app implements session control, Object-Relational Mapping (ORM), Form Validation, and has a MySQL database deployed to an Apache Tomcat 8 Server.  The database was created with MySQL Workbench.
 
+We also wrote JUnit tests to ensure proper mapping of the entities before moving from JPA to SpringMVC. We then tested the DAO methods to ensure proper CRUD functionality and session persistence of a user.
+
 |Role & Responsibilities                                       | Team Member        |
 |--------------------------------------------------------------|--------------------|
 |Project Team Lead and Overall Design and Login functionality: | Stephen Chiang     |
 |Database Architect and Post functionality                     | Dennis Carrasquillo|
-|Project Setup and User functionality| Ehren Williamson        |                    |
+|Project Setup and User functionality                          | Ehren Williamson   |
 
 This is the first we have attempted to implement login functionality to a web-app. There are more secure methods that could be implemented as skills develop and future iterations allow. The goals, milestones, and separation of roles/responsibilities are illustrated in the structure/flow chart image embedded in the README but can also be found in slideshow format in the root folder.
 
@@ -40,16 +42,17 @@ If more time were available:
     - User Profile Actions (Add/Edit/Delete)
     - Post / Search reviews (Add/Edit/Delete)
 
-## Class Structure Overview
+## Project Flow & Structure Overview
 
 <p align="center">
-<img src="#" height="350">
+<img src="chart1.png" height="245">
+<img src="chart2.png" height="245">
 </p>
 
 ## Code Examples
 Here's a snippit of the controller logic for login/logout. It first checks if the username/password entered are valid entries in the database and returns different views depending on the validation.
 ```Java
-@RequestMapping(value="login.do", method=RequestMethod.POST)
+    @RequestMapping(value="login.do", method=RequestMethod.POST)
 	public ModelAndView executeLogin(@Valid Error errors, Model model, User user) {
 		ModelAndView mv = new ModelAndView();
 		try {
