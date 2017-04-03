@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -36,7 +38,11 @@ public class UserDAOImpl implements UserDAO {
 		User Managed = em.find(User.class, id);
 		Managed.setFirstName(user.getFirstName());
 		Managed.setLastName(user.getLastName());
-		// write the customer to the database
+		Managed.setUsername(user.getUsername());
+		Managed.setPassword(user.getPassword());
+		Managed.setEmail(user.getEmail());
+		Managed.setCountry(user.getCountry());
+		Managed.setAdminFlag(user.getAdminFlag());
 		em.persist(Managed);
 		// update the "local" ("detached") 'customer' object
 		em.flush();
@@ -46,7 +52,6 @@ public class UserDAOImpl implements UserDAO {
 		// return the full "managed" customer object
 		return Managed;
 	}
-	
 
 	@Override
 	public boolean destroyUser(int id) {
@@ -58,10 +63,26 @@ public class UserDAOImpl implements UserDAO {
 
 		em.getTransaction().commit();
 
-		if (em.contains(user) == false){
+		if (em.contains(user) == false) {
 			return true;
 		}
-		return false;	
+		return false;
 	}
 
+	public List<User> index(){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Triplight");
+		EntityManager em = emf.createEntityManager();
+		String queryString = "SELECT u FROM User u";
+		List<User> results = em.createQuery(queryString, User.class).getResultList();
+		
+	    return results;
+	
+	}
+	public User getUserByID(int id){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("VideoStore");
+		EntityManager em = emf.createEntityManager();
+		User foundUser = em.find(User.class,id);
+		return foundUser;
+	
+	}
 }

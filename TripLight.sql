@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `review` VARCHAR(140) NOT NULL,
   `user_id` INT NOT NULL,
   `place_id` INT NOT NULL,
-  `post_date` VARCHAR(45) NOT NULL,
+  `post_date` DATE NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_post_user`
     FOREIGN KEY (`user_id`)
@@ -406,9 +406,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `TripLight`;
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`) VALUES (1, 'admin', 'user', 'admin1', NULL, 1, 'admin@triplight.com', 'US');
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`) VALUES (2, 'Dennis', 'Carrasquillo', 'dcarras', NULL, 0, 'dennisc@gmail.com', 'US');
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`) VALUES (3, 'Aaron', 'Aguil', 'aguila', NULL, 0, 'aguila@yahoo.com', 'CN');
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`) VALUES (1, 'admin', 'user', 'admin', 'solarkisses', 1, 'admin@triplight.com', 'US');
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`) VALUES (2, 'Dennis', 'Carrasquillo', 'dcarras', 'westword4', 0, 'dennisc@gmail.com', 'US');
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `username`, `password`, `adminFlag`, `email`, `country_countryCode`) VALUES (3, 'Aaron', 'Aguil', 'aguila', 'flyinghawaiian6', 0, 'aguila@yahoo.com', 'CN');
 
 COMMIT;
 
@@ -522,11 +522,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `TripLight`;
-INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`, `post_date`) VALUES (1, 'Very nice place with the smell of Chinese history. Must visit place. It\'s a little bit overcrowded...', 2, 1, DEFAULT);
-INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`, `post_date`) VALUES (2, 'Excellent monument on the Bosporus ,built 600 years ago ,fine restaurants nearby and usually favoured as an anchor point', 2, 2, DEFAULT);
-INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`, `post_date`) VALUES (3, 'This is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\n\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\n\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.', 2, 3, DEFAULT);
-INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`, `post_date`) VALUES (4, 'A massive place to walk around. Lots of history. Lots of photo shots. Wednesday was free entry! It\'s quite close to the hotels. This place should be number one on your sightseeing list!', 3, 4, DEFAULT);
-INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`, `post_date`) VALUES (5, 'The waterfall is incredible! It is a tough hike to get to. It takes about an hour and a half up the mountain to get there. It is slippery and rocky, but well worth it.', 1, 5, DEFAULT);
+INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`, `post_date`) VALUES (1, 'Very nice place with the smell of Chinese history. Must visit place. It\'s a little bit overcrowded...', 2, 1, '06/03/2013');
+INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`, `post_date`) VALUES (2, 'Excellent monument on the Bosporus ,built 600 years ago ,fine restaurants nearby and usually favoured as an anchor point', 2, 2, '12/15/2010');
+INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`, `post_date`) VALUES (3, 'This is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\n\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.\n\nThis is the most popular attraction in Moscow and if you have not been here, it means you have not been in Moscow. It is great for taking pictures and walking, it has a lot of towers, churches, monuments and shops. Lenin\'s tomb was closed when we were there.', 2, 3, '03/02/2002');
+INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`, `post_date`) VALUES (4, 'A massive place to walk around. Lots of history. Lots of photo shots. Wednesday was free entry! It\'s quite close to the hotels. This place should be number one on your sightseeing list!', 3, 4, '09/23/2015');
+INSERT INTO `post` (`id`, `review`, `user_id`, `place_id`, `post_date`) VALUES (5, 'The waterfall is incredible! It is a tough hike to get to. It takes about an hour and a half up the mountain to get there. It is slippery and rocky, but well worth it.', 1, 5, '10/29/2001');
 
 COMMIT;
 
