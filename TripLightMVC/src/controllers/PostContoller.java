@@ -42,15 +42,7 @@ public class PostContoller {
 		mv.addObject("sessionUser", id);
 		return mv;
 	}	
-	
-	@RequestMapping(value= "displayPost.do", method = RequestMethod.POST)
-	public ModelAndView displayPostByUser(@ModelAttribute("sessionUser") int id) {
-		ModelAndView mv = new ModelAndView();
-		List<Post> posts = userdao.getUserByID(id).getPosts();
-		mv.setViewName("posts");
-		mv.addObject("sessionUser", id);
-		return mv;
-	}	
+
 	
 	@RequestMapping(value="displayPost.do", method=RequestMethod.POST)
 	public ModelAndView displayPostByCountry(@ModelAttribute("sessionUser") String countryCode) {
