@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import com.tl.entities.User;
 
 public interface UserDAO {
@@ -9,5 +11,7 @@ public interface UserDAO {
 	
 	public boolean destroyUser(int id);
 	
+	public List<User> index();
+	public User getUserByID(int id);
 	
 }
