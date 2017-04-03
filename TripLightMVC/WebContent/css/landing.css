@@ -37,3 +37,8 @@ body {
 .modal-heading h2 {
     color: #fff;
 }
+
+.loginError {
+	color: red;
+	text-align:center;
+}

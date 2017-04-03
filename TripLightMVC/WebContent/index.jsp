@@ -23,6 +23,7 @@
 			<div class="modal-content">
 				<div class="modal-heading">
 					<h2 class="text-center">Login</h2>
+					<h4  class="loginError">${message}</h4>
 				</div>
 				<hr />
 				<div class="modal-body">

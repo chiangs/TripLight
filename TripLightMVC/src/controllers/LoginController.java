@@ -69,4 +69,12 @@ public class LoginController {
 	return mv;
 	}
 	
+	@RequestMapping(value="help.do", method=RequestMethod.GET)
+	public ModelAndView showHelp(@ModelAttribute("sessionUser") User user) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("help");
+		mv.addObject("sessionUser", user);
+		return mv;
+	}
+	
 }

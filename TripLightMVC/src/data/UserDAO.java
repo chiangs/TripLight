@@ -1,6 +1,7 @@
 package data;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.tl.entities.User;
 
@@ -12,6 +13,9 @@ public interface UserDAO {
 	public boolean destroyUser(int id);
 
 	public User isValidUser(String username, String password) throws SQLException;
+
 	
+	public List<User> index();
+	public User getUserByID(int id);
 	
 }

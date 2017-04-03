@@ -1,6 +1,6 @@
 package ctrl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 
@@ -18,7 +18,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import data.TripLightDAO;
+import controllers.LoginController;
 import data.UserDAO;
 
 
@@ -33,6 +33,9 @@ public class LoginControllerTest {
 
 	@Autowired
 	private UserDAO dao;
+	
+	@Autowired
+	private LoginController lc;
 
 	@PersistenceContext
 	private EntityManager em;
@@ -52,17 +55,9 @@ public class LoginControllerTest {
 	@Test
 	public void test_isValidUser() {
 		try {
-			assertEquals("", dao.isValidUser("admin", "solarkisses"));
+			assertEquals("admin", dao.isValidUser("admin", "solarkisses").getFirstName());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	
-	@Test
-	public void test_logoutClearsSession() {
-		
-	}
-	
+	}	
 }
