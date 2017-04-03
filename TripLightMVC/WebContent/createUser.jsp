@@ -36,14 +36,7 @@
                                 <input type="text" class="form-control" placeholder="Last Name" name="lastName" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-            <span class="glyphicon glyphicon-lock"></span>
-                                </span>
-                                <input type="password" class="form-control" placeholder="Password"name="password" />
-                            </div>
-                        </div>
+
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
@@ -90,7 +83,7 @@
 
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-success btn-lg">Submit</button>
-                            <a href="index.jsp" class="btn btn-primary btn-lg" role="button">Back to Landing Page</a>
+                            <a href="login.do" class="btn btn-primary btn-lg" role="button">Back to Landing Page</a>
                         </div>
                     </form>
                 </div>

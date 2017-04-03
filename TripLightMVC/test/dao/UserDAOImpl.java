@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.tl.entities.Country;
 import com.tl.entities.User;
 
 public class UserDAOImpl implements UserDAO {
@@ -14,7 +15,7 @@ public class UserDAOImpl implements UserDAO {
 	public User createUser(User user) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
 		EntityManager em = emf.createEntityManager();
-
+		
 		// start the transaction
 		em.getTransaction().begin();
 		em.persist(user);
@@ -83,5 +84,11 @@ public class UserDAOImpl implements UserDAO {
 		EntityManager em = emf.createEntityManager();
 		User foundUser = em.find(User.class,id);
 		return foundUser;
+	}
+	@Override
+	public Country getCountryByCountryCode(String countryCode){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
+		EntityManager em = emf.createEntityManager();
+		return em.find(Country.class, countryCode);
 	}
 }

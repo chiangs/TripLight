@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,15 +34,20 @@ public class UserController {
 		return mv;
 	}
 	@RequestMapping(value="createUser.do", method=RequestMethod.GET)
-	public ModelAndView createUser(@ModelAttribute("sessionUser") User user) {
+	public ModelAndView createUser(User user) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("createUser");
 		mv.addObject("sessionUser", user);
 		return mv;
 	}
 	@RequestMapping(value="createUser.do", method=RequestMethod.POST)
-	public ModelAndView createUserWithInfoFromPage(@ModelAttribute("sessionUser") User user) {
+	public ModelAndView createUserWithInfoFromPage(User user, @RequestParam("countryCode") String countryCode) {
+		System.err.println("test");
 		ModelAndView mv = new ModelAndView();
+		System.out.println(user.getEmail());
+		System.out.println(userdao.getCountryByCountryCode(countryCode));
+		user.setCountry(userdao.getCountryByCountryCode(countryCode));
+		userdao.createUser(user);
 		mv.setViewName("userMain");
 		mv.addObject("sessionUser", user);
 		return mv;

@@ -3,6 +3,7 @@ package data;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.tl.entities.Country;
 import com.tl.entities.User;
 
 public interface UserDAO {
@@ -17,5 +18,7 @@ public interface UserDAO {
 	
 	public List<User> index();
 	public User getUserByID(int id);
+
+	public Country getCountryByCountryCode(String countryCode);
 	
 }

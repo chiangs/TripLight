@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
+import com.tl.entities.Country;
 import com.tl.entities.User;
 
 public class UserDAOImpl implements UserDAO {
@@ -112,5 +113,12 @@ public class UserDAOImpl implements UserDAO {
 		EntityManager em = emf.createEntityManager();
 		User foundUser = em.find(User.class,id);
 		return foundUser;
+	}
+
+	@Override
+	public Country getCountryByCountryCode(String countryCode) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
+		EntityManager em = emf.createEntityManager();
+		return em.find(Country.class, countryCode);
 	}
 }
