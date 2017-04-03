@@ -22,10 +22,10 @@ public class UserController {
 		mv.addObject("sessionUser", user);
 		return mv;
 	}
-	@RequestMapping(value="updateUser.do", method=RequestMethod.POST)
+	@RequestMapping(value="updateUser.do", method=RequestMethod.GET)
 	public ModelAndView createUser(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("index");
+		mv.setViewName("updateUser");
 		mv.addObject("sessionUser", user);
 		return mv;
 	}
