@@ -25,9 +25,9 @@ public class UserDAOTest {
 	  @Test
 	  public void test_customer_mappings2() {
 	
-		  User user = em.find(User.class, 1);
-		  assertEquals("admin", user.getFirstName().toString());
-		  assertEquals("1", user.getPosts().size());
-		
+		  User user = em.find(User.class, 2);
+		  assertEquals("Dennis", user.getFirstName().toString());
+		  assertEquals(3, user.getPosts().size());
+		  assertEquals("United States", user.getCountry().getName());
 	  }
 }

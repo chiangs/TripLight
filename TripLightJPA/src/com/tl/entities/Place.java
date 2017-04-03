@@ -24,8 +24,9 @@ public class Place {
 	
 	private String url;
 	
+	@ManyToOne
 	@JoinColumn(name="city_id")
-	private int cityId;
+	private City city;
 
 	@Override
 	public String toString() {
