@@ -50,4 +50,13 @@ public class UserController {
 		mv.addObject("sessionUser", user);
 		return mv;
 	}
+	@RequestMapping(value="deleteUser.do", method=RequestMethod.POST)
+	public ModelAndView deleteUSer(@ModelAttribute("sessionUser") User user) {
+		ModelAndView mv = new ModelAndView();
+	
+		userdao.destroyUser(user.getId());
+		mv.setViewName("index");
+		mv.addObject("sessionUser", user);
+		return mv;
+	}
 }
