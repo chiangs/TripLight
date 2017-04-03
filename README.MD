@@ -10,9 +10,9 @@ A web-app for users who travel and wish to share reviews and ratings of places a
 This is the first we have attempted to implement login functionality to a web-app. There are more secure methods that could be implemented as skills develop and future iterations allow. The goals, milestones, and separation of roles/responsibilities are illustrated in the structure/flow chart image embedded in the README but can also be found in slideshow format in the root folder.
 
 Issues the team ran into:
-    - Login and logout functionality provided an interesting dimension in querying and validating a user and persisting the account during the entire session. Additionally logging out and ensuring the session was cleared took longer than expected.
+- Login and logout functionality provided an interesting dimension in querying and validating a user and persisting the account during the entire session. Additionally logging out and ensuring the session was cleared took longer than expected.
 
-    - This is the most complex project we have worked on and we have to update and alter the database a few times, but our deliberate process of planning and initial mapping prevented significant issues or delays despite a few updates.
+- This is the most complex project we have worked on and we have to update and alter the database a few times, but our deliberate process of planning and initial mapping prevented significant issues or delays despite a few updates.
 
 If more time were available:
     -
