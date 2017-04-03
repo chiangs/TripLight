@@ -42,10 +42,8 @@ public class UserController {
 	}
 	@RequestMapping(value="createUser.do", method=RequestMethod.POST)
 	public ModelAndView createUserWithInfoFromPage(User user, @RequestParam("countryCode") String countryCode) {
-		System.err.println("test");
 		ModelAndView mv = new ModelAndView();
-		System.out.println(user.getEmail());
-		System.out.println(userdao.getCountryByCountryCode(countryCode));
+	
 		user.setCountry(userdao.getCountryByCountryCode(countryCode));
 		userdao.createUser(user);
 		mv.setViewName("userMain");
