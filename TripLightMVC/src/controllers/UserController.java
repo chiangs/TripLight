@@ -1,7 +1,10 @@
 package controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,8 +19,15 @@ import data.UserDAO;
 @Controller
 @SessionAttributes("sessionUser")
 public class UserController {
+	
 	@Autowired
 	private UserDAO userdao;
+	
+	@ModelAttribute("sessionUser")
+	public User user() {
+		return new User();
+	}
+	
 	@RequestMapping(value="updateUser.do", method=RequestMethod.POST)
 	public ModelAndView updateUserWithInformationFromPage(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
@@ -34,20 +44,24 @@ public class UserController {
 		return mv;
 	}
 	@RequestMapping(value="createUser.do", method=RequestMethod.GET)
-	public ModelAndView createUser(User user) {
+	public ModelAndView createUser(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("createUser");
-		mv.addObject("sessionUser", user);
 		return mv;
 	}
-	@RequestMapping(value="createUser.do", method=RequestMethod.POST)
-	public ModelAndView createUserWithInfoFromPage(User user, @RequestParam("countryCode") String countryCode) {
-		ModelAndView mv = new ModelAndView();
 	
-		user.setCountry(userdao.getCountryByCountryCode(countryCode));
+	@RequestMapping(value="createUser.do", method=RequestMethod.POST)
+	public ModelAndView createUserWithInfoFromPage(@Valid User user, Errors errors, @RequestParam("countryCode") String countryCode) {
+		ModelAndView mv = new ModelAndView();
 		userdao.createUser(user);
-		mv.setViewName("userMain");
-		mv.addObject("sessionUser", user);
-		return mv;
-	}
-}
+
+		 if (errors.getErrorCount() != 0) {
+		      mv.setViewName("createUser");
+		      return mv;
+		    }
+			mv.setViewName("index");
+			mv.addObject("sessionUser", user);
+			return mv;
+		  }
+		}
+	
