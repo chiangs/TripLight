@@ -23,24 +23,24 @@
 			</div>
 			<div class="form-group">
 				<label for="usr">First Name:</label> <input type="text"
-					class="form-control" id="pwd" name='firstName'>
+					class="form-control" id="pwd" value="${sessionUser.firstName}" name='firstName' >
 
 			</div>
 			<div class="form-group">
 				<label for="usr">Last Name:</label> <input type="text"
-					class="form-control" id="usr" name='lastName'>
+					class="form-control" id="usr" value="${sessionUser.lastName}"name='lastName'>
 			</div>
 			<div class="form-group">
 				<label for="usr">Username:</label> <input type="text"
-					class="form-control" id="pwd" name="username">
+					class="form-control" id="pwd"  value="${sessionUser.username}"name="username">
 			</div>
 			<div class="form-group">
 				<label for="usr">Password:</label> <input type="text"
-					class="form-control" id="pwd" name="password">
+					class="form-control" id="pwd" value="${sessionUser.password}" name="password">
 			</div>
 			<div class="form-group">
 				<label for="usr">Email Address:</label> <input type="text"
-					class="form-control" id="pwd" name="email"> <input
+					class="form-control" id="pwd" value="${sessionUser.email}" name="email"> <input
 					type="submit" value="Submit">
 			</div>
 
