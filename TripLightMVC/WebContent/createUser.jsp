@@ -19,14 +19,21 @@
                 </div>
                 <hr />
                 <div class="modal-body">
-                    <form action="" role="form">
+                    <form action="createUser.do" method="POST" role="form" modelAttribute="sessionUser">
 
-                        <div class="form-group">
+  <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span>
                                 </span>
-                                <input type="text" class="form-control" placeholder="User Name" />
+                                <input type="text" class="form-control" placeholder="First Name" name="firstName" />
+                            </div>
+                        </div>
+                                               <div class="input-group">
+                                <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Last Name" name="lastName" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -34,9 +41,26 @@
                                 <span class="input-group-addon">
             <span class="glyphicon glyphicon-lock"></span>
                                 </span>
-                                <input type="password" class="form-control" placeholder="Password" />
+                                <input type="password" class="form-control" placeholder="Password"name="password" />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+                                </span>
+                                <input type="text" class="form-control" placeholder="User Name" name="username" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+            <span class="glyphicon glyphicon-lock"></span>
+                                </span>
+                                <input type="password" class="form-control" placeholder="Password"name="password" />
+                            </div>
+                        </div>
+           <!--  
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
@@ -45,13 +69,13 @@
                                 <input type="password" class="form-control" placeholder="Password...again please just be sure" />
                             </div>
                         </div>
-
+-->
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
             <span class="glyphicon glyphicon-globe"></span>
                                 </span>
-                                <input type="text" class="form-control" placeholder="What country are you in?" />
+                                <input type="text" class="form-control" placeholder="What country are you in (country code please)?" name="countryCode" />
                             </div>
                         </div>
 
@@ -60,7 +84,7 @@
                                 <span class="input-group-addon">
             <span class="glyphicon glyphicon-envelope"></span>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Email" />
+                                <input type="text" class="form-control" placeholder="Email" name="email"/>
                             </div>
                         </div>
 

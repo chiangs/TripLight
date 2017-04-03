@@ -21,7 +21,7 @@ public class UserController {
 	public ModelAndView updateUserWithInformationFromPage(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
 		userdao.updateUser(user.getId(), user);
-		mv.setViewName("index");
+		mv.setViewName("userMain");
 		mv.addObject("sessionUser", user);
 		return mv;
 	}
@@ -32,5 +32,18 @@ public class UserController {
 		mv.addObject("sessionUser", user);
 		return mv;
 	}
-	
+	@RequestMapping(value="createUser.do", method=RequestMethod.GET)
+	public ModelAndView createUser(@ModelAttribute("sessionUser") User user) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("createUser");
+		mv.addObject("sessionUser", user);
+		return mv;
+	}
+	@RequestMapping(value="createUser.do", method=RequestMethod.POST)
+	public ModelAndView createUserWithInfoFromPage(@ModelAttribute("sessionUser") User user) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("userMain");
+		mv.addObject("sessionUser", user);
+		return mv;
+	}
 }
