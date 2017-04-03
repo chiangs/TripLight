@@ -27,6 +27,7 @@ public class UserDAOTest {
 	
 		  User user = em.find(User.class, 1);
 		  assertEquals("admin", user.getFirstName().toString());
-		  
+		  assertEquals("1", user.getPosts().size());
+		
 	  }
 }

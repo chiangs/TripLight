@@ -29,7 +29,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User updateUser(int id, User user) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("VideoStore");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Triplight");
 		EntityManager em = emf.createEntityManager();
 
 		// start the transaction
@@ -79,10 +79,9 @@ public class UserDAOImpl implements UserDAO {
 	
 	}
 	public User getUserByID(int id){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("VideoStore");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
 		EntityManager em = emf.createEntityManager();
 		User foundUser = em.find(User.class,id);
 		return foundUser;
-	
 	}
 }
