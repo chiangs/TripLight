@@ -19,29 +19,29 @@
 
 		<h1 class="title">Trip Light</h1>
 
-
-
-	<div class="modal-dialog">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-heading">
 					<h2 class="text-center">Login</h2>
 				</div>
 				<hr />
 				<div class="modal-body">
-					<form:form id="loginForm" action="login.do" method="POST" modelAttribute="user">
+					<form:form id="loginForm" action="login.do" method="POST"
+						modelAttribute="user">
 						<div class="form-group">
 							<div class="input-group">
 								<span class="input-group-addon"> <span
 									class="glyphicon glyphicon-user"></span>
-								</span> <input id="username" name="username" path="username" class="form-control" placeholder="User Name" >
+								</span> <input id="username" name="username" path="username"
+									class="form-control" placeholder="User Name">
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="input-group">
 								<span class="input-group-addon"> <span
 									class="glyphicon glyphicon-lock"></span>
-								</span> <input id="password" name="password" path="password" type="password" class="form-control"
-									placeholder="Password" >
+								</span> <input id="password" name="password" path="password"
+									type="password" class="form-control" placeholder="Password">
 
 							</div>
 
