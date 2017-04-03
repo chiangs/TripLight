@@ -1,13 +1,11 @@
 # Summary - Under Construction
 A web-app for users who travel and wish to share reviews and ratings of places all over the world. This a collaborative project developed with a MAMP stack consisting of Java JPA API, the Spring MVC framework, and MySQL database technologies with CRUD functionality. This web-app implements session control, Object-Relational Mapping (ORM), Form Validation, and has a MySQL database deployed to an Apache Tomcat 8 Server.  The database was created with MySQL Workbench.
 
-<center>
 |Role & Responsibilities                                       | Team Member        |
 |--------------------------------------------------------------|--------------------|
 |Project Team Lead and Overall Design and Login functionality: | Stephen Chiang     |
 |Database Architect and Post functionality                     | Dennis Carrasquillo|
 |Project Setup and User functionality| Ehren Williamson        |                    |
-</center>
 
 This is the first we have attempted to implement login functionality to a web-app. There are more secure methods that could be implemented as skills develop and future iterations allow. The goals, milestones, and separation of roles/responsibilities are illustrated in the structure/flow chart image embedded in the README but can also be found in slideshow format in the root folder.
 
