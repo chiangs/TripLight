@@ -24,6 +24,16 @@ public class PostContoller {
 	@Autowired
 	private PostDAO postDAO;
 	
+
+
+	@RequestMapping(value = "updatePost.do", method = RequestMethod.GET)
+	public ModelAndView updateUser(@ModelAttribute("sessionUser") Post post) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("updatePost");
+		mv.addObject("sessionUser", post);
+		return mv;
+	}
+	
 	@RequestMapping(value="updatePost.do", method=RequestMethod.POST)
 	public ModelAndView updatePost(@ModelAttribute("sessionUser") Post post) {
 		ModelAndView mv = new ModelAndView();
@@ -49,6 +59,13 @@ public class PostContoller {
 		postDAO.displayPostByCountryCode(countryCode);
 		mv.setViewName("countryPost");
 		mv.addObject("sessionUser", countryCode);
+		return mv;
+	}
+	
+	@RequestMapping(path = "createPost.do", method = RequestMethod.GET)
+	public ModelAndView createUser(@ModelAttribute("sessionUser") Post post) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("createPost");
 		return mv;
 	}
 	
