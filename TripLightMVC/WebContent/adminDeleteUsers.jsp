@@ -1,5 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 
 <head>
@@ -9,6 +12,8 @@
 </head>
 
 <body>
+<%@ include file="sidenav.jsp"%>
+
 	<c:forEach var="user" items="${allUsers}">
 		<ul>
 			<li>User ID: ${user.id}, User First Name:${user.firstName}, User
@@ -22,6 +27,10 @@
 			</div>
 		</form>
 	</c:forEach>
-
+	
+	  <!-- /container -->
+  	<%@ include file="endBody.jsp"%>
 </body>
+<%@ include file="footer.jsp"%>
 </html>
+	

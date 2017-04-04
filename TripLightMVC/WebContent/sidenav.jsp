@@ -17,7 +17,7 @@
 					<!-- END SIDEBAR USER TITLE -->
 					<!-- SIDEBAR BUTTONS -->
 					<div class="profile-userbuttons">
-						<form class="formWithButtons" action="newPost.do" method="GET"
+						<form class="formWithButtons" action="createPost.do" method="GET"
 							modelAttribute="sessionUser">
 							<button type="button" class="btn btn-success btn-sm">Post
 								Review</button>
