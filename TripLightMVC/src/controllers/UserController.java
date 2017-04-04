@@ -55,7 +55,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="adminUpdateUser.do", method=RequestMethod.POST)
-	public ModelAndView updateUserByAdmin(@RequestParam("id") int id) {
+	public ModelAndView updateUserByAdmin(@RequestParam("updateid") int id) {
 	ModelAndView mv = new ModelAndView();
 	User temp = userdao.getUserByID(id);
 	mv.setViewName("updateUser");
@@ -67,10 +67,16 @@ public class UserController {
 	@RequestMapping(value = "updateUser.do", method = RequestMethod.GET)
 	public ModelAndView updateUser(@ModelAttribute("sessionUser") User user, @RequestParam("id") int id) {
 		ModelAndView mv = new ModelAndView();
+		if (user.getFirstName() == null) {
+			mv.setViewName("index");
+			return mv;
+		} else {
+		
 		User temp = userdao.getUserByID(id);
 		mv.setViewName("updateUser");
 		mv.addObject("userToUpdate", temp);
 		return mv;
+		}
 	}
 
 	@RequestMapping(path = "createUser.do", method = RequestMethod.GET)
@@ -82,9 +88,7 @@ public class UserController {
 
 	@RequestMapping(path = "createUser.do", method = RequestMethod.POST)
 	public ModelAndView createUserWithInfoFromPage(@Valid @ModelAttribute("sessionUser") User user, Errors errors) {
-
 		ModelAndView mv = new ModelAndView();
-
 		if (errors.getErrorCount() != 0) {
 			mv.setViewName("createUser");
 			return mv;
@@ -96,15 +100,16 @@ public class UserController {
 		return mv;
 	}
 
-	@RequestMapping(value="deleteUser.do", method=RequestMethod.POST)
-	public ModelAndView deleteUser(@ModelAttribute("sessionUser") User user) {
-		ModelAndView mv = new ModelAndView();
-	
-		userdao.destroyUser(user.getId());
-		mv.setViewName("index");
-		mv.addObject("sessionUser", user);
-		return mv;
-	}
+//	@RequestMapping(value="deleteUser.do", method=RequestMethod.POST)
+//	public ModelAndView deleteUser(@ModelAttribute("sessionUser") User user) {
+//		ModelAndView mv = new ModelAndView();
+//	
+//		userdao.destroyUser(user.getId());
+//		mv.setViewName("index");
+//		mv.addObject("sessionUser", user);
+//		return mv;
+//	}
+//	
 	@RequestMapping(value="deleteUsers.do", method=RequestMethod.GET)
 	public ModelAndView goToDeleteUsersPage(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
@@ -115,7 +120,7 @@ public class UserController {
 		return mv;
 	}
 	@RequestMapping(value="deleteUsers.do", method=RequestMethod.POST)
-	public ModelAndView deleteUSer(@ModelAttribute("sessionUser") User user,@RequestParam("id") int id) {
+	public ModelAndView deleteUser(@ModelAttribute("sessionUser") User user, @RequestParam("deleteId") int id) {
 		ModelAndView mv = new ModelAndView();
 		
 		userdao.destroyUser(id);
