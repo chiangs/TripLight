@@ -16,7 +16,7 @@ public interface PostDAO {
 	
 	public List<Post> displayPostByUserId(User user);
 	
-	public List<Post> displayPostByCountryCode(String countryCode);
+	public List<Post> displayPostByCountryName(String countryName);
 
 	public void setEntityManager(EntityManager em);
 }

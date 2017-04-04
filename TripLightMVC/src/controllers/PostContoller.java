@@ -57,17 +57,15 @@ public class PostContoller {
 
 	
 	@RequestMapping(value="displayPostByCountry.do", method=RequestMethod.POST)
-	public ModelAndView displayPostByCountry(@RequestParam("countryCode") String countryCode) {
+	public ModelAndView displayPostByCountry(@RequestParam("countryName") String countryName) {
 		
 		ModelAndView mv = new ModelAndView();
-		List<Post> posts = postDAO.displayPostByCountryCode(countryCode);
-		System.out.println("test");
-		for (Post post : posts) {
-			System.out.println(post);
-			System.out.println("*******" + post.getPlace().getCountry().getCountryCode() + "*********");
-		}
-		mv.setViewName("countryPost");
-		mv.addObject("sessionUser", countryCode);
+		List<Post> posts = postDAO.displayPostByCountryName(countryName);
+//		for (Post post : posts) {
+//			System.out.println(post);
+//		}
+		mv.setViewName("userMain");
+		mv.addObject("postList", posts);
 		return mv;
 	}
 	

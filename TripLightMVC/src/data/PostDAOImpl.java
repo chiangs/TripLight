@@ -22,11 +22,12 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public List<Post> displayPostByCountryCode(String countryCode) {
+	public List<Post> displayPostByCountryName(String countryName) {
 		String query = "SELECT p FROM Post p WHERE p.place.country.name = :country";
+		System.out.println(countryName);
 		List<Post> post = null;
-		post = em.createQuery(query, Post.class).setParameter("country", countryCode).getResultList();
-
+		post = em.createQuery(query, Post.class).setParameter("country", countryName).getResultList();
+		System.out.println(post);
 		return post;
 	}
 
