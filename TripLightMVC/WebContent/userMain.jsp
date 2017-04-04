@@ -15,18 +15,16 @@
 
 <%@ include file="sidenav.jsp"%>
 
-    
+   
                     <div class="profile-content">
 
                         <div class="well">
                         Content goes here, repeats
                         </div>
-
+ 
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+ 
+
 
 
 

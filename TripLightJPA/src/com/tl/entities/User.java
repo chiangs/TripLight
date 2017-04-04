@@ -129,12 +129,6 @@ public class User {
 		return id;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-//				+ ", currentLocation=" + country.getName() + ", posts=" + posts + ", adminFlag=" + adminFlag
-//				+ ", email=" + email + "]";
-//	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username

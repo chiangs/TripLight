@@ -69,12 +69,31 @@ public class UserController {
 	}
 
 	@RequestMapping(value="deleteUser.do", method=RequestMethod.POST)
-	public ModelAndView deleteUSer(@ModelAttribute("sessionUser") User user) {
+	public ModelAndView deleteUser(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
 	
 		userdao.destroyUser(user.getId());
 		mv.setViewName("index");
 		mv.addObject("sessionUser", user);
+		return mv;
+	}
+	@RequestMapping(value="deleteUsers.do", method=RequestMethod.GET)
+	public ModelAndView goToDeleteUsersPage(@ModelAttribute("sessionUser") User user) {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("adminDeleteUsers");
+		mv.addObject("sessionUser", user);
+		mv.addObject("allUsers", userdao.index());
+		return mv;
+	}
+	@RequestMapping(value="deleteUsers.do", method=RequestMethod.POST)
+	public ModelAndView deleteUSer(@ModelAttribute("sessionUser") User user,@RequestParam("id") int id) {
+		ModelAndView mv = new ModelAndView();
+		
+		userdao.destroyUser(id);
+		mv.setViewName("userMain");
+		mv.addObject("sessionUser", user);
+		mv.addObject("allUsers", userdao.index());
 		return mv;
 	}
 }
