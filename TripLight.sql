@@ -21,8 +21,8 @@ USE `TripLight` ;
 DROP TABLE IF EXISTS `country` ;
 
 CREATE TABLE IF NOT EXISTS `country` (
-  `countryCode` VARCHAR(2) NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
+  `countryCode` VARCHAR(2) NOT NULL DEFAULT 'US',
+  `name` VARCHAR(45) NOT NULL DEFAULT 'United States',
   PRIMARY KEY (`countryCode`))
 ENGINE = InnoDB;
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(20) NOT NULL,
   `adminFlag` INT(1) NOT NULL DEFAULT 0,
   `email` VARCHAR(45) NOT NULL,
-  `country_countryCode` VARCHAR(2) NULL,
+  `country_countryCode` VARCHAR(2) NOT NULL DEFAULT 'US',
   `photo_url` VARCHAR(140) NOT NULL DEFAULT 'http://res.cloudinary.com/chiangs/image/upload/v1491241630/SD%20projects/travel.png',
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_user_country1`
