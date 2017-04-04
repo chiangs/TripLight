@@ -93,6 +93,13 @@ public class PostDAOTest {
 	@Test 
 	public void test_destroyPost(){
 		System.err.println(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-		assertEquals("", dao.destroyPost(2));
+		assertEquals(false, dao.destroyPost(2));
 	}
+	@Test
+	public void test_displayPostByUserId() {
+		User user = em.find(User.class, 2);
+		assertEquals(3, dao.displayPostByUserId(user).size());
+		
+	}
+	
 }

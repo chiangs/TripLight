@@ -3,13 +3,12 @@ package data;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tl.entities.Post;
+import com.tl.entities.User;
 
 @Transactional
 public class PostDAOImpl implements PostDAO {
@@ -78,5 +77,15 @@ public class PostDAOImpl implements PostDAO {
 
 		return false;
 	}
+
+	@Override
+	public List<Post> displayPostByUserId(User user) {
+		String query = "SELECT p FROM Post p WHERE p.user.id = :user";
+		List<Post> posts = null;
+		posts = em.createQuery(query, Post.class).setParameter("user", user.getId()).getResultList();
+
+		return posts;
+	}
+	
 
 }
