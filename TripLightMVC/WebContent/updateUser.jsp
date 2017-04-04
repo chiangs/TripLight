@@ -31,7 +31,7 @@
 					class="form-control" id="usr" value="${sessionUser.lastName}"name='lastName'>
 			</div>
 			<div class="form-group">
-				<label for="ususernameer">Username:</label> <input type="text"
+				<label for="username">Username:</label> <input type="text"
 					class="form-control" id="pwd"  value="${sessionUser.username}"name="username">
 			</div>
 			
@@ -42,7 +42,7 @@
 			
 			<div class="form-group">
 				<label for="country">Current Country:</label> <input type="text"
-					class="form-control" id="pwd" value="${sessionUser.country.name}" name="countryCode">
+					class="form-control" id="pwd" value="${sessionUser.country.name}" name="countryName">
 			</div>
 			
 			<div class="form-group">
@@ -50,6 +50,9 @@
 					class="form-control" id="pwd" value="${sessionUser.email}" name="email"> 
 				<button type="submit" class="btn btn-success btn-md">Submit Changes</button>
 			</div>
+			
+			<input type="hidden"
+					class="form-control" id="pwd" value="${sessionUser.country.name}" name="originalCountry">
 		</form>
 </div>
 
@@ -61,6 +64,8 @@
 					<h3>Delete my Account</h3>
 				<button type="submit" class="btn btn-danger btn-md">Delete. Are you sure?! This is foreeeever!!</button>
 					</div>
+					
+					
 			</form>
 </div>
 

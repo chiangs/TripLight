@@ -15,10 +15,12 @@ public interface UserDAO {
 
 	public User isValidUser(String username, String password) throws SQLException;
 
-	
 	public List<User> index();
+
 	public User getUserByID(int id);
 
 	public Country getCountryByCountryCode(String countryCode);
+	
+	public Country getCountryByCountryName(String countryName);
 	
 }

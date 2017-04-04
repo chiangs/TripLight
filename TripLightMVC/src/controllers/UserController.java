@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tl.entities.Country;
 import com.tl.entities.User;
 
 import data.UserDAO;
@@ -29,13 +30,24 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "updateUser.do", method = RequestMethod.POST)
-	public ModelAndView updateUserWithInformationFromPage(@ModelAttribute("sessionUser") User user) {
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView updateUserWithInformationFromPage(@ModelAttribute("sessionUser") User user, @RequestParam("countryName") String name, @RequestParam("originalCountry") String originalName) {
+		
+		ModelAndView mv = new ModelAndView();		
+		Country c = userdao.getCountryByCountryName(name);
+		if(c != null){
+			user.setCountry(c);
+		}
+		else{
+			c = userdao.getCountryByCountryName(originalName);
+			user.setCountry(c);
+		}
 		userdao.updateUser(user.getId(), user);
 		mv.setViewName("updateUser");
 		mv.addObject("sessionUser", user);
 		return mv;
 	}
+	
+	
 
 	@RequestMapping(value = "updateUser.do", method = RequestMethod.GET)
 	public ModelAndView updateUser(@ModelAttribute("sessionUser") User user) {

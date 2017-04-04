@@ -62,7 +62,6 @@ public class UserDAOImpl implements UserDAO {
 	public User updateUser(int id, User user) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
 		EntityManager em = emf.createEntityManager();
-
 		// start the transaction
 		em.getTransaction().begin();
 
@@ -74,12 +73,12 @@ public class UserDAOImpl implements UserDAO {
 		Managed.setEmail(user.getEmail());
 		Managed.setCountry(user.getCountry());
 		Managed.setAdminFlag(user.getAdminFlag());
+		
 		em.persist(Managed);
 		// update the "local" ("detached") 'customer' object
 		em.flush();
 		// commit the changes (actually perform the operation)
 		em.getTransaction().commit();
-
 		// return the full "managed" customer object
 		return Managed;
 	}
@@ -121,5 +120,19 @@ public class UserDAOImpl implements UserDAO {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
 		EntityManager em = emf.createEntityManager();
 		return em.find(Country.class, countryCode);
+	}
+	
+	@Override
+	public Country getCountryByCountryName(String countryName) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
+		EntityManager em = emf.createEntityManager();
+		String query = "SELECT c from Country c where c.name = :countryName";
+		try {
+		Country country = em.createQuery(query, Country.class).setParameter("countryName", countryName).getSingleResult();
+		return country;
+		}
+		catch (Exception e){
+			return null;
+		}
 	}
 }
