@@ -1,15 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-
+<%@ page session="true"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 
 <head>
    <%@ include file="header.jsp"%>
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="create.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/create.css">
 </head>
 
 <body>
+<c:choose>
+<c:when test="sessionUser != null">
+	<h1>USER!!!</h1>
+</c:when>
+
+</c:choose>
 
     <div class="container">
         <div class="modal-dialog">
@@ -19,73 +27,65 @@
                 </div>
                 <hr />
                 <div class="modal-body">
-                    <form action="createUser.do" method="POST" role="form" modelAttribute="sessionUser">
-
-  <div class="form-group">
+                    <form:form action="createUser.do" method="POST" role="form" modelAttribute="sessionUser" >
+					
+                        <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span>
                                 </span>
-                                <input type="text" class="form-control" placeholder="First Name" name="firstName" />
+                                <form:input type="text" class="form-control" path="firstName" placeholder="First Name" />
+                                <form:errors path="firstName"></form:errors>
                             </div>
                         </div>
-                                               <div class="input-group">
+                           
+                       <div class="form-group">
+                           <div class="input-group">
                                 <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Last Name" name="lastName" />
+                                <form:input type="text" class="form-control" placeholder="Last Name" path="lastName" />
+                                <form:errors path="lastName"></form:errors>
                             </div>
-                        </div>
+                       </div>
+                            
 
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span>
                                 </span>
-                                <input type="text" class="form-control" placeholder="User Name" name="username" />
+                                <form:input type="text" class="form-control" placeholder="User Name" path="username" />
+                                <form:errors path="username"></form:errors>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
             <span class="glyphicon glyphicon-lock"></span>
                                 </span>
-                                <input type="password" class="form-control" placeholder="Password"name="password" />
+                                <form:input type="password" class="form-control" placeholder="Password" path="password" />
+                                <form:errors path="password"></form:errors>
                             </div>
                         </div>
-           <!--  
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-            <span class="glyphicon glyphicon-lock"></span>
-                                </span>
-                                <input type="password" class="form-control" placeholder="Password...again please just be sure" />
-                            </div>
-                        </div>
--->
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-            <span class="glyphicon glyphicon-globe"></span>
-                                </span>
-                                <input type="text" class="form-control" placeholder="What country are you in (country code please)?" name="countryCode" />
-                            </div>
-                        </div>
+
 
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
             <span class="glyphicon glyphicon-envelope"></span>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Email" name="email"/>
+                                <form:input type="email" class="form-control" placeholder="Email" path="email"/>
+                                <form:errors path="email"></form:errors>
                             </div>
                         </div>
 
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-success btn-lg">Submit</button>
                             <a href="login.do" class="btn btn-primary btn-lg" role="button">Back to Landing Page</a>
-                        </div>
-                    </form>
+                        </div>                        
+                    </form:form>
                 </div>
             </div>
         </div>

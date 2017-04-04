@@ -5,7 +5,32 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2017-04-03T08:53:06Z</updated>
+  <updated>2017-04-04T01:00:00Z</updated>
+  <entry>
+    <title>This Week in Spring - April 4th, 2017</title>
+    <link rel="alternate" href="https://spring.io/blog/2017/04/04/this-week-in-spring-april-4th-2017" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2017-04-03:2886</id>
+    <updated>2017-04-04T01:00:00Z</updated>
+    <content type="html">&lt;p&gt;Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! This week I&amp;rsquo;m in London, UK; Paris, France (for the &lt;a href="http://cfp.devoxx.fr/2017/speaker/josh_long"&gt;epic Devoxx France&lt;/a&gt; event where I&amp;rsquo;ll be speaking with &lt;a href="http://twitter.com/raibledesigns"&gt;my buddy Matt Raible&lt;/a&gt;) and Stuttgart, Germany, where I&amp;rsquo;ll be speaking at conferences and to customers! If you&amp;rsquo;re around, don&amp;rsquo;t hesitate to say &lt;a href="http://twitter.com/starbuxman"&gt;&amp;ldquo;hi&amp;rdquo;!&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;the new release of Spring Tool Suite is jam-packed with new features supporting &lt;a href="https://spring.io/blog/2017/04/03/spring-tool-suite-3-8-4-released"&gt;Spring Boot and Cloud Foundry&lt;/a&gt;. &lt;a href="http://docs.spring.io/sts/nan/v384/NewAndNoteworthy.html"&gt;Check the New and Noteworthy&lt;/a&gt; and get it while it&amp;rsquo;s hot! (I&amp;rsquo;ve just gotten a new laptop, so I&amp;rsquo;m doing that right now, too!)&lt;/li&gt;
+  &lt;li&gt;last week in the latest installment of &lt;em&gt;Spring Tips&lt;/em&gt; I looked at some the various &lt;a href="https://spring.io/blog/2017/03/29/spring-tips-the-spring-framework-utils-classes"&gt;utility classes in the Spring Framework&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;I just presented at the premier Voxxed Days CERN event and &lt;a href="https://www.youtube.com/watch?v=L61VkzdpiF4"&gt;the organizers interviewed the amazing Spring Framework lead Juergen Hoeller, and me (his biggest fan)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;don&amp;rsquo;t miss the upcoming webinar on April 13th, &lt;a href="https://spring.io/blog/2017/03/28/webinar-april-13th-spring-boot-under-the-hood"&gt;Spring Boot Under the Hood&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;I really enjoyed Matt Raible&amp;rsquo;s new posts on the Okta blog introducing how to use Spring Boot and Okta &lt;a href="http://developer.okta.com/blog/2017/03/16/spring-boot-saml"&gt;with SAML&lt;/a&gt; and &lt;a href="http://developer.okta.com/blog/2017/03/21/spring-boot-oauth"&gt;with OAuth 2.0&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;My friend from Alibaba, Jacky Chan, put together a &lt;a href="https://github.com/linux-china/spring-boot-thymeleaf3-bootstrap4-angular4"&gt;fantastic sample application demonstrating Spring Boot and Angular4&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;version 1.6.0 of the project &lt;a href="http://find-sec-bugs.github.io"&gt;Find Security Bugs&lt;/a&gt;, the FindBugs plugin for security audits of Java web applications, was recently released. This new version adds some Spring specific checks, like &lt;a href="http://find-sec-bugs.github.io/bugs.htm#SPRING_CSRF_PROTECTION_DISABLED"&gt;disabling of CSRF protection&lt;/a&gt;, unrestricted use of &lt;a href="http://find-sec-bugs.github.io/bugs.htm#SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING"&gt;RequestMapping causing CSRF vulnerabilities&lt;/a&gt; and &lt;a href="http://find-sec-bugs.github.io/bugs.htm#SPRING_FILE_DISCLOSURE"&gt;dangerous server-side redirect using user input&lt;/a&gt;. Thanks to Pablo Tamarit for bringing this to my attention - very cool!&lt;/li&gt;
+  &lt;li&gt;our friend Nicolas Frankel has an interesting post on where &lt;a href="https://blog.frankel.ch/common-code-spring-mvc/#gsc.tab=0"&gt;to put common code in a Spring MVC application&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Yes, April Fools is past, but I just wanted to share &lt;a href="https://github.com/sbrannen/spring-polyglot"&gt;this epic creation from 2016 Spring Test lead Sam Brannen, Spring Polyglot, demonstrating composed applications for different (human) languages&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;This isn&amp;rsquo;t specifically to do with Spring, though it is something you could implement with Spring Cloud Zuul or the new Spring Cloud Gateway technology, but this post &lt;a href="https://stripe.com/blog/rate-limiters"&gt;by Stripe on the nuances of load-balancers and shedders was quite informative&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;I quite liked this &lt;a href="https://blog.philipphauer.de/idiomatic-kotlin-best-practices/"&gt;post introducing some Kotlin-language best practices&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spring Cloud ninja Dave Turanski put together a great post introducing &lt;a href="https://dturanski.wordpress.com/2017/03/26/spring-cloud-stream-for-event-driven-architectures/"&gt;Spring Cloud Stream for event driven architectures&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+  </entry>
   <entry>
     <title>Spring Tool Suite 3.8.4 released</title>
     <link rel="alternate" href="https://spring.io/blog/2017/04/03/spring-tool-suite-3-8-4-released" />
@@ -889,18 +914,5 @@ Another challenge is before us - Amazon Kinesis Binder implementation for &lt;a 
     <id>tag:spring.io,2017-03-09:2865</id>
     <updated>2017-03-09T18:40:18Z</updated>
     <content type="html">&lt;p&gt;I am pleased to announce that &lt;a href="https://github.com/spring-gradle-plugins/dependency-management-plugin"&gt;Gradle dependency management plugin&lt;/a&gt; 1.0.1.RELEASE is now available from Maven Central, Bintray, and the &lt;a href="https://plugins.gradle.org/plugin/io.spring.dependency-management"&gt;Gradle Plugin Portal&lt;/a&gt;. This maintenance release fixes a &lt;a href="https://github.com/spring-gradle-plugins/dependency-management-plugin/milestone/21?closed=1"&gt;handful of issues&lt;/a&gt; and is a recommended upgrade for all users of the plugin.&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Tips: Server Sent Events (SSE)</title>
-    <link rel="alternate" href="https://spring.io/blog/2017/03/08/spring-tips-server-sent-events-sse" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2017-03-07:2862</id>
-    <updated>2017-03-08T01:01:00Z</updated>
-    <content type="html">&lt;p&gt;Speaker: &lt;a href="https://www.twitter.com/starbuxman"&gt;Josh Long&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Hi Spring fans! in this installment, we&amp;rsquo;ll look at server sent events as implemented with Spring MVC and Spring WebFlux, the reactive web stack in the coming Spring Framework 5. &lt;/p&gt;
-&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/2To3_mYT2hc" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</content>
   </entry>
 </feed>

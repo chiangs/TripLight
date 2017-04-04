@@ -44,9 +44,10 @@ public class UserDAOImpl implements UserDAO {
 	public User createUser(User user) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
 		EntityManager em = emf.createEntityManager();
-
 		// start the transaction
 		em.getTransaction().begin();
+		
+		user.setCountry(em.find(Country.class, "US"));
 		em.persist(user);
 		// update the "local" ("detached") 'customer' object
 		em.flush();

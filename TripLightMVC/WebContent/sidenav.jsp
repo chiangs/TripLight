@@ -24,7 +24,7 @@
 						</form>
 						<form class="formWithButtons"action="updatePost.do" method="GET"
 							modelAttribute="sessionUser">
-							<button type="button" class="btn btn-danger btn-sm">Edit
+							<button type="button" class="btn btn-info btn-sm">Edit
 								Posts</button>
 						</form>
 					</div>
