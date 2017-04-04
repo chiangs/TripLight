@@ -43,7 +43,7 @@ public class User {
 	private List<Post> posts;
 	
 	@Transient
-	private String countryCode = "US";
+	private String countryCode;
 	
 	private int adminFlag;
 	
