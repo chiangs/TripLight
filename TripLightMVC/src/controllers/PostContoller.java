@@ -1,10 +1,13 @@
 package controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -54,10 +57,15 @@ public class PostContoller {
 
 	
 	@RequestMapping(value="displayPostByCountry.do", method=RequestMethod.POST)
-	public ModelAndView displayPostByCountry(@ModelAttribute("sessionUser") String countryCode) {
+	public ModelAndView displayPostByCountry(@RequestParam("countryCode") String countryCode) {
 		
 		ModelAndView mv = new ModelAndView();
-		postDAO.displayPostByCountryCode(countryCode);
+		List<Post> posts = postDAO.displayPostByCountryCode(countryCode);
+		System.out.println("test");
+		for (Post post : posts) {
+			System.out.println(post);
+			System.out.println("*******" + post.getPlace().getCountry().getCountryCode() + "*********");
+		}
 		mv.setViewName("countryPost");
 		mv.addObject("sessionUser", countryCode);
 		return mv;

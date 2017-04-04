@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tl.entities.Place;
 import com.tl.entities.Post;
 import com.tl.entities.User;
 
@@ -22,11 +23,11 @@ public class PostDAOImpl implements PostDAO {
 
 	@Override
 	public List<Post> displayPostByCountryCode(String countryCode) {
-		String query = "SELECT p FROM Post p JOIN FETCH p.place WHERE p.place.country.countryCode = :country";
-		List<Post> posts = null;
-		posts = em.createQuery(query, Post.class).setParameter("country", countryCode).getResultList();
+		String query = "SELECT p FROM Post p WHERE p.place.country.name = :country";
+		List<Post> post = null;
+		post = em.createQuery(query, Post.class).setParameter("country", countryCode).getResultList();
 
-		return posts;
+		return post;
 	}
 
 	@Override

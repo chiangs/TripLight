@@ -17,8 +17,14 @@
 
 
 
-
-   
+	<form action='displayPostByCountry.do' method="POST">
+			<div class="form-group">
+				<label for="country">Which Country do you want to see post about?</label> <input type="text"
+					class="form-control" id="pwd" value="${sessionUser.country.name}" name="countryCode">
+						<input type="submit" value="Submit">
+			</div>
+			</form>
+   <!--  
                     <div class="profile-content">
 
                         <div class="well">
@@ -26,7 +32,7 @@
                         </div>
  
                     </div>
-
+ -->
 
 
 
