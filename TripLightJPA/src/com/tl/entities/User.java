@@ -22,14 +22,14 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Size(min=1, message="We need to know what to call you!")
+	@Size(min=1, message=" We need to know what to call you!")
 	private String firstName;
 	
-	@Size(min=1, message="What clan or house do you belong to?")
+	@Size(min=1, message=" What clan or house do you belong to?")
 	private String lastName;
 	
-	@Size(min=1, message="A username is necessary")
-//	@Pattern(regexp="^[a-zA-Z0-9]{4,10}$", message="No special characters please")
+	@Size(min=1, message=" A username is necessary")
+	@Pattern(regexp="^[a-zA-Z0-9]{4,10}$", message="No special characters please")
 	private String username;
 	
 	@Size(min=1, max=20, message="Password must be min 1 and up to 20 characters long")
@@ -47,7 +47,8 @@ public class User {
 	
 	private int adminFlag;
 	
-	@Email
+	@Email(message=" Please provide a valid email address")
+	@Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address")
 	private String email;
 
 	public String getCountryCode() {

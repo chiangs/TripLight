@@ -41,8 +41,8 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="country">Current Country:</label> <input type="hidden"
-					class="form-control" id="pwd" value="${sessionUser.country.name}" name="password">
+				<label for="country">Current Country:</label> <input type="text"
+					class="form-control" id="pwd" value="${sessionUser.country.name}" name="countryCode">
 			</div>
 			
 			<div class="form-group">

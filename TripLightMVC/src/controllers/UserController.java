@@ -32,7 +32,7 @@ public class UserController {
 	public ModelAndView updateUserWithInformationFromPage(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
 		userdao.updateUser(user.getId(), user);
-		mv.setViewName("userMain");
+		mv.setViewName("updateUser");
 		mv.addObject("sessionUser", user);
 		return mv;
 	}
@@ -53,12 +53,11 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "createUser.do", method = RequestMethod.POST)
-	public ModelAndView createUserWithInfoFromPage(@Valid User user, Errors errors) {
+	public ModelAndView createUserWithInfoFromPage(@Valid @ModelAttribute("sessionUser") User user, Errors errors) {
 
 		ModelAndView mv = new ModelAndView();
 
 		if (errors.getErrorCount() != 0) {
-			System.out.println("IN ERROR BLOCK");
 			mv.setViewName("createUser");
 			return mv;
 		}

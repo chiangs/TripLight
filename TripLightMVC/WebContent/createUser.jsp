@@ -35,8 +35,8 @@
             <span class="glyphicon glyphicon-user"></span>
                                 </span>
                                 <form:input type="text" class="form-control" path="firstName" placeholder="First Name" />
-                                <form:errors path="firstName"></form:errors>
                             </div>
+                                <p class="errors"><form:errors path="firstName"></form:errors></p>
                         </div>
                            
                        <div class="form-group">
@@ -45,8 +45,8 @@
             <span class="glyphicon glyphicon-user"></span>
                                 </span>
                                 <form:input type="text" class="form-control" placeholder="Last Name" path="lastName" />
-                                <form:errors path="lastName"></form:errors>
                             </div>
+                                <p class="errors"><form:errors path="lastName"></form:errors></p>
                        </div>
                             
 
@@ -56,8 +56,8 @@
             <span class="glyphicon glyphicon-user"></span>
                                 </span>
                                 <form:input type="text" class="form-control" placeholder="User Name" path="username" />
-                                <form:errors path="username"></form:errors>
                             </div>
+                                <p class="errors"><form:errors path="username"></form:errors></p>
                         </div>
 
                         <div class="form-group">
@@ -66,8 +66,8 @@
             <span class="glyphicon glyphicon-lock"></span>
                                 </span>
                                 <form:input type="password" class="form-control" placeholder="Password" path="password" />
-                                <form:errors path="password"></form:errors>
                             </div>
+                                <p class="errors"><form:errors path="password"></form:errors></p>
                         </div>
 
 
@@ -77,8 +77,8 @@
             <span class="glyphicon glyphicon-envelope"></span>
                                 </span>
                                 <form:input type="email" class="form-control" placeholder="Email" path="email"/>
-                                <form:errors path="email"></form:errors>
                             </div>
+                                <p class="errors"><form:errors path="email"></form:errors></p>
                         </div>
 
                         <div class="form-group text-center">

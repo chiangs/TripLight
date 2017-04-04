@@ -19,3 +19,8 @@ body {
 .modal-heading h2 {
     color: #ffffff;
 }
+
+.errors {
+	color: red;
+	text-align: center;
+}
