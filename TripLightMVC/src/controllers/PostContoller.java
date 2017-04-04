@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -58,11 +60,15 @@ public class PostContoller {
 
 	
 	@RequestMapping(value="displayPostByCountry.do", method=RequestMethod.POST)
-	public ModelAndView displayPostByCountry(@ModelAttribute("sessionUser") String countryCode) {
+	public ModelAndView displayPostByCountry(@RequestParam("countryName") String countryName) {
+		
 		ModelAndView mv = new ModelAndView();
-		postDAO.displayPostByCountryCode(countryCode);
-		mv.setViewName("countryPost");
-		mv.addObject("sessionUser", countryCode);
+		List<Post> posts = postDAO.displayPostByCountryName(countryName);
+//		for (Post post : posts) {
+//			System.out.println(post);
+//		}
+		mv.setViewName("userMain");
+		mv.addObject("postList", posts);
 		return mv;
 	}
 	
