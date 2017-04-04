@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -41,10 +42,21 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Post> posts;
 	
+	@Transient
+	private String countryCode;
+	
 	private int adminFlag;
 	
 	@Email
 	private String email;
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
 
 	public String getPassword() {
 		return password;
