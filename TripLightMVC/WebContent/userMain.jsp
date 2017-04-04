@@ -15,6 +15,9 @@
 
 <%@ include file="sidenav.jsp"%>
 
+
+
+
    
                     <div class="profile-content">
 
@@ -23,7 +26,6 @@
                         </div>
  
                     </div>
- 
 
 
 
