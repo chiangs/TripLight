@@ -28,10 +28,17 @@ public class UserController {
 	public User user() {
 		return new User();
 	}
+	
+	@RequestMapping(value = "userMain.do", method = RequestMethod.GET)
+	public ModelAndView returnToMain(@ModelAttribute("sessionUser") User user ){
+		ModelAndView mv = new ModelAndView();	
+		mv.addObject("sessionUser", user);
+		mv.setViewName("userMain");
+		return mv;
+	}
 
 	@RequestMapping(value = "updateUser.do", method = RequestMethod.POST)
-	public ModelAndView updateUserWithInformationFromPage(@ModelAttribute("sessionUser") User user, @RequestParam("countryName") String name, @RequestParam("originalCountry") String originalName) {
-		
+	public ModelAndView updateUserWithInformationFromPage(@ModelAttribute("userToUpdate") User user, @RequestParam("countryName") String name, @RequestParam("originalCountry") String originalName) {
 		ModelAndView mv = new ModelAndView();		
 		Country c = userdao.getCountryByCountryName(name);
 		if(c != null){
@@ -43,17 +50,26 @@ public class UserController {
 		}
 		userdao.updateUser(user.getId(), user);
 		mv.setViewName("updateUser");
-		mv.addObject("sessionUser", user);
+		mv.addObject("userToUpdate", user);
 		return mv;
 	}
 	
+	@RequestMapping(value="adminUpdateUser.do", method=RequestMethod.POST)
+	public ModelAndView updateUserByAdmin(@RequestParam("id") int id) {
+	ModelAndView mv = new ModelAndView();
+	User temp = userdao.getUserByID(id);
+	mv.setViewName("updateUser");
+	mv.addObject("userToUpdate", temp);
+	return mv;
+	}
 	
 
 	@RequestMapping(value = "updateUser.do", method = RequestMethod.GET)
-	public ModelAndView updateUser(@ModelAttribute("sessionUser") User user) {
+	public ModelAndView updateUser(@ModelAttribute("sessionUser") User user, @RequestParam("id") int id) {
 		ModelAndView mv = new ModelAndView();
+		User temp = userdao.getUserByID(id);
 		mv.setViewName("updateUser");
-		mv.addObject("sessionUser", user);
+		mv.addObject("userToUpdate", temp);
 		return mv;
 	}
 

@@ -125,6 +125,10 @@ public class User {
 		this.email = email;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public int getId() {
 		return id;
 	}

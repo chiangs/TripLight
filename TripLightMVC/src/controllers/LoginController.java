@@ -44,8 +44,8 @@ public class LoginController {
 			User isValidUser = loginDelegate.isValidUser(user.getUsername(), user.getPassword());
 			if (isValidUser != null) {
 				System.out.println("User Login Successful");
-				model.addAttribute("sessionUser", isValidUser);
-				mv.addObject("loggedInUser",  isValidUser);
+				model.addAttribute("sessionUser", isValidUser);			
+				mv.addObject("userToUpdate",  isValidUser);
 				mv.setViewName("userMain");
 			}
 			else {

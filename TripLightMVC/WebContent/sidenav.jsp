@@ -21,7 +21,7 @@
 							<button type="submit" class="btn btn-success btn-sm">Post
 								Review</button>
 						</form>
-						<form class="formWithButtons"action="updatePost.do" method="GET">
+						<form class="formWithButtons" action="updatePost.do" method="GET">
 							<button type="button" class="btn btn-info btn-sm">Edit
 								Posts</button>
 						</form>
@@ -30,11 +30,11 @@
 					<!-- SIDEBAR MENU -->
 					<div class="profile-usermenu">
 						<ul class="nav">
-							<li class="active"><a href="#"> <i
+							<li class="active"><a href="userMain.do"> <i
 									class="glyphicon glyphicon-home"></i>Overview
 							</a></li>
 
-							<li class="active"><a href="updateUser.do"> <i
+							<li class="active"><a href="updateUser.do?id=${sessionUser.id}"> <i
 									class="glyphicon glyphicon-user"></i>Account Settings
 							</a></li>
 
@@ -47,7 +47,7 @@
 									</a> </li>
 									 <c:if test="${sessionUser.adminFlag == 1}">
 									   <li class="active"><a href="deleteUsers.do"> <i
-									class="glyphicon glyphicon-flag"></i> Delete users
+									class="glyphicon glyphicon-flag"></i> Administer Users
 									</a></li>
 									</c:if>
 									
