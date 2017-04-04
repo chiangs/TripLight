@@ -22,6 +22,14 @@ public class Place {
 	@JoinColumn(name="country_countryCode")
 	private Country country;
 	
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
 	private String url;
 	
 	@ManyToOne
