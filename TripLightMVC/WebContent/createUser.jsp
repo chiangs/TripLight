@@ -72,11 +72,10 @@
 
                         <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon">
-            <span class="glyphicon glyphicon-globe"></span>
-                                </span>
-                                <form:input type="text" class="form-control" placeholder="What country are you in (country code please)?" path="countryCode" />
-                                <form:errors path="countryCode"></form:errors>
+                              
+                                <form:hidden class="form-control" value="${sessionUser.country}" path="country" />
+                                <form:hidden class="form-control" value="${sessionUser.countryCode}" path="countryCode" />
+                                
                             </div>
                         </div>
 

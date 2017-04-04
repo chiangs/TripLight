@@ -14,47 +14,55 @@
 
 
 	<div class="profile-content">
-
+<div class="well">
 		<form action='updateUser.do' method="POST">
 
 			<div class="form-group">
-				<label for="usr">ID: ${sessionUser.id}</label> <input type="hidden"
-					class="form-control" id="usr" value="${sessionUser.id}" name='id'>
+				<label for="userId"></label> <input type="hidden"
+					class="form-control" value="${sessionUser.id}" name='id'>
 			</div>
 			<div class="form-group">
-				<label for="usr">First Name:</label> <input type="text"
-					class="form-control" id="pwd" value="${sessionUser.firstName}" name='firstName' >
+				<label for="firstName">First Name:</label> <input type="text"
+					class="form-control" value="${sessionUser.firstName}" name='firstName' >
 
 			</div>
 			<div class="form-group">
-				<label for="usr">Last Name:</label> <input type="text"
+				<label for="lastName">Last Name:</label> <input type="text"
 					class="form-control" id="usr" value="${sessionUser.lastName}"name='lastName'>
 			</div>
 			<div class="form-group">
-				<label for="usr">Username:</label> <input type="text"
+				<label for="ususernameer">Username:</label> <input type="text"
 					class="form-control" id="pwd"  value="${sessionUser.username}"name="username">
 			</div>
+			
 			<div class="form-group">
-				<label for="usr">Password:</label> <input type="text"
+				<label for="password">Password:</label> <input type="text"
 					class="form-control" id="pwd" value="${sessionUser.password}" name="password">
 			</div>
+			
+			<div class="form-group">
+				<label for="country">Current Country:</label> <input type="hidden"
+					class="form-control" id="pwd" value="${sessionUser.country.name}" name="password">
+			</div>
+			
 			<div class="form-group">
 				<label for="usr">Email Address:</label> <input type="text"
-					class="form-control" id="pwd" value="${sessionUser.email}" name="email"> <input
-					type="submit" value="Submit">
+					class="form-control" id="pwd" value="${sessionUser.email}" name="email"> 
+				<button type="submit" class="btn btn-success btn-md">Submit Changes</button>
 			</div>
-
-
 		</form>
+</div>
+
+
+	<div class="well">
 		
 		<form action='deleteUser.do' method="POST">
 					<div class="form-group">
-				<label for="usr">Delete Account:</label> <input type=submit
-					class="form-control" id="pwd"> <input
-					type="submit" value="Submit">
-			</div>
+					<h3>Delete my Account</h3>
+				<button type="submit" class="btn btn-danger btn-md">Delete. Are you sure?! This is foreeeever!!</button>
+					</div>
 			</form>
-		<div class="well"></div>
+</div>
 
 	</div>
 	
