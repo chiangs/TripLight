@@ -17,13 +17,11 @@
 					<!-- END SIDEBAR USER TITLE -->
 					<!-- SIDEBAR BUTTONS -->
 					<div class="profile-userbuttons">
-						<form class="formWithButtons" action="newPost.do" method="GET"
-							modelAttribute="sessionUser">
-							<button type="button" class="btn btn-success btn-sm">Post
+						<form class="formWithButtons" action="createPost.do" method="GET">
+							<button type="submit" class="btn btn-success btn-sm">Post
 								Review</button>
 						</form>
-						<form class="formWithButtons"action="updatePost.do" method="GET"
-							modelAttribute="sessionUser">
+						<form class="formWithButtons"action="updatePost.do" method="GET">
 							<button type="button" class="btn btn-info btn-sm">Edit
 								Posts</button>
 						</form>
