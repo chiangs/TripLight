@@ -70,14 +70,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="input-group">
-                              
-                                <form:hidden class="form-control" value="${sessionUser.country}" path="country" />
-                                <form:hidden class="form-control" value="${sessionUser.countryCode}" path="countryCode" />
-                                
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <div class="input-group">

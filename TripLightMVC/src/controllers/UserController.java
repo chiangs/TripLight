@@ -45,24 +45,26 @@ public class UserController {
 		return mv;
 	}
 
-	@RequestMapping(value = "createUser.do", method = RequestMethod.GET)
+	@RequestMapping(path = "createUser.do", method = RequestMethod.GET)
 	public ModelAndView createUser(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("createUser");
 		return mv;
 	}
 
-	@RequestMapping(value = "createUser.do", method = RequestMethod.POST)
-	public ModelAndView createUserWithInfoFromPage(@Valid User user, Errors errors,
-			@RequestParam("countryCode") String countryCode) {
+	@RequestMapping(path = "createUser.do", method = RequestMethod.POST)
+	public ModelAndView createUserWithInfoFromPage(@Valid User user, Errors errors) {
+
 		ModelAndView mv = new ModelAndView();
-		userdao.createUser(user);
 
 		if (errors.getErrorCount() != 0) {
+			System.out.println("IN ERROR BLOCK");
 			mv.setViewName("createUser");
 			return mv;
 		}
-		mv.setViewName("index");
+		
+		userdao.createUser(user);
+		mv.setViewName("userMain");
 		mv.addObject("sessionUser", user);
 		return mv;
 	}
