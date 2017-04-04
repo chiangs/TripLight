@@ -46,6 +46,13 @@
 
 							<li class="active"><a href="help.do"> <i
 									class="glyphicon glyphicon-flag"></i> Help
+									</a> </li>
+									 <c:if test="${sessionUser.adminFlag == 1}">
+									   <li class="active"><a href="deleteUsers.do"> <i
+									class="glyphicon glyphicon-flag"></i> Delete users
+									</a></li>
+									</c:if>
+									
 							</a></li>
 						</ul>
 					</div>
