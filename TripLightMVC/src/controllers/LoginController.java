@@ -31,6 +31,7 @@ public class LoginController {
 	
 	@RequestMapping(value="login.do", method=RequestMethod.GET)
 	public ModelAndView displayLogin(@ModelAttribute("sessionUser") User user) {
+		System.err.println("**********************");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
 		mv.addObject("sessionUser", user);

@@ -1,13 +1,19 @@
 package controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tl.entities.City;
+import com.tl.entities.Country;
+import com.tl.entities.Place;
 import com.tl.entities.Post;
 import com.tl.entities.User;
 
@@ -54,11 +60,15 @@ public class PostContoller {
 
 	
 	@RequestMapping(value="displayPostByCountry.do", method=RequestMethod.POST)
-	public ModelAndView displayPostByCountry(@ModelAttribute("sessionUser") String countryCode) {
+	public ModelAndView displayPostByCountry(@RequestParam("countryName") String countryName) {
+		
 		ModelAndView mv = new ModelAndView();
-		postDAO.displayPostByCountryCode(countryCode);
-		mv.setViewName("countryPost");
-		mv.addObject("sessionUser", countryCode);
+		List<Post> posts = postDAO.displayPostByCountryName(countryName);
+//		for (Post post : posts) {
+//			System.out.println(post);
+//		}
+		mv.setViewName("userMain");
+		mv.addObject("postList", posts);
 		return mv;
 	}
 	
@@ -74,10 +84,29 @@ public class PostContoller {
 	public ModelAndView createPost(@ModelAttribute("sessionUser") Post post) {
 		ModelAndView mv = new ModelAndView();
 		postDAO.createPost(post);
-		mv.addObject("sessionUser", post);
 		mv.setViewName("create");
+		mv.addObject("sessionUser", post);
 		return mv;
 	}
+	
+	@RequestMapping(value="createPlace.do", method=RequestMethod.POST)
+	public ModelAndView createPlace(Place place, @RequestParam("city") String city, @RequestParam("countryName") String countryName) {
+		ModelAndView mv = new ModelAndView();
+		City c = userdao.getCityByName(city);
+		Country co = userdao.getCountryByCountryName(countryName);
+		place.setCountry(co);
+		place.setCity(c);
+		postDAO.createPost(post);
+		mv.setViewName("create");
+		mv.addObject("sessionUser", post);
+		return mv;
+	}
+	
+	//create Method with value="createPlace.do" 
+	//@RequestParam(Place place, @RequestParam("city") String city, @RequestParam("countryName") String countryName)
+	//get city by city name
+	//get country by countryName
+	//set 
 	
 	@RequestMapping(value="displayPostByUser.do", method=RequestMethod.POST)
 	public ModelAndView displayPostByUserId(@ModelAttribute("sessionUser")User user) {
