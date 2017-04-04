@@ -27,10 +27,10 @@ public class PostContoller {
 
 
 	@RequestMapping(value = "updatePost.do", method = RequestMethod.GET)
-	public ModelAndView updateUser(@ModelAttribute("sessionUser") Post post) {
+	public ModelAndView updateUser(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("updatePost");
-		mv.addObject("sessionUser", post);
+		mv.addObject("sessionUser", user);
 		return mv;
 	}
 	
@@ -63,9 +63,10 @@ public class PostContoller {
 	}
 	
 	@RequestMapping(path = "createPost.do", method = RequestMethod.GET)
-	public ModelAndView createUser(@ModelAttribute("sessionUser") Post post) {
+	public ModelAndView createUser(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("createPost");
+		mv.addObject("sessionUser", user);
 		return mv;
 	}
 	
