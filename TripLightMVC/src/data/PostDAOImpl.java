@@ -4,6 +4,8 @@ package data;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -85,5 +87,13 @@ public class PostDAOImpl implements PostDAO {
 		return posts;
 	}
 	
+	public List<Post> index() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
+		EntityManager em = emf.createEntityManager();
+		String queryString = "SELECT p FROM Post p";
+		List<Post> results = em.createQuery(queryString, Post.class).getResultList();
 
+		return results;
+
+	}
 }
