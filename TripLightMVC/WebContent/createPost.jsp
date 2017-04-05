@@ -27,10 +27,16 @@
 			<br/>
 			<br/>
 			<h3> Or Create Post on Existing Place</h3>
-			<form action="createPost.do">
-				<label>Place<input type="text" /></label><br/> <label>Review<input
-					type="text" /></label> <br/><label>Today's Date<input type="date" /></label>
-					<br/><input type="submit" value="Submit Post"/>
+			<form action="createPost.do" method="POST">
+
+			
+				<label>Place<input type="text" name="place"/></label><br/> 
+				
+				<label>Review<input	type="text" name="review"/></label> <br/>
+				
+				<label>Today's Date <input type="date" name="dateString"/></label><br/>
+				
+				<input type="submit" value="Submit Post"/>
 			</form>
 
 

@@ -24,7 +24,7 @@ public class Post {
 	@JoinColumn(name="place_id")
 	private Place place;
 	
-	@Size(min=10, max=140, message="Minium 10 characters and max of 140")
+	@Size(min=10, max=250, message="Minium 10 characters and max of 250")
 	private String review;
 	
 	@ManyToOne
