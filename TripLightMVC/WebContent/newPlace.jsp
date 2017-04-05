@@ -13,23 +13,23 @@
 
 
 	<div class="well">
-		<h3>Create a Place</h3>
-		<h6>The place entered does not exist</h6>
-
-
+		<h2 class="title">Create a Place</h2>
+		<h4>Please enter the location details of your review!</h4>
+		<br>
+		<div class="form-group">
 		<form action="createPlace.do" method="POST">
-			<label>Name<input type="text" name="name" value="${placeName}" /></label><br /> 
-			<label>City<input type="text" name="cityName" /></label> <br />
-			<label>Country<input type="text" name="countryName" /></label> <br />
+			<label>Name</label><input class="form-control" type="text" name="name" value="${placeName}" /><br /> 
+			<label>City</label><input class="form-control" type="text" name="cityName" /><br />
+			<label>Country</label><input class="form-control" type="text" name="countryName" /><br />
 			<label for="review"></label> 
 			<input type="hidden" value="${review}" name="review">
 			<label for="date"></label> 
 			<input type="hidden" value="${date}" name="dateStr">	
 					
-			<input type="submit" value="Submit Place" />
+			<input type="submit" class="btn btn-primary" value="Submit" />
 		</form>
 		<br /> <br />
-
+</div>
 	</div>
 
 

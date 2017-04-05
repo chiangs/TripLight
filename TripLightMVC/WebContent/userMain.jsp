@@ -18,16 +18,16 @@
 <div class="main-content">
 	<form action='displayPostByCountry.do' method="POST">
 		<div class="form-group">
-			<label for="country">Which Country do you want to see post
-				about?</label> <input class="form-control" type="text" class="form-control" id="pwd"
+			<label for="country"><h2 class="title">Which Country do you want to see post
+				about?</h2></label> <input class="form-control" type="text" class="form-control" id="pwd"
 				value="${sessionUser.country.name}" name="countryName"> <button class="btn btn-info"
 				type="submit">Find posts!</button>
 		</div>
 	</form>
 	
-	<div class="well">
 	<c:choose>
 		<c:when test="${not empty postList}">
+	<div class="well">
 			<c:forEach var="post" items="${postList}">
 				<ul class="postDisplay">
 			 	<li><h3>${post.id}: ${post.place.name} </h3><br>
@@ -39,13 +39,13 @@
 				</ul>
 
 			</c:forEach>
+</div>
 		</c:when>
 	</c:choose>
 	
-	 <c:if test="${sessionUser.adminFlag == 1}">
-	
+	 <c:if test="${empty postList}">
+		<h1>No posts for this location yet!</h1>
 	</c:if>
-</div>
 
 </div>
 

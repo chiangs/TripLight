@@ -14,21 +14,20 @@
 
 	<div class="profile-content">
 
-		<div class="well">    
-		
-			<h3> Create a Post</h3>
-			<form action="createPost.do" method="POST">
+		<div class="well">
 
-			
-				<label>Place<input type="text" name="place"/></label><br/> 
-				
-				<label>Review<input	type="text" name="review"/></label> <br/>
-				
-				<label>Today's Date <input type="date" name="dateString"/></label><br/>
-				
-				<input type="submit" value="Submit Post"/>
-			</form>
+			<h2 class="title">Craft your Review</h2>
+			<h4>If this place doesn't exist in our database, you will be sent to a page to set the details of the place after you submit.</h4>
+			<br>
+			<div class="form-group">
+				<form action="createPost.do" method="POST">
 
+					<label>Name of Place you are reviewing:</label><input class="form-control" type="text" name="place" /><br /> 
+					<label>Review (min. 10 characters, max 250)</label> <textarea class="form-control" rows="10" name="review" ></textarea><br /> 
+					<label>Date Visited:<input class="form-control" type="date" name="dateString" /></label><br /> 
+					<input type="submit" class="btn btn-primary" value="Submit Your Review" />
+				</form>
+			</div>
 
 
 
