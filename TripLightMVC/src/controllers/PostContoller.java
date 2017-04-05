@@ -37,19 +37,38 @@ public class PostContoller {
 
 
 	@RequestMapping(value = "updatePost.do", method = RequestMethod.GET)
-	public ModelAndView updateUser(@ModelAttribute("sessionUser") User user) {
+	public ModelAndView updateUser(@ModelAttribute("sessionUser") User user, @RequestParam("postId") int id) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("updatePost");
 		mv.addObject("sessionUser", user);
+		mv.addObject("post", postDAO.getPostById(id));
 		return mv;
 	}
 	
 	@RequestMapping(value="updatePost.do", method=RequestMethod.POST)
-	public ModelAndView updatePost(@ModelAttribute("sessionUser") Post post) {
+	public ModelAndView updatePost(@ModelAttribute("sessionUser") User user,@RequestParam("review") String review,@RequestParam("dateStr") String dateStr, @RequestParam("postId") int id) {
 		ModelAndView mv = new ModelAndView();
-		postDAO.updatePost(post.getId(), post);
-		mv.setViewName("index");
-		mv.addObject("sessionUser", post);
+//		postDAO.updatePost(post.getId(), post);
+		Post post = postDAO.getPostById(id);
+//		place= postDAO.createPlace(place);
+		post.setReview(review);
+//		post.setPlace(place);
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = formatter.parse(dateStr);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		post.setDate(date);
+//		post.setUser(user);
+		post = postDAO.updatePost(id, post);
+		
+		
+		mv.setViewName("userPost");
+		mv.addObject("sessionUser", user);
+		mv.addObject("postList", postDAO.displayPostByUserId(user));
 		return mv;
 	}
 	

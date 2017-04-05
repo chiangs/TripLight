@@ -64,6 +64,7 @@ public class PostDAOImpl implements PostDAO {
 		System.err.println(managed);
 		System.err.println(post.getReview());
 		managed.setReview(post.getReview());
+		managed.setDate(post.getDate());
 		em.merge(managed);
 		
 
@@ -104,6 +105,11 @@ public class PostDAOImpl implements PostDAO {
 
 		return results;
 
+	}
+
+	@Override
+	public Post getPostById(int id) {
+		return em.find(Post.class, id);
 	}
 
 
