@@ -49,12 +49,14 @@ public class PostContoller {
 		return mv;
 	}
 	
-	@RequestMapping(value= "destroyPost.do", method = RequestMethod.POST)
-	public ModelAndView destroyPost(@ModelAttribute("postId") int id) {
+	@RequestMapping(value= "destroyPost.do", method = RequestMethod.POST) //this allows user to destroy own post
+	public ModelAndView destroyPost(@ModelAttribute("sessionUser") User user, @ModelAttribute("postId") int id) {
 		ModelAndView mv = new ModelAndView();
 		postDAO.destroyPost(id);
-		mv.setViewName("viewPost");
-		mv.addObject("sessionUser", id);
+		List<Post> posts = postDAO.displayPostByUserId(user);
+		mv.setViewName("userPost");
+		mv.addObject("postList", posts);
+		mv.addObject("sessionUser", user);
 		return mv;
 	}	
 
