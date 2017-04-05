@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import com.tl.entities.Place;
 import com.tl.entities.Post;
 import com.tl.entities.User;
 
@@ -19,4 +20,6 @@ public interface PostDAO {
 	public List<Post> displayPostByCountryName(String countryName);
 
 	public void setEntityManager(EntityManager em);
+	 
+	public Place createPlace(Place place);
 }

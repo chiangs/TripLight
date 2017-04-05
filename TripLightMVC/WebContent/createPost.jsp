@@ -15,19 +15,19 @@
 
 	<div class="profile-content">
 
-		<div class="well">
+		<div class="well">    
 			<h3>Create a Place</h3>
 			
 			
-			<form action="createPlace.do">
+			<form action="createPlace.do" method="POST">
 				<label>Name<input type="text" name="name"/></label><br/> <label>City<input
-					type="text" name="city"/></label> <br/><label>Country<input type="text" name="countryName"/></label>
+					type="text" name="cityName"/></label> <br/><label>Country<input type="text" name="countryName"/></label>
 					<br/><input type="submit" value="Submit Place"/>
 			</form>
 			<br/>
 			<br/>
 			<h3> Or Create Post on Existing Place</h3>
-			<form>
+			<form action="createPost.do">
 				<label>Place<input type="text" /></label><br/> <label>Review<input
 					type="text" /></label> <br/><label>Today's Date<input type="date" /></label>
 					<br/><input type="submit" value="Submit Post"/>
@@ -36,15 +36,10 @@
 
 
 
-			</form>
 
 
 		</div>
 
-	</div>
-	</div>
-	</div>
-	</div>
 	</div>
 
 

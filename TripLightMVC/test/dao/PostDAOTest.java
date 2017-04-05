@@ -58,7 +58,7 @@ public class PostDAOTest {
 	
 	@Test
 	public void test_displayPostByCountryCode() {
-		assertEquals(1, dao.displayPostByCountryCode("CO").size());
+		assertEquals(1, dao.displayPostByCountryName("CO").size());
 	}
 	
 	@Test 
