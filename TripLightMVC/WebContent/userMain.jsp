@@ -15,7 +15,7 @@
 <body>
 
 	<%@ include file="sidenav.jsp"%>
-
+<div class="main-content">
 	<form action='displayPostByCountry.do' method="POST">
 		<div class="form-group">
 			<label for="country">Which Country do you want to see post
@@ -47,7 +47,7 @@
 	</c:if>
 </div>
 
-
+</div>
 
 	<!-- /container -->
 	<%@ include file="endBody.jsp"%>

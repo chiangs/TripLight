@@ -8,7 +8,6 @@
 <head>
 <%@ include file="header.jsp"%>
 <link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/userMain.css">
 </head>
 
 <body>

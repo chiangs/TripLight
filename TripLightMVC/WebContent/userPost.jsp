@@ -10,7 +10,6 @@
 <head>
 <%@ include file="header.jsp"%>
 <link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/userMain.css">
 <link rel="stylesheet" href="css/postByCountry.css">
 </head>
 
