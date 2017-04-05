@@ -9,7 +9,7 @@ We also wrote JUnit tests to ensure proper mapping of the entities before moving
 |Database Architect and Post functionality                     | Dennis Carrasquillo|
 |Project Setup and User functionality                          | Ehren Williamson   |
 
-This is the first we have attempted to implement login functionality to a web-app. There are more secure methods that could be implemented as skills develop and future iterations allow. The goals, milestones, and separation of roles/responsibilities are illustrated in the structure/flow chart image embedded in the README but can also be found in slideshow format in the root folder.
+This is the first we have attempted to implement login functionality to a web-app. There are more secure methods that could be implemented as skills develop and future iterations allow. The goals, milestones, and separation of roles/responsibilities are illustrated in the structure/flow chart image embedded in the README but can also be found in slideshow format in the root folder. As an added primitive layer of security, the controllers for making changes on user/post data checks the session before displaying the view, otherwise it sends the user back to the login page if it's not in session.
 
 Issues the team ran into:
 - Login and logout functionality provided an interesting dimension in querying and validating a user and persisting the account during the entire session. Additionally logging out and ensuring the session was cleared took longer than expected.

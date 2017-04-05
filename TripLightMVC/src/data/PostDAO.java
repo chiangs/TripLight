@@ -25,7 +25,6 @@ public interface PostDAO {
 	 
 	public Place createPlace(Place place);
 
-	
 	public Place getPlaceByName(String name);
 
 	public List<Post> index();

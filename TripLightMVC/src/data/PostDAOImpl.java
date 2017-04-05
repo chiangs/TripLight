@@ -76,9 +76,7 @@ public class PostDAOImpl implements PostDAO {
 	@Override
 	public boolean destroyPost(int id) {
 		Post p = em.find(Post.class, id);
-		System.err.println(p == null);
 		em.remove(p); // performs the delete on the managed entity
-
 		return false;
 	}
 
