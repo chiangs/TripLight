@@ -53,9 +53,11 @@ public class Place {
 	@JoinColumn(name="city_id")
 	private City city;
 
+	
 	@Override
 	public String toString() {
-		return "Place [id=" + id + ", name=" + name + ", countryName=" + country.getName() + ", url=" + url + "]";
+		return "Place [id=" + id + ", name=" + name + ", country=" + country + ", url=" + url + ", posts=" + posts
+				+ ", city=" + city + "]";
 	}
 
 	public String getName() {

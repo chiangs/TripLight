@@ -19,10 +19,9 @@ public class PostDAOImpl implements PostDAO {
 
 	@Override
 	public Place createPlace(Place place) {
-		em.getTransaction().begin();
+		
 		em.persist(place);
-		em.flush();
-		em.getTransaction().commit();
+		
 		return place;
 	}
 
@@ -53,10 +52,8 @@ public class PostDAOImpl implements PostDAO {
 
 	@Override
 	public Post createPost(Post post) {
-		em.getTransaction().begin();
 		em.persist(post);
 		em.flush();
-		em.getTransaction().commit();
 		return post;
 	}
 
@@ -88,10 +85,14 @@ public class PostDAOImpl implements PostDAO {
 
 		return posts;
 	}
-
+	
 	@Override
 	public Place getPlaceByName(String name) {
-		Place p = em.find(Place.class, name);
+		System.out.println("in findPlaceByName " + name);
+		Place place = new Place();
+		String query = "SELECT p FROM Place p WHERE p.name = :name";	
+		Place p = em.createQuery(query, Place.class).setParameter("name", name).getSingleResult();
+//		System.out.println(p.toString());
 		return p;
 	}
 	
@@ -104,4 +105,6 @@ public class PostDAOImpl implements PostDAO {
 		return results;
 
 	}
+
+
 }

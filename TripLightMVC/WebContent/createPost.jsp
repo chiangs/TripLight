@@ -16,17 +16,8 @@
 	<div class="profile-content">
 
 		<div class="well">    
-			<h3>Create a Place</h3>
-			
-			
-			<form action="createPlace.do" method="POST">
-				<label>Name<input type="text" name="name"/></label><br/> <label>City<input
-					type="text" name="cityName"/></label> <br/><label>Country<input type="text" name="countryName"/></label>
-					<br/><input type="submit" value="Submit Place"/>
-			</form>
-			<br/>
-			<br/>
-			<h3> Or Create Post on Existing Place</h3>
+		
+			<h3> Create a Post</h3>
 			<form action="createPost.do" method="POST">
 
 			

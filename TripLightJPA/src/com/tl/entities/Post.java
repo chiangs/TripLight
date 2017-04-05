@@ -45,12 +45,13 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", place=" + place + ", review=" + review + ", user=" + user + "]";
+		return "Post [id=" + id + ", place=" + place.getId() + ", review=" + review + ", user=" + user + "]";
 	}
 
 	public Place getPlace() {
 		return place;
 	}
+	
 
 	public void setPlace(Place place) {
 		this.place = place;
