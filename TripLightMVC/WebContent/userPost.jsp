@@ -50,7 +50,7 @@
 				<label for="postId"></label> <input type="hidden"
 					class="form-control" value="${post.id}" name='postId'>
 					<div class="form-group">
-					<button type="submit" class="btn btn-danger btn-md pull-right">I take it back, delete this post.</button>
+					<button type="submit" class="btn btn-danger btn-md pul-right">I take it back, delete this post.</button>
 					</div>
 				</div>				
 			</form>
