@@ -15,6 +15,12 @@ import com.tl.entities.User;
 @Transactional
 public class PostDAOImpl implements PostDAO {
 
+	@Override
+	public Place createPlace(Place place) {
+		em.persist(place);
+		return place;
+	}
+
 	@PersistenceContext
 	private EntityManager em;
 

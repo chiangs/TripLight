@@ -17,7 +17,7 @@
 
                         <div class="well">
                        <h3>Edit Post</h3>
-                       <form>
+                       <form action="updatePost.do">
 				<label>Edit Place<input type="text" /></label><br/> <label>Edit Review<input
 					type="text" /></label> <br/><label>Edit Date<input type="date" /></label>
 					<br/><input type="submit" value="Submit Edits"/>

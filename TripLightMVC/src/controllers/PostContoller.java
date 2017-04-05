@@ -1,7 +1,5 @@
 package controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -60,21 +58,18 @@ public class PostContoller {
 
 	
 	@RequestMapping(value="displayPostByCountry.do", method=RequestMethod.POST)
-	public ModelAndView displayPostByCountry(@RequestParam("countryName") String countryName) {
-		
+	public ModelAndView displayPostByCountry(@ModelAttribute("sessionUser") String countryCode) {
 		ModelAndView mv = new ModelAndView();
-		List<Post> posts = postDAO.displayPostByCountryName(countryName);
-//		for (Post post : posts) {
-//			System.out.println(post);
-//		}
-		mv.setViewName("userMain");
-		mv.addObject("postList", posts);
+		postDAO.displayPostByCountryName(countryCode);
+		mv.setViewName("countryPost");
+		mv.addObject("sessionUser", countryCode);
 		return mv;
 	}
 	
 	@RequestMapping(path = "createPost.do", method = RequestMethod.GET)
 	public ModelAndView createUser(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
+		
 		mv.setViewName("createPost");
 		mv.addObject("sessionUser", user);
 		return mv;
@@ -84,21 +79,37 @@ public class PostContoller {
 	public ModelAndView createPost(@ModelAttribute("sessionUser") Post post) {
 		ModelAndView mv = new ModelAndView();
 		postDAO.createPost(post);
-		mv.setViewName("create");
+		mv.setViewName("createPost");
 		mv.addObject("sessionUser", post);
+		System.out.println("test");
 		return mv;
 	}
 	
 	@RequestMapping(value="createPlace.do", method=RequestMethod.POST)
-	public ModelAndView createPlace(Place place, @RequestParam("city") String city, @RequestParam("countryName") String countryName) {
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView createPlace(@ModelAttribute("sessionUser") User user, Place place, @RequestParam("cityName") String city, @RequestParam("countryName") String countryName) {
+ 		ModelAndView mv = new ModelAndView();
 		City c = userdao.getCityByName(city);
+		
+		if(c != null){
+			place.setCity(c);
+		}
+		else{
+			c = userdao.getCityByName("Istanbul");
+			place.setCity(c);
+		}
+		
 		Country co = userdao.getCountryByCountryName(countryName);
-		place.setCountry(co);
-		place.setCity(c);
-		postDAO.createPost(post);
-		mv.setViewName("create");
-		mv.addObject("sessionUser", post);
+		if(co != null){
+			place.setCountry(co);
+		}
+		else{
+			co = userdao.getCountryByCountryName("United States");
+			place.setCountry(co);
+		}
+		
+		postDAO.createPlace(place);
+		mv.setViewName("createPost");
+		mv.addObject("sessionUser", user);
 		return mv;
 	}
 	

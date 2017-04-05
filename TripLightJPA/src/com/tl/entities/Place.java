@@ -18,13 +18,16 @@ public class Place {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Size(min=10, max=45, message="Minium 10 characters and max of 45")
 	private String name;
 	
 	@ManyToOne
 	@JoinColumn(name="country_countryCode")
 	private Country country;
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public City getCity() {
 		return city;
 	}
