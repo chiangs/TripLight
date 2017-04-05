@@ -6,7 +6,7 @@
 					<!-- SIDEBAR USERPIC -->
 					<div class="profile-userpic">
 						<img
-							src="http://res.cloudinary.com/chiangs/image/upload/v1491241630/SD%20projects/travel.png">
+							src="${sessionUser.photoUrl}">
 					</div>
 					<!-- END SIDEBAR USERPIC -->
 					<!-- SIDEBAR USER TITLE -->

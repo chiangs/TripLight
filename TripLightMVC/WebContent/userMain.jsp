@@ -9,6 +9,7 @@
 <%@ include file="header.jsp"%>
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/userMain.css">
+<link rel="stylesheet" href="css/postByCountry.css">
 </head>
 
 <body>
@@ -18,36 +19,29 @@
 	<form action='displayPostByCountry.do' method="POST">
 		<div class="form-group">
 			<label for="country">Which Country do you want to see post
-				about?</label> <input type="text" class="form-control" id="pwd"
-				value="${sessionUser.country.name}" name="countryName"> <input
-				type="submit" value="Submit">
+				about?</label> <input class="form-control" type="text" class="form-control" id="pwd"
+				value="${sessionUser.country.name}" name="countryName"> <button class="btn btn-info"
+				type="submit">Find posts!</button>
 		</div>
 	</form>
+	
+	<div class="well">
 	<c:choose>
 		<c:when test="${not empty postList}">
 			<c:forEach var="post" items="${postList}">
-				<ul>
-			 	<li>Post ID: ${post.id},  Place: ${post.place.name} <br>
-			 	    Post created by: ${post.user.firstName} ${post.user.lastName} 
+				<ul class="postDisplay">
+			 	<li><h3>${post.id}: ${post.place.name} </h3><br>
+			 	    <h4>Post created by: ${post.user.firstName} ${post.user.lastName} - ${post.date}</h4> 
 			 		<br>
 			 		<br>
-					Review: ${post.review}
+					<blockquote>"${post.review}"</blockquote>
 			 	</li> 
 				</ul>
 
 			</c:forEach>
 		</c:when>
 	</c:choose>
-
-	<!--  
-                    <div class="profile-content">
-
-                        <div class="well">
-                        Content goes here, repeats
-                        </div>
- 
-                    </div>
- -->
+</div>
 
 
 

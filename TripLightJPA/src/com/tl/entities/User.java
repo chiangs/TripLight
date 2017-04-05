@@ -2,6 +2,7 @@ package com.tl.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -50,6 +51,17 @@ public class User {
 	@Email(message=" Please provide a valid email address")
 	@Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address")
 	private String email;
+	
+	@Column(name="photo_url")
+	private String photoUrl;
+
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
+	}
 
 	public String getCountryCode() {
 		return countryCode;
