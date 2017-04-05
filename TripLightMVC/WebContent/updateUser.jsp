@@ -58,11 +58,11 @@
 
 	<div class="well">
 		
-		<form action='deleteUsers.do' method="POST">
+		<form action='deleteUser.do' method="POST">
 		
 		<div class="form-group">
 				<label for="userId"></label> <input type="hidden"
-					class="form-control" value="${userToUpdate.id}" name='id'>
+					class="form-control" value="${userToUpdate.id}" name='myId'>
 					<div class="form-group">
 					<h3>Delete my Account</h3>
 				<button type="submit" class="btn btn-danger btn-md">Delete. Are you sure?! This is foreeeever!!</button>

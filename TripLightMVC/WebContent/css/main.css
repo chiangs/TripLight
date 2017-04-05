@@ -3,7 +3,7 @@
 }
 
 html, body {
-	overflow: hidden;
+	overflow: /* hidden */;
 	height: 100%;
 }
 
@@ -46,7 +46,7 @@ h1 {
 
 .profile-userpic img {
 	float: none; 
-	width: 50%;
+	max-width: 6vw;
 	height: auto;
 	-webkit-border-radius: 20% !important;
 	-moz-border-radius: 20% !important;

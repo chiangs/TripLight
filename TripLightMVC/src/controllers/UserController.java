@@ -93,6 +93,7 @@ public class UserController {
 			mv.setViewName("createUser");
 			return mv;
 		}
+		user.setPhotoUrl("http://res.cloudinary.com/chiangs/image/upload/v1491241630/SD%20projects/travel.png");
 		
 		userdao.createUser(user);
 		mv.setViewName("userMain");
@@ -100,29 +101,27 @@ public class UserController {
 		return mv;
 	}
 
-//	@RequestMapping(value="deleteUser.do", method=RequestMethod.POST)
-//	public ModelAndView deleteUser(@ModelAttribute("sessionUser") User user) {
-//		ModelAndView mv = new ModelAndView();
-//	
-//		userdao.destroyUser(user.getId());
-//		mv.setViewName("index");
-//		mv.addObject("sessionUser", user);
-//		return mv;
-//	}
-//	
+	@RequestMapping(value="deleteUser.do", method=RequestMethod.POST)
+	public ModelAndView deleteUser(@ModelAttribute("sessionUser") User user, @RequestParam("myId") int id) {
+		ModelAndView mv = new ModelAndView();
+		userdao.destroyUser(user.getId());
+		mv.setViewName("index");
+		mv.addObject("sessionUser", user);
+		return mv;
+	}
+	
 	@RequestMapping(value="deleteUsers.do", method=RequestMethod.GET)
 	public ModelAndView goToDeleteUsersPage(@ModelAttribute("sessionUser") User user) {
-		ModelAndView mv = new ModelAndView();
-		
+		ModelAndView mv = new ModelAndView();	
 		mv.setViewName("adminDeleteUsers");
 		mv.addObject("sessionUser", user);
 		mv.addObject("allUsers", userdao.index());
 		return mv;
 	}
+	
 	@RequestMapping(value="deleteUsers.do", method=RequestMethod.POST)
-	public ModelAndView deleteUser(@ModelAttribute("sessionUser") User user, @RequestParam("deleteId") int id) {
+	public ModelAndView deleteUsers(@ModelAttribute("sessionUser") User user, @RequestParam("deleteId") int id) {
 		ModelAndView mv = new ModelAndView();
-		
 		userdao.destroyUser(id);
 		mv.setViewName("userMain");
 		mv.addObject("sessionUser", user);

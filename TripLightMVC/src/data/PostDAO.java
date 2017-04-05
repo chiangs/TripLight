@@ -19,6 +19,8 @@ public interface PostDAO {
 	
 	public List<Post> displayPostByCountryName(String countryName);
 
+	public List<Post> displayPostByCountryCode(String countryCode);
+	
 	public void setEntityManager(EntityManager em);
 	 
 	public Place createPlace(Place place);

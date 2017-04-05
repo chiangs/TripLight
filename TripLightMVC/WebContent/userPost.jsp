@@ -16,14 +16,7 @@
 
 	<%@ include file="sidenav.jsp"%>
 
-	<form action='displayPostByCountry.do' method="POST">
-		<div class="form-group">
-			<label for="country">Which Country do you want to see post
-				about?</label> <input class="form-control" type="text" class="form-control" id="pwd"
-				value="${sessionUser.country.name}" name="countryName"> <button class="btn btn-info"
-				type="submit">Find posts!</button>
-		</div>
-	</form>
+	<h1>Your Posts</h1>
 	
 	<div class="well">
 	<c:choose>

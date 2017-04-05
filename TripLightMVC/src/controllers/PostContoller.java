@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -58,18 +60,18 @@ public class PostContoller {
 
 	
 	@RequestMapping(value="displayPostByCountry.do", method=RequestMethod.POST)
-	public ModelAndView displayPostByCountry(@ModelAttribute("sessionUser") String countryCode) {
+	public ModelAndView displayPostByCountry(@RequestParam("countryName") String countryName) {
 		ModelAndView mv = new ModelAndView();
-		postDAO.displayPostByCountryName(countryCode);
-		mv.setViewName("countryPost");
-		mv.addObject("sessionUser", countryCode);
+		postDAO.displayPostByCountryName(countryName);
+		List<Post> posts = postDAO.displayPostByCountryName(countryName);
+		mv.setViewName("userMain");
+		mv.addObject("postList", posts);
 		return mv;
 	}
 	
 	@RequestMapping(path = "createPost.do", method = RequestMethod.GET)
 	public ModelAndView createUser(@ModelAttribute("sessionUser") User user) {
-		ModelAndView mv = new ModelAndView();
-		
+		ModelAndView mv = new ModelAndView();	
 		mv.setViewName("createPost");
 		mv.addObject("sessionUser", user);
 		return mv;
@@ -113,19 +115,16 @@ public class PostContoller {
 		return mv;
 	}
 	
-	//create Method with value="createPlace.do" 
-	//@RequestParam(Place place, @RequestParam("city") String city, @RequestParam("countryName") String countryName)
-	//get city by city name
-	//get country by countryName
-	//set 
-	
-	@RequestMapping(value="displayPostByUser.do", method=RequestMethod.POST)
-	public ModelAndView displayPostByUserId(@ModelAttribute("sessionUser")User user) {
+	@RequestMapping(value="viewPost.do", method=RequestMethod.GET)
+	public ModelAndView displayPostByUserId(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
-		postDAO.displayPostByUserId(user);
+		System.out.println("In viewpost ID");
+		List<Post> posts = postDAO.displayPostByUserId(user);
 		mv.setViewName("userPost");
 		mv.addObject("sessionUser", user);
+		mv.addObject("postList", posts);
 		return mv;
 	}
-	//New Comment
+	
+	
 }
