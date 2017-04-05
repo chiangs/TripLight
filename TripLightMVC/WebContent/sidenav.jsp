@@ -18,11 +18,11 @@
 					<!-- SIDEBAR BUTTONS -->
 					<div class="profile-userbuttons">
 						<form class="formWithButtons" action="createPost.do" method="GET">
-							<button type="submit" class="btn btn-success btn-sm">Post
+							<button type="submit" class="btn btn-success btn-sm">Post a 
 								Review</button>
 						</form>
 						<form class="formWithButtons" action="viewPost.do" method="GET">
-							<button type="submit" class="btn btn-info btn-sm">Edit
+							<button type="submit" class="btn btn-info btn-sm">My
 								Posts</button>
 						</form>
 					</div>

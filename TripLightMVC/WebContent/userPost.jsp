@@ -18,10 +18,10 @@
 
 	<h1>Your Posts</h1>
 	
-	<div class="well">
 	<c:choose>
 		<c:when test="${not empty postList}">
 			<c:forEach var="post" items="${postList}">
+	<div class="well">
 				<ul class="postDisplay">
 			 	<li><h3>${post.id}: ${post.place.name} </h3><br>
 			 	    <h4>Post created by: ${post.user.firstName} ${post.user.lastName} - ${post.date}</h4> 
@@ -31,10 +31,10 @@
 			 	</li> 
 				</ul>
 
+</div>
 			</c:forEach>
 		</c:when>
 	</c:choose>
-</div>
 
 
 
