@@ -37,30 +37,20 @@ public class PostDAOImpl implements PostDAO {
 		System.out.println(post);
 		return post;
 	}
+	
+	@Override
+	public List<Post> displayPostByCountryCode(String countryCode) {
+		String query = "SELECT p FROM Post p WHERE p.place.country.name = :country";
+		List<Post> post = null;
+		post = em.createQuery(query, Post.class).setParameter("country", countryCode).getResultList();
+		return post;
+	}
 
 	@Override
 	public Post createPost(Post post) {
-		System.err.println(post);
-
-		System.out.println("&&&&&&&&&&&&&&&&&DATE**********************");
-		System.out.println(post.getDate());
-
+		
 		em.persist(post);
-		// EntityManagerFactory emf =
-		// Persistence.createEntityManagerFactory("TripLight");
-		// EntityManager em = emf.createEntityManager();
-		//
-		// // start the transaction
-		// em.getTransaction().begin();
-		// // write the customer to the database
-		// em.persist(post);
-		// // update the "local" ("detached") 'customer' object
-		// em.flush();
-		// // commit the changes (actually perform the operation)
-		// em.getTransaction().commit();
-		//
-		// // return the full "managed" customer object
-		System.out.println("**********************GOT HERE*****************");
+
 		return post;
 	}
 
@@ -79,7 +69,6 @@ public class PostDAOImpl implements PostDAO {
 
 	@Override
 	public boolean destroyPost(int id) {
-		System.err.println("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ");
 		Post p = em.find(Post.class, id);
 		System.err.println(p == null);
 		em.remove(p); // performs the delete on the managed entity
