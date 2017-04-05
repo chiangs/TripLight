@@ -149,4 +149,18 @@ public class UserDAOImpl implements UserDAO {
 			return null;
 		}
 	}
+	
+	@Override
+	public boolean usernameExists(String username) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
+		EntityManager em = emf.createEntityManager();
+		String query = "SELECT u from User u where u.username = :username";
+		try {
+			User found = em.createQuery(query, User.class).setParameter("username", username).getSingleResult();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
 }

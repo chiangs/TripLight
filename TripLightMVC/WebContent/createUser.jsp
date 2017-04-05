@@ -14,7 +14,6 @@
 <body>
 <c:choose>
 <c:when test="sessionUser != null">
-	<h1>USER!!!</h1>
 </c:when>
 
 </c:choose>
@@ -24,6 +23,8 @@
             <div class="modal-content">
                 <div class="modal-heading">
                     <h2 class="text-center">Welcome, Amigo!</h2>
+                    <h4  class="errors">${userExists}</h4>
+                    
                 </div>
                 <hr />
                 <div class="modal-body">
