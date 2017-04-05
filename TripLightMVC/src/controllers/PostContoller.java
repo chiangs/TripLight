@@ -50,10 +50,10 @@ public class PostContoller {
 	}
 	
 	@RequestMapping(value= "destroyPost.do", method = RequestMethod.POST)
-	public ModelAndView destroyPost(@ModelAttribute("sessionUser") int id) {
+	public ModelAndView destroyPost(@ModelAttribute("postId") int id) {
 		ModelAndView mv = new ModelAndView();
 		postDAO.destroyPost(id);
-		mv.setViewName("destroyPost");
+		mv.setViewName("viewPost");
 		mv.addObject("sessionUser", id);
 		return mv;
 	}	
