@@ -31,7 +31,6 @@ public class LoginController {
 	
 	@RequestMapping(value="login.do", method=RequestMethod.GET)
 	public ModelAndView displayLogin(@ModelAttribute("sessionUser") User user) {
-		System.err.println("**********************");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
 		mv.addObject("sessionUser", user);
@@ -45,8 +44,8 @@ public class LoginController {
 			User isValidUser = loginDelegate.isValidUser(user.getUsername(), user.getPassword());
 			if (isValidUser != null) {
 				System.out.println("User Login Successful");
-				model.addAttribute("sessionUser", isValidUser);
-				mv.addObject("loggedInUser",  isValidUser);
+				model.addAttribute("sessionUser", isValidUser);			
+				mv.addObject("userToUpdate",  isValidUser);
 				mv.setViewName("userMain");
 			}
 			else {
@@ -64,7 +63,7 @@ public class LoginController {
 	@RequestMapping(value="logout.do", method=RequestMethod.GET)
 	public ModelAndView executeLogout(HttpSession session, SessionStatus status) {
 	ModelAndView mv = new ModelAndView();
-	session.setAttribute("sessionUser", new User());
+	session.setAttribute("sessionUser", null);
 	status.setComplete();
 	mv.setViewName("index");
 	return mv;

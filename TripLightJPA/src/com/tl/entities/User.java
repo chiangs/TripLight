@@ -29,7 +29,7 @@ public class User {
 	private String lastName;
 	
 	@Size(min=1, message=" A username is necessary")
-	@Pattern(regexp="^[a-zA-Z0-9]{4,10}$", message="No special characters please")
+	@Pattern(regexp="^[a-zA-Z0-9]{1,20}$", message="No special characters please")
 	private String username;
 	
 	@Size(min=1, max=20, message="Password must be min 1 and up to 20 characters long")
@@ -123,6 +123,10 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getId() {

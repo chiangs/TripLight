@@ -14,19 +14,31 @@
 <body>
 <%@ include file="sidenav.jsp"%>
 
+ <div class="profile-content">
+                        <h1>Admin Actions</h1>
+
+                        <div class="well">
 	<c:forEach var="user" items="${allUsers}">
-		<ul>
-			<li>User ID: ${user.id}, User First Name:${user.firstName}, User
-				Last Name: ${user.lastName}, User Username:${user.username}</li>
-		</ul>
-		<form action='deleteUsers.do' method="POST">
-			<div class="form-group">
-				<input type ="hidden" value = "${user.id}" name ="id">
-				<label for="usr">Delete Account:</label> 
-				<input type="submit" value="Submit">
-			</div>
+		<hr>
+		<h4>User ID: ${user.id}<br>
+		Username: ${user.username}<br>
+		Name: ${user.firstName} ${user.lastName}</h4>
+		
+		<form class="formWithButtons" action='adminUpdateUser.do' method="POST">
+			 				<input type = "hidden" value = "${user.id}" name = "updateid">
+			 				<input type = "hidden" value = "${user.country.name}" name = "originalCountry">
+			 				<input type = "hidden" value = "${user.country.name}" name = "countryName">
+                            <button type = "submit" class = "btn btn-warning btn-sm">Update User</button>
+		</form>
+		<form class="formWithButtons" action='deleteUsers.do' method="POST">
+			 				<input type ="hidden" value = "${user.id}" name ="deleteId">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete User</button>
 		</form>
 	</c:forEach>
+	
+	   </div>
+ 
+                    </div>
 	
 	  <!-- /container -->
   	<%@ include file="endBody.jsp"%>

@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
 	<%@ include file="sidenav.jsp"%>
 
 
@@ -19,50 +18,55 @@
 
 			<div class="form-group">
 				<label for="userId"></label> <input type="hidden"
-					class="form-control" value="${sessionUser.id}" name='id'>
+					class="form-control" value="${userToUpdate.id}" name='id'>
 			</div>
 			<div class="form-group">
 				<label for="firstName">First Name:</label> <input type="text"
-					class="form-control" value="${sessionUser.firstName}" name='firstName' >
+					class="form-control" value="${userToUpdate.firstName}" name='firstName' >
 
 			</div>
 			<div class="form-group">
 				<label for="lastName">Last Name:</label> <input type="text"
-					class="form-control" id="usr" value="${sessionUser.lastName}"name='lastName'>
+					class="form-control" id="usr" value="${userToUpdate.lastName}"name='lastName'>
 			</div>
 			<div class="form-group">
 				<label for="username">Username:</label> <input type="text"
-					class="form-control" id="pwd"  value="${sessionUser.username}"name="username">
+					class="form-control" id="pwd"  value="${userToUpdate.username}"name="username">
 			</div>
 			
 			<div class="form-group">
 				<label for="password">Password:</label> <input type="text"
-					class="form-control" id="pwd" value="${sessionUser.password}" name="password">
+					class="form-control" id="pwd" value="${userToUpdate.password}" name="password">
 			</div>
 			
 			<div class="form-group">
 				<label for="country">Current Country:</label> <input type="text"
-					class="form-control" id="pwd" value="${sessionUser.country.name}" name="countryName">
+					class="form-control" id="pwd" value="${userToUpdate.country.name}" name="countryName">
 			</div>
 			
 			<div class="form-group">
 				<label for="usr">Email Address:</label> <input type="text"
-					class="form-control" id="pwd" value="${sessionUser.email}" name="email"> 
+					class="form-control" id="pwd" value="${userToUpdate.email}" name="email"> 
 				<button type="submit" class="btn btn-success btn-md">Submit Changes</button>
 			</div>
 			
 			<input type="hidden"
-					class="form-control" id="pwd" value="${sessionUser.country.name}" name="originalCountry">
+					class="form-control" id="pwd" value="${userToUpdate.country.name}" name="originalCountry">
 		</form>
 </div>
 
 
 	<div class="well">
 		
-		<form action='deleteUser.do' method="POST">
+		<form action='deleteUsers.do' method="POST">
+		
+		<div class="form-group">
+				<label for="userId"></label> <input type="hidden"
+					class="form-control" value="${userToUpdate.id}" name='id'>
 					<div class="form-group">
 					<h3>Delete my Account</h3>
 				<button type="submit" class="btn btn-danger btn-md">Delete. Are you sure?! This is foreeeever!!</button>
+					</div>
 					</div>
 					
 					
