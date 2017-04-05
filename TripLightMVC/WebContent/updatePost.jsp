@@ -16,10 +16,12 @@
 
                         <div class="well">
                        <h3>Edit Post</h3>
+                       <h3> ${post.place.name }</h3>
                        <form action="updatePost.do" method="POST">
-				<label>Edit Place<input type="text" /></label>
-				<br/> <label>Edit Review<input type="text" /></label> 
-				<br/><label>Edit Date<input type="date" /></label>
+                       <input type="hidden" name="postId" value="${post.id }" />
+				<label for="placeName"></label>
+				<br/> <label for="review">Edit Review<input type="text" name="review" value="${post.review}"/></label> 
+				<br/><label for="date">Edit Date<input type="date" name="dateStr" value="${post.date }"/></label>
 					<br/><input type="submit" value="Submit Edits"/>
 			</form>
                         </div>
