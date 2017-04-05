@@ -24,5 +24,10 @@ public interface PostDAO {
 	public void setEntityManager(EntityManager em);
 	 
 	public Place createPlace(Place place);
+<<<<<<< HEAD
+	
+	public Place getPlaceByName(String name);
+=======
 	public List<Post> index();
+>>>>>>> 8213ca82108452633c3658bde4e34dc223b63fcf
 }

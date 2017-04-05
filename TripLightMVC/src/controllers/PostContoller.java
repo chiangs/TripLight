@@ -1,5 +1,9 @@
 package controllers;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +76,7 @@ public class PostContoller {
 	}
 	
 	@RequestMapping(path = "createPost.do", method = RequestMethod.GET)
-	public ModelAndView createUser(@ModelAttribute("sessionUser") User user) {
+	public ModelAndView createUser(@ModelAttribute("newPlace") User user, Place place) {
 		ModelAndView mv = new ModelAndView();	
 		mv.setViewName("createPost");
 		mv.addObject("sessionUser", user);
@@ -80,12 +84,49 @@ public class PostContoller {
 	}
 	
 	@RequestMapping(value="createPost.do", method=RequestMethod.POST)
-	public ModelAndView createPost(@ModelAttribute("sessionUser") Post post) {
+	public ModelAndView createPost(@ModelAttribute("sessionUser") User user,  
+			@RequestParam("place")String placeStr,
+			@RequestParam("dateString")String dateStr,
+			@RequestParam("review")String review
+			) {
+		System.out.println("***********************************");
+		System.out.println(dateStr);
+		System.out.println(review);
+		System.out.println(placeStr);
+		System.out.println("***********************************");
+		Post post = new Post();
+		post.setReview(review);
+		Place place = null;
+		try{
+			 place =postDAO.getPlaceByName(placeStr);
+		}catch(Exception e){
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("review", review);
+			mv.addObject("placeName", placeStr);
+
+			
+			mv.setViewName("createPost");
+			return mv;
+		}
+		
+		post.setPlace(place);
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = formatter.parse(dateStr);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		post.setDate(date);
 		ModelAndView mv = new ModelAndView();
+		System.out.println(post);
 		postDAO.createPost(post);
+		System.out.println(post + "1");
 		mv.setViewName("createPost");
 		mv.addObject("sessionUser", post);
 		System.out.println("test");
+		System.out.println(post.getDate());
 		return mv;
 	}
 	
@@ -113,6 +154,7 @@ public class PostContoller {
 		
 		postDAO.createPlace(place);
 		mv.setViewName("createPost");
+		mv.addObject("newplace", place);
 		mv.addObject("sessionUser", user);
 		return mv;
 	}
