@@ -76,9 +76,10 @@ public class PostContoller {
 	}
 	
 	@RequestMapping(path = "createPost.do", method = RequestMethod.GET)
-	public ModelAndView createUser(@ModelAttribute("newPlace") User user, Place place) {
+	public ModelAndView createUser(@ModelAttribute("newPlace")Place place, @ModelAttribute("sessionUser") User user ) {
 		ModelAndView mv = new ModelAndView();	
 		mv.setViewName("createPost");
+		mv.addObject("placeName", place);
 		mv.addObject("sessionUser", user);
 		return mv;
 	}
@@ -98,14 +99,15 @@ public class PostContoller {
 		post.setReview(review);
 		Place place = null;
 		try{
-			 place =postDAO.getPlaceByName(placeStr);
+			 place = postDAO.getPlaceByName(placeStr);
 		}catch(Exception e){
 			ModelAndView mv = new ModelAndView();
 			mv.addObject("review", review);
 			mv.addObject("placeName", placeStr);
-
+			mv.addObject("date", dateStr);
+			mv.addObject("sessionUser", user);
+			mv.setViewName("newPlace");
 			
-			mv.setViewName("createPost");
 			return mv;
 		}
 		
@@ -119,22 +121,24 @@ public class PostContoller {
 			e.printStackTrace();
 		}
 		post.setDate(date);
+		post.setUser(user);
+		post = postDAO.createPost(post);
+
+		
 		ModelAndView mv = new ModelAndView();
-		System.out.println(post);
-		postDAO.createPost(post);
-		System.out.println(post + "1");
-		mv.setViewName("createPost");
-		mv.addObject("sessionUser", post);
-		System.out.println("test");
+		mv.setViewName("userPost");
+		mv.addObject("sessionUser", user);
+		mv.addObject("postList", postDAO.displayPostByUserId(user));
+		System.out.println("Place is set");
 		System.out.println(post.getDate());
 		return mv;
 	}
 	
 	@RequestMapping(value="createPlace.do", method=RequestMethod.POST)
-	public ModelAndView createPlace(@ModelAttribute("sessionUser") User user, Place place, @RequestParam("cityName") String city, @RequestParam("countryName") String countryName) {
+	public ModelAndView createPlace(@ModelAttribute("sessionUser") User user, Place place, @RequestParam("cityName") String city, @RequestParam("countryName") String countryName, @RequestParam("review")String review, @RequestParam("dateStr")String dateStr) {
  		ModelAndView mv = new ModelAndView();
 		City c = userdao.getCityByName(city);
-		
+		System.out.println(place);
 		if(c != null){
 			place.setCity(c);
 		}
@@ -152,10 +156,27 @@ public class PostContoller {
 			place.setCountry(co);
 		}
 		
-		postDAO.createPlace(place);
-		mv.setViewName("createPost");
-		mv.addObject("newplace", place);
+		place= postDAO.createPlace(place);
+		
+		Post post = new Post();
+		post.setReview(review);
+		post.setPlace(place);
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = formatter.parse(dateStr);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		post.setDate(date);
+		post.setUser(user);
+		post = postDAO.createPost(post);
+		
+		
+		mv.setViewName("userPost");
 		mv.addObject("sessionUser", user);
+		mv.addObject("postList", postDAO.displayPostByUserId(user));
 		return mv;
 	}
 	
