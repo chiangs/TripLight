@@ -53,6 +53,16 @@
 					</div>
 				</div>				
 			</form>
+				
+		<form action='updatePost.do' method="GET">	
+			<div class="form-group">
+				<label for="postId"></label> <input type="hidden"
+					class="form-control" value="${post.id}" name='postId'>
+					<div class="form-group">
+					<button type="submit" class="btn btn-danger btn-md pul-right">Edit Post.</button>
+					</div>
+				</div>				
+			</form>
 	
 </div>
 			</c:forEach>
