@@ -109,7 +109,7 @@ DROP TABLE IF EXISTS `post` ;
 
 CREATE TABLE IF NOT EXISTS `post` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `review` VARCHAR(140) NOT NULL,
+  `review` VARCHAR(250) NOT NULL,
   `user_id` INT NOT NULL,
   `place_id` INT NOT NULL,
   `post_date` DATE NOT NULL,
