@@ -54,10 +54,10 @@ public class PostContoller {
 	}
 	
 	@RequestMapping(value= "destroyPost.do", method = RequestMethod.POST)
-	public ModelAndView destroyPost(@ModelAttribute("sessionUser") int id) {
+	public ModelAndView destroyPost(@ModelAttribute("postId") int id) {
 		ModelAndView mv = new ModelAndView();
 		postDAO.destroyPost(id);
-		mv.setViewName("destroyPost");
+		mv.setViewName("viewPost");
 		mv.addObject("sessionUser", id);
 		return mv;
 	}	
@@ -167,6 +167,22 @@ public class PostContoller {
 		mv.addObject("postList", posts);
 		return mv;
 	}
-	
-	
+	@RequestMapping(value="deletePost.do", method=RequestMethod.POST)
+	public ModelAndView adminDeletePost(@ModelAttribute("sessionUser") User user,@RequestParam("deleteId") int id) {
+		ModelAndView mv = new ModelAndView();
+		postDAO.destroyPost(id);
+		mv.setViewName("adminDeletePost");
+		mv.addObject("sessionUser", user);
+		mv.addObject("postList", postDAO.index());
+		return mv;
+	}
+	@RequestMapping(value="deletePostAdmin.do", method=RequestMethod.GET)
+	public ModelAndView adminDeletePost(@ModelAttribute("sessionUser") User user) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("adminDeletePost");
+		mv.addObject("sessionUser", user);
+		mv.addObject("postList", postDAO.index());
+		return mv;
+	}
+
 }

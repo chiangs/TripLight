@@ -15,7 +15,7 @@
 <%@ include file="sidenav.jsp"%>
 
  <div class="profile-content">
-                        <h1>Admin Actions</h1>
+                        <h1 class="title">Admin Actions</h1>
 
                         <div class="well">
 	<c:forEach var="user" items="${allUsers}">

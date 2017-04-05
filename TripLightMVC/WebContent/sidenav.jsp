@@ -39,7 +39,7 @@
 							</a></li>
 
 							<li class="active"><a href="logout.do"> <i
-									class="glyphicon glyphicon-flag"></i> Logout
+									class="glyphicon glyphicon-log-out"></i> Logout
 							</a></li>
 
 							<li class="active"><a href="help.do"> <i
@@ -47,7 +47,10 @@
 									</a> </li>
 									 <c:if test="${sessionUser.adminFlag == 1}">
 									   <li class="active"><a href="deleteUsers.do"> <i
-									class="glyphicon glyphicon-flag"></i> Administer Users
+									class="glyphicon glyphicon-user"></i> Administer Users
+									</a></li>
+									   <li class="active"><a href="deletePostAdmin.do"> <i
+									class="glyphicon glyphicon-th-list"></i> Administer Post
 									</a></li>
 									</c:if>
 									
