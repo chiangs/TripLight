@@ -41,6 +41,10 @@
 			</c:forEach>
 		</c:when>
 	</c:choose>
+	
+	 <c:if test="${sessionUser.adminFlag == 1}">
+	
+	</c:if>
 </div>
 
 

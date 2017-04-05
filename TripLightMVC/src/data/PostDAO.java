@@ -24,4 +24,5 @@ public interface PostDAO {
 	public void setEntityManager(EntityManager em);
 	 
 	public Place createPlace(Place place);
+	public List<Post> index();
 }
