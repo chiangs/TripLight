@@ -21,8 +21,8 @@
 							<button type="submit" class="btn btn-success btn-sm">Post
 								Review</button>
 						</form>
-						<form class="formWithButtons" action="updatePost.do" method="GET">
-							<button type="button" class="btn btn-info btn-sm">Edit
+						<form class="formWithButtons" action="viewPost.do" method="GET">
+							<button type="submit" class="btn btn-info btn-sm">Edit
 								Posts</button>
 						</form>
 					</div>
@@ -51,7 +51,6 @@
 									</a></li>
 									</c:if>
 									
-							</a></li>
 						</ul>
 					</div>
 					<!-- END MENU -->

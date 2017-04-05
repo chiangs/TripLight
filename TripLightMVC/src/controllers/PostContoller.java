@@ -71,8 +71,7 @@ public class PostContoller {
 	
 	@RequestMapping(path = "createPost.do", method = RequestMethod.GET)
 	public ModelAndView createUser(@ModelAttribute("sessionUser") User user) {
-		ModelAndView mv = new ModelAndView();
-		
+		ModelAndView mv = new ModelAndView();	
 		mv.setViewName("createPost");
 		mv.addObject("sessionUser", user);
 		return mv;
@@ -116,14 +115,16 @@ public class PostContoller {
 		return mv;
 	}
 	
-	
-	@RequestMapping(value="displayPostByUser.do", method=RequestMethod.POST)
-	public ModelAndView displayPostByUserId(@ModelAttribute("sessionUser")User user) {
+	@RequestMapping(value="viewPost.do", method=RequestMethod.GET)
+	public ModelAndView displayPostByUserId(@ModelAttribute("sessionUser") User user) {
 		ModelAndView mv = new ModelAndView();
-		postDAO.displayPostByUserId(user);
+		System.out.println("In viewpost ID");
+		List<Post> posts = postDAO.displayPostByUserId(user);
 		mv.setViewName("userPost");
 		mv.addObject("sessionUser", user);
+		mv.addObject("postList", posts);
 		return mv;
 	}
+	
 	
 }
