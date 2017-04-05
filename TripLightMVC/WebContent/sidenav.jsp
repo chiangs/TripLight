@@ -49,6 +49,9 @@
 									   <li class="active"><a href="deleteUsers.do"> <i
 									class="glyphicon glyphicon-flag"></i> Administer Users
 									</a></li>
+									   <li class="active"><a href="deletePostAdmin.do"> <i
+									class="glyphicon glyphicon-flag"></i> Administer Post
+									</a></li>
 									</c:if>
 									
 						</ul>
