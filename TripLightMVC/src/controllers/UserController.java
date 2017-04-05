@@ -92,13 +92,18 @@ public class UserController {
 		if (errors.getErrorCount() != 0) {
 			mv.setViewName("createUser");
 			return mv;
+		} else if (userdao.usernameExists(user.getUsername())) {
+			mv.setViewName("createUser");
+			mv.addObject("userExists", "This username exists already, try again");
+			return mv;
+			
+		} else {
+			user.setPhotoUrl("http://res.cloudinary.com/chiangs/image/upload/v1491241630/SD%20projects/travel.png");		
+			userdao.createUser(user);
+			mv.setViewName("userMain");
+			mv.addObject("sessionUser", user);
+			return mv;
 		}
-		user.setPhotoUrl("http://res.cloudinary.com/chiangs/image/upload/v1491241630/SD%20projects/travel.png");
-		
-		userdao.createUser(user);
-		mv.setViewName("userMain");
-		mv.addObject("sessionUser", user);
-		return mv;
 	}
 
 	@RequestMapping(value="deleteUser.do", method=RequestMethod.POST)

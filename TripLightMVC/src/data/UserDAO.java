@@ -25,5 +25,6 @@ public interface UserDAO {
 	public Country getCountryByCountryName(String countryName);
 
 	public City getCityByName(String city);
-	
+
+	boolean usernameExists(String username);	
 }
