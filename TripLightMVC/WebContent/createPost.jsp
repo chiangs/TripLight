@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 
 <head>
@@ -20,13 +21,14 @@
 			<h4>If this place doesn't exist in our database, you will be sent to a page to set the details of the place after you submit.</h4>
 			<br>
 			<div class="form-group">
-				<form action="createPost.do" method="POST">
+				<form:form action="createPost.do" method="POST" modelAttribute="newPost">
 
-					<label>Name of Place you are reviewing:</label><input class="form-control" type="text" name="place" /><br /> 
-					<label>Review (min. 10 characters, max 250)</label> <textarea class="form-control" rows="10" name="review" ></textarea><br /> 
+					<label>Name of Place you are reviewing:</label><input class="form-control" type="text" name="place" placeholder="Place name"/><br /> 
+					<label>Review:</label> <form:errors path="review"></form:errors>
+					 <form:textarea class="form-control" rows="10" path="review" placeholder="min. 10 characters, max 250"></form:textarea><br />
 					<label>Date Visited:<input class="form-control" type="date" name="dateString" /></label><br /> 
 					<input type="submit" class="btn btn-primary" value="Submit Your Review" />
-				</form>
+				</form:form>
 			</div>
 
 
