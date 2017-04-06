@@ -21,7 +21,7 @@
 			<c:forEach var="post" items="${postList}">
 			<div class="well">
 				<ul class="postDisplay">
-			 	<li><h3>${post.id}: ${post.place.name} </h3><br>
+			 	<li><h3 class="wellTitle">${post.id}: ${post.place.name} </h3><br>
 			 	    <h4>Post created by: ${post.user.firstName} ${post.user.lastName} - ${post.date}</h4> 
 			 		<br>
 			 		<br>

@@ -3,21 +3,25 @@ A web-app for users who travel and wish to share reviews and ratings of places a
 
 We also wrote JUnit tests to ensure proper mapping of the entities before moving from JPA to SpringMVC. We then tested the DAO methods to ensure proper CRUD functionality and session persistence of a user.
 
-|Role & Responsibilities                                       | Team Member        |
-|--------------------------------------------------------------|--------------------|
-|Project Team Lead and Overall Design and Login functionality: | Stephen Chiang     |
-|Database Architect and Post functionality                     | Dennis Carrasquillo|
-|Project Setup and User functionality                          | Ehren Williamson   |
+|Role & Responsibilities                                          | Team Member        |
+|-----------------------------------------------------------------|--------------------|
+|Project Team Lead and Overall Design, Login, and floating support| Stephen Chiang     |
+|Database Architect and Post functionality                        | Dennis Carrasquillo|
+|Project Setup and User/Admin functionality                       | Ehren Williamson   |
 
 This is the first we have attempted to implement login functionality to a web-app. There are more secure methods that could be implemented as skills develop and future iterations allow. The goals, milestones, and separation of roles/responsibilities are illustrated in the structure/flow chart image embedded in the README but can also be found in slideshow format in the root folder. As an added primitive layer of security, the controllers for making changes on user/post data checks the session before displaying the view, otherwise it sends the user back to the login page if it's not in session.
 
 Issues the team ran into:
 - Login and logout functionality provided an interesting dimension in querying and validating a user and persisting the account during the entire session. Additionally logging out and ensuring the session was cleared took longer than expected.
+- Creating the post also required a lot of work due to multiple tables. If we had more time, we would have made use of DTO(Data Transfer Object) classes to make the flow smoother.
 
 - This is the most complex project we have worked on and we have to update and alter the database a few times, but our deliberate process of planning and initial mapping prevented significant issues or delays despite a few updates.
 
 If more time were available:
-    -
+    - Adding tags and filtering posts by tags.
+    - User ability to comment on other user posts.
+    - Tagging posts as a favorite.
+    - A direct messaging function.
 
 <p align="center">
 <img src="scrn1.png" height="245">
@@ -28,7 +32,9 @@ If more time were available:
 <p align="center">
 <img src="scrn5.png" height="245">
 <img src="scrn6.png" height="245"></p>
-<p align="center"><img src="scrn7.png" height="245"></p>
+<img src="scrn7.png" height="245">
+<img src="scrn8.png" height="245"></p>
+<p align="center"><img src="scrn9.png" height="245"></p>
 
 ## In This Document
 1. [How to Execute](#how-to-execute)
@@ -96,4 +102,4 @@ Here's a snippit of the controller logic for login/logout. It first checks if th
 - Java Server Pages and JSTL/EL
 - HTML
 - CSS and Bootstrap
-- JavaScript / JQuery
+- JavaScript

@@ -19,7 +19,7 @@
                         <div class="well">
 	<c:forEach var="user" items="${allUsers}">
 		<hr>
-		<h4>User ID: ${user.id}<br>
+		<h4 class="wellTitle">User ID: ${user.id}<br>
 		Username: ${user.username}<br>
 		Name: ${user.firstName} ${user.lastName}</h4>
 		
