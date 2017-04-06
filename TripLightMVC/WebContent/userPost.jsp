@@ -10,6 +10,7 @@
 <head>
 <%@ include file="header.jsp"%>
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/userMain.css">
 <link rel="stylesheet" href="css/postByCountry.css">
 </head>
 
@@ -43,28 +44,18 @@
 			 	</li> 
 				</ul>
 				
-			
-		<form action='destroyPost.do' method="POST">	
-			<div class="form-group">
+		<form class="formWithButtons"action='destroyPost.do' method="POST">	
 				<label for="postId"></label> <input type="hidden"
 					class="form-control" value="${post.id}" name='postId'>
-					<div class="form-group">
-					<button type="submit" class="btn btn-danger btn-md pul-right">I take it back, delete this post.</button>
-					</div>
-				</div>				
+					<button type="submit" class="formWithButtons btn btn-danger btn-md pull-right">I take it back, delete this post.</button>
 			</form>
 				
-		<form action='updatePost.do' method="GET">	
-			<div class="form-group">
+		<form class="formWithButtons"action='updatePost.do' method="GET">	
 				<label for="postId"></label> <input type="hidden"
 					class="form-control" value="${post.id}" name='postId'>
-					<div class="form-group">
-					<button type="submit" class="btn btn-danger btn-md pul-right">Edit Post.</button>
-					</div>
-				</div>				
+					<button type="submit" class="formWithButtons btn btn-warning btn-md pull-right">Edit Post</button>
 			</form>
-	
-</div>
+	</div>		
 			</c:forEach>
 		</c:when>
 	</c:choose>
