@@ -45,7 +45,7 @@ If more time were available:
 
 ## How to Execute
 - The web-app is hosted on my AWS server: <a href="http://www.chiangs.ninja:8080/TripLight/">**here**</a>
-- Download the entire program as a .war file <a href="TripLight.war">**here**</a>
+- Download the entire program as a .war file <a href="https://github.com/chiangs/TripLight/blob/master/TripLightMVC.war">**here**</a>
 
 ## Instructions
 1. User arrives on landing page
