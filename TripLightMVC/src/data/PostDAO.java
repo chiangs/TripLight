@@ -30,6 +30,8 @@ public interface PostDAO {
 	public List<Post> index();
 
 	public Post getPostById(int id);
+
+	boolean countryExists(String countryName);
 	
 
 }

@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tl.entities.Country;
 import com.tl.entities.Place;
 import com.tl.entities.Post;
 import com.tl.entities.User;
@@ -19,9 +20,9 @@ public class PostDAOImpl implements PostDAO {
 
 	@Override
 	public Place createPlace(Place place) {
-		
+
 		em.persist(place);
-		
+
 		return place;
 	}
 
@@ -41,7 +42,7 @@ public class PostDAOImpl implements PostDAO {
 		System.out.println(post);
 		return post;
 	}
-	
+
 	@Override
 	public List<Post> displayPostByCountryCode(String countryCode) {
 		String query = "SELECT p FROM Post p WHERE p.place.country.name = :country";
@@ -66,7 +67,6 @@ public class PostDAOImpl implements PostDAO {
 		managed.setReview(post.getReview());
 		managed.setDate(post.getDate());
 		em.merge(managed);
-		
 
 		return post;
 	}
@@ -86,17 +86,16 @@ public class PostDAOImpl implements PostDAO {
 
 		return posts;
 	}
-	
+
 	@Override
 	public Place getPlaceByName(String name) {
 		System.out.println("in findPlaceByName " + name);
 		Place place = new Place();
-		String query = "SELECT p FROM Place p WHERE p.name = :name";	
+		String query = "SELECT p FROM Place p WHERE p.name = :name";
 		Place p = em.createQuery(query, Place.class).setParameter("name", name).getSingleResult();
-//		System.out.println(p.toString());
 		return p;
 	}
-	
+
 	public List<Post> index() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("TripLight");
 		EntityManager em = emf.createEntityManager();
@@ -112,5 +111,15 @@ public class PostDAOImpl implements PostDAO {
 		return em.find(Post.class, id);
 	}
 
+	@Override
+	public boolean countryExists(String countryName) {
+		String query = "Select c from Country c where c.name = :name";
+		try {
+			Country found = em.createQuery(query, Country.class).setParameter("name", countryName).getSingleResult();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 }
