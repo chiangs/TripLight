@@ -20,7 +20,6 @@
 			<h2 class="title">Craft your Review</h2>
 			<h4>If this place doesn't exist in our database, you will be sent to a page to set the details of the place after you submit.</h4>
 			<br>
-			<div class="form-group">
 				<form:form action="createPost.do" method="POST" modelAttribute="newPost">
 
 					<label>Name of place you are reviewing:</label> <p style="color:red">${noPlaceName}</p><input class="form-control" type="text" name="place" placeholder="Place name"/><br /> 
@@ -30,14 +29,13 @@
 					<input type="submit" class="btn btn-primary" value="Submit Your Review" />
 				</form:form>
 			</div>
-
-
-
-
-
 		</div>
 
-	</div>
+
+
+
+
+
 
 
 
