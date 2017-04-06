@@ -23,7 +23,7 @@
 			<div class="form-group">
 				<form:form action="createPost.do" method="POST" modelAttribute="newPost">
 
-					<label>Name of Place you are reviewing:</label><input class="form-control" type="text" name="place" placeholder="Place name"/><br /> 
+					<label>Name of place you are reviewing:</label> <p style="color:red">${noPlaceName}</p><input class="form-control" type="text" name="place" placeholder="Place name"/><br /> 
 					<label>Review:</label> <form:errors path="review"></form:errors>
 					 <form:textarea class="form-control" rows="10" path="review" placeholder="min. 10 characters, max 250"></form:textarea><br />
 					<label>Date Visited:<input class="form-control" type="date" name="dateString" /></label><br /> 

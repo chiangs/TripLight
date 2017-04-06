@@ -19,6 +19,7 @@ Issues the team ran into:
 
 If more time were available:
     - Adding tags and filtering posts by tags.
+    - Adding search by review contains keywords.
     - User ability to comment on other user posts.
     - Tagging posts as a favorite.
     - A direct messaging function.

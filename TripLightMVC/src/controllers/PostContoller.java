@@ -46,8 +46,9 @@ public class PostContoller {
 		return mv;
 	}
 
-	@RequestMapping(value="updatePost.do", method=RequestMethod.POST)
-	public ModelAndView updatePost(@ModelAttribute("sessionUser") User user,@RequestParam("review") String review,@RequestParam("dateStr") String dateStr, @RequestParam("postId") int id) {
+	@RequestMapping(value = "updatePost.do", method = RequestMethod.POST)
+	public ModelAndView updatePost(@ModelAttribute("sessionUser") User user, @RequestParam("review") String review,
+			@RequestParam("dateStr") String dateStr, @RequestParam("postId") int id) {
 		ModelAndView mv = new ModelAndView();
 		Post post = postDAO.getPostById(id);
 		post.setReview(review);
@@ -61,15 +62,14 @@ public class PostContoller {
 		}
 		post.setDate(date);
 		post = postDAO.updatePost(id, post);
-		
-		
+
 		mv.setViewName("userPost");
 		mv.addObject("sessionUser", user);
 		mv.addObject("postList", postDAO.displayPostByUserId(user));
 		return mv;
 	}
 
-	@RequestMapping(value = "destroyPost.do", method = RequestMethod.POST) 
+	@RequestMapping(value = "destroyPost.do", method = RequestMethod.POST)
 	public ModelAndView destroyPost(@ModelAttribute("sessionUser") User user, @ModelAttribute("postId") int id) {
 		ModelAndView mv = new ModelAndView();
 		postDAO.destroyPost(id);
@@ -106,6 +106,11 @@ public class PostContoller {
 			@RequestParam("dateString") String dateStr, @RequestParam("review") String review) {
 		ModelAndView mv = new ModelAndView();
 		if (errors.getErrorCount() >= 2) {
+			mv.setViewName("createPost");
+			return mv;
+		}
+			else if (placeStr == "") {
+			mv.addObject("noPlaceName", "Need a name for the place you are reviewing!");
 			mv.setViewName("createPost");
 			return mv;
 		} else {
