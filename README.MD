@@ -18,6 +18,7 @@ Issues the team ran into:
 - This is the most complex project we have worked on and we have to update and alter the database a few times, but our deliberate process of planning and initial mapping prevented significant issues or delays despite a few updates.
 
 If more time were available:
+    - Optimized form validation logic for creating new place.
     - Adding tags and filtering posts by tags.
     - Adding search by review contains keywords.
     - User ability to comment on other user posts.
