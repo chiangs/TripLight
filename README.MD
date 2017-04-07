@@ -1,4 +1,4 @@
-# Summary - Under Construction
+# Summary
 A web-app for users who travel and wish to share reviews and ratings of places all over the world. This a collaborative project developed with a MAMP stack consisting of Java JPA API, the Spring MVC framework, and MySQL database technologies with CRUD functionality. This web-app implements session control, Object-Relational Mapping (ORM), Form Validation, and has a MySQL database deployed to an Apache Tomcat 8 Server.  The database was created with MySQL Workbench.
 
 We also wrote JUnit tests to ensure proper mapping of the entities before moving from JPA to SpringMVC. We then tested the DAO methods to ensure proper CRUD functionality and session persistence of a user.
